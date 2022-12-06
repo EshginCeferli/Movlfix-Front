@@ -7,11 +7,12 @@ import Trial from '../../components/Trial'
 import Upcoming from '../../components/Upcoming'
 
 
+
+
 function Home() {
   return (
     <div>     
-       
-        <Banner/>
+        <Banner/>       
         <Upcoming/>
         <Service/>
         <Rated/>

@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "../assets/css/bootstrap.min.css";
 
-import "../assets/css/style.css";
-import Home from "../pages/home/Home";
+
 import Movie from "../pages/movie/Movie";
 import Blog from "../pages/blog/Blog";
 import Pricing from "../pages/pricing/Pricing";
@@ -27,14 +26,16 @@ function Navbar() {
                   <div className="menu-wrap">
                     <nav className="menu-nav show">
                       <div className="logo">
-                        <a href="index.html">
-                          <img src="/images/logo/logo.png" alt="cam" />
-                        </a>
+                        <Link to="/">
+                        <img src="/images/logo/logo.png" alt="cam" />
+                        </Link>
+                          
+                        
                       </div>
                       <div className="navbar-wrap main-menu d-none d-lg-flex">
                         <ul className="navigation">
                           <li className="active menu-item-has-children">
-                            {/* <Link to="/homeewew">Home</Link> */}
+                            <Link to="/">Home</Link>
                             <ul className="submenu">
                               <li className="active">
                                 <a href="index.html">Home One</a>
@@ -185,13 +186,7 @@ function Navbar() {
         </header>
         {/* header-area-end */}
       </>
-      <Routes>
-        {/* <Route path="/homeewew" element={<Home />} /> */}
-        <Route path="/movie" element={<Movie />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+ 
     </div>
   );
 }

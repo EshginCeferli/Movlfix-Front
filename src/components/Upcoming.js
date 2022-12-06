@@ -27,527 +27,81 @@ function Upcoming() {
               </div>
               <div className="col-lg-6">
                 <div className="ucm-nav-wrap">
-                  <ul className="nav nav-tabs" id="myTab" role="tablist">
+                  <ul
+                    className="nav nav-pills mb-3"
+                    id="pills-tab"
+                    role="tablist"
+                  >
                     <li className="nav-item" role="presentation">
-                      <a
+                      <button
                         className="nav-link active"
-                        id="tvShow-tab"
-                        data-toggle="tab"
-                        href="#tvShow"
+                        id="pills-home-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-home"
+                        type="button"
                         role="tab"
-                        aria-controls="tvShow"
+                        aria-controls="pills-home"
                         aria-selected="true"
                       >
-                        TV Shows
-                      </a>
+                        Home
+                      </button>
                     </li>
                     <li className="nav-item" role="presentation">
-                      <a
+                      <button
                         className="nav-link"
-                        id="movies-tab"
-                        data-toggle="tab"
-                        href="#movies"
+                        id="pills-profile-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-profile"
+                        type="button"
                         role="tab"
-                        aria-controls="movies"
+                        aria-controls="pills-profile"
                         aria-selected="false"
                       >
-                        Movies
-                      </a>
+                        Profile
+                      </button>
                     </li>
                     <li className="nav-item" role="presentation">
-                      <a
+                      <button
                         className="nav-link"
-                        id="anime-tab"
-                        data-toggle="tab"
-                        href="#anime"
+                        id="pills-contact-tab"
+                        data-bs-toggle="pill"
+                        data-bs-target="#pills-contact"
+                        type="button"
                         role="tab"
-                        aria-controls="anime"
+                        aria-controls="pills-contact"
                         aria-selected="false"
                       >
-                        Anime
-                      </a>
+                        Contact
+                      </button>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div className="tab-content" id="myTabContent">
+            <div className="tab-content" id="pills-tabContent">
               <div
                 className="tab-pane fade show active"
-                id="tvShow"
+                id="pills-home"
                 role="tabpanel"
-                aria-labelledby="tvShow-tab"
+                aria-labelledby="pills-home-tab"
               >
-                <div className="ucm-active owl-carousel">
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster01.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">Women's Day</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster02.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Perfect Match</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">4k</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster03.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Dog Woof</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster04.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Easy Reach</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">8k</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster05.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Cooking</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                Slide 1
               </div>
               <div
                 className="tab-pane fade"
-                id="movies"
+                id="pills-profile"
                 role="tabpanel"
-                aria-labelledby="movies-tab"
+                aria-labelledby="pills-profile-tab"
               >
-                <div className="ucm-active owl-carousel">
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster05.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Cooking</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster06.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Hikers</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">4k</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster07.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">Life Quotes</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster08.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Beachball</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">4k</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster03.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Dog Woof</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                Slider2
               </div>
               <div
                 className="tab-pane fade"
-                id="anime"
+                id="pills-contact"
                 role="tabpanel"
-                aria-labelledby="anime-tab"
+                aria-labelledby="pills-contact-tab"
               >
-                <div className="ucm-active owl-carousel">
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster01.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">Women's Day</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster02.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Perfect Match</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">4k</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster03.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Dog Woof</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster04.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Easy Reach</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">8k</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="movie-item mb-50">
-                    <div className="movie-poster">
-                      <a href="movie-details.html">
-                        <img src="/images/poster/ucm_poster05.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Cooking</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                Slider 3
               </div>
             </div>
           </div>
