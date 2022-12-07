@@ -1117,7 +1117,7 @@ label {
 .movie-bg .tr-movie-menu-active button,
 .movie-filter-form select {
     border-radius: 50px;
-    background: #20212b;
+    background: #20212b !important;
     font-size: 12px;
     font-weight: 600;
     color: #e3dfdf;
