@@ -1,13 +1,7 @@
 import React from "react";
 import { Link} from "react-router-dom";
-import "../assets/css/bootstrap.min.css";
-
-
-import Movie from "../pages/movie/Movie";
-import Blog from "../pages/blog/Blog";
-import Pricing from "../pages/pricing/Pricing";
-import Contact from "../pages/contact/Contact";
 import ScrollTop from "../components/ScrollTop";
+import "../assets/css/bootstrap.min.css";
 
 function Navbar() {
   return (

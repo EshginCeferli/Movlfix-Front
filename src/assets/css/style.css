@@ -43,6 +43,7 @@
 	font-size: 14px;
 	color: #bcbcbc;
 }
+
 .img {
 	max-width: 100%;
 	transition: all 0.3s ease-out 0s;
@@ -227,7 +228,19 @@ label {
 .movie-content-bottom ul li.tag a:hover,
 .breadcrumb-content .breadcrumb li a,
 .breadcrumb-content .title > span {
-	color: #e4d804;
+	color: #e4d804 !important;
+}
+.nav-tabs{
+    border: none;
+}
+
+.nav-tabs .nav-link.active{
+    border: none;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{
+    border:none;
+    color: white;
 }
 .scroll-top,
 .btn:hover,
@@ -236,7 +249,7 @@ label {
 .services-list ul li .icon::before,
 .tr-movie-menu-active button::before,
 .tr-movie-menu-active button::after {
-	background: #e4d804;
+	background: #e4d804 !important;
 }
 
 
@@ -245,7 +258,7 @@ label {
     user-select: none;
     -moz-user-select: none;
     background: #12151e none repeat scroll 0 0;
-    border: 2px solid #e4d804;
+    border: 2px solid #e4d804 !important;
     border-radius: 50px;
     color: #e3dfdf;
     cursor: pointer;
@@ -1514,11 +1527,11 @@ label {
     justify-content: center;
     margin-bottom: 40px;
 }
-.tr-movie-menu-active button {
+.tr-movie-menu-active nav button {
     border: none;
     border-radius: 4px;
     box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.77);
-    background: #0b1110;
+    background: #0b1110 !important;
     font-size: 13px;
     text-transform: uppercase;
     font-weight: 700;

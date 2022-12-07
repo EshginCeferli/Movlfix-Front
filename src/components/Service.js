@@ -31,6 +31,7 @@ function Service() {
                     <h2 className="title">
                       Download Your Shows Watch Offline.
                     </h2>
+                    
                   </div>
                   <p>
                     Lorem ipsum dolor sit amet, consecetur adipiscing elseddo

@@ -1,7 +1,7 @@
 import React from "react";
 
 function BlogComp() {
-  return (
+  return (  
     <div>
       {" "}
       <div className="blog-post-item">
