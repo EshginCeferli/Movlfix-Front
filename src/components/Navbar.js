@@ -46,7 +46,7 @@ function Navbar() {
                                 <Link to="/movie">Movie</Link>
                               </li>
                               <li>
-                                <a href="movie-details.html">Movie Details</a>
+                              <Link to="/movieDetail">Movie Detail</Link>
                               </li>
                             </ul>
                           </li>

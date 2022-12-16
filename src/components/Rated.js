@@ -22,9 +22,9 @@ function Rated() {
             <div className="col-lg-8">
               <div className="tr-movie-menu-active text-center">
                 <nav>
-                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <div className="nav nav-tabs" id="nav-tab" role="tablist">
                     <button
-                      class="nav-link active"
+                      className="nav-link active"
                       id="nav-home-tab"
                       data-bs-toggle="tab"
                       data-bs-target="#nav-home"
@@ -36,7 +36,7 @@ function Rated() {
                       Home
                     </button>
                     <button
-                      class="nav-link"
+                      className="nav-link"
                       id="nav-profile-tab"
                       data-bs-toggle="tab"
                       data-bs-target="#nav-profile"
@@ -48,7 +48,7 @@ function Rated() {
                       Profile
                     </button>
                     <button
-                      class="nav-link"
+                      className="nav-link"
                       id="nav-contact-tab"
                       data-bs-toggle="tab"
                       data-bs-target="#nav-contact"
@@ -65,9 +65,9 @@ function Rated() {
             </div>
           </div>
 
-          <div class="tab-content" id="nav-tabContent">
+          <div className="tab-content" id="nav-tabContent">
             <div
-              class="tab-pane fade show active"
+              className="tab-pane fade show active"
               id="nav-home"
               role="tabpanel"
               aria-labelledby="nav-home-tab"
@@ -338,7 +338,7 @@ function Rated() {
 
             
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="nav-profile"
               role="tabpanel"
               aria-labelledby="nav-profile-tab"
@@ -603,7 +603,7 @@ function Rated() {
               </div>
             </div>
             <div
-              class="tab-pane fade"
+              className="tab-pane fade"
               id="nav-contact"
               role="tabpanel"
               aria-labelledby="nav-contact-tab"
