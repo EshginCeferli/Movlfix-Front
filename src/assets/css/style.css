@@ -2330,8 +2330,11 @@ label {
 .sidebar-cat ul li:last-child {
     margin-bottom: 0;
 }
-.sidebar-cat ul li a {
+.sidebar-cat ul li button {
     color: #c8c8c8;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
 }
 .sidebar-cat ul li span {
     float: right;

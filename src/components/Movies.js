@@ -1,12 +1,17 @@
 import React from "react";
+import Categories from "./Categories";
+import { useState } from "react";
 
 function Movies() {
+const [filteredData, setFilteredData] = useState([])
+
+console.log("test");
   return (
     <div>
       <section
         className="movie-area movie-bg"
         style={{ backgroundImage: "url(/images/bg/movie_bg.jpg)" }}
-        // data-background="images/bg/movie_bg.jpg"
+      // data-background="images/bg/movie_bg.jpg"
       >
         <div className="container">
           <div className="row align-items-end mb-5">
@@ -19,7 +24,11 @@ function Movies() {
             <div className="col-lg-6">
               <div className="movie-page-meta">
                 <div className="tr-movie-menu-active text-center">
-                  <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                  <ul
+                    className="nav nav-pills mb-3"
+                    id="pills-tab"
+                    role="tablist"
+                  >
                     <li className="nav-item" role="presentation">
                       <button
                         className="nav-link active"
@@ -88,418 +97,427 @@ function Movies() {
             >
               {" "}
               <div className="row tr-movie-active">
-                <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
-                  <div className="movie-item movie-item-three mb-5">
-                    <div className="movie-poster">
-                      <img src="images/poster/ucm_poster01.jpg" alt="" />
-                      <ul className="overlay-btn">
-                        <li className="rating">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                            className="popup-video btn"
-                          >
-                            Watch Now
-                          </a>
-                        </li>
-                        <li>
-                          <a href="movie-details.html" className="btn">
-                            Details
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">Women's Day</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                <div className="col-3">
+                  {" "}
+                  <Categories />
+                  
                 </div>
-                <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one">
-                  <div className="movie-item movie-item-three mb-5">
-                    <div className="movie-poster">
-                      <img src="images/poster/ucm_poster02.jpg" alt="" />
-                      <ul className="overlay-btn">
-                        <li className="rating">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                            className="popup-video btn"
-                          >
-                            Watch Now
-                          </a>
-                        </li>
-                        <li>
-                          <a href="movie-details.html" className="btn">
-                            Details
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Perfect Match</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">4k</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
-                  <div className="movie-item movie-item-three mb-5">
-                    <div className="movie-poster">
-                      <img src="images/poster/ucm_poster03.jpg" alt="" />
-                      <ul className="overlay-btn">
-                        <li className="rating">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                            className="popup-video btn"
-                          >
-                            Watch Now
-                          </a>
-                        </li>
-                        <li>
-                          <a href="movie-details.html" className="btn">
-                            Details
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Dog Woof</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
+                <div className="col-9">
+                  <div className="row">
+                    <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
+                      <div className="movie-item movie-item-three mb-5">
+                        <div className="movie-poster">
+                          <img src="images/poster/ucm_poster01.jpg" alt="" />
+                          <ul className="overlay-btn">
+                            <li className="rating">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
+                                className="popup-video btn"
+                              >
+                                Watch Now
+                              </a>
+                            </li>
+                            <li>
+                              <a href="movie-details.html" className="btn">
+                                Details
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="movie-content">
+                          <div className="top">
+                            <h5 className="title">
+                              <a href="movie-details.html">Women's Day</a>
+                            </h5>
+                            <span className="date">2021</span>
+                          </div>
+                          <div className="bottom">
+                            <ul>
+                              <li>
+                                <span className="quality">hd</span>
+                              </li>
+                              <li>
+                                <span className="duration">
+                                  <i className="far fa-clock" /> 128 min
+                                </span>
+                                <span className="rating">
+                                  <i className="fas fa-thumbs-up" /> 3.5
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one">
-                  <div className="movie-item movie-item-three mb-5">
-                    <div className="movie-poster">
-                      <img src="images/poster/ucm_poster04.jpg" alt="" />
-                      <ul className="overlay-btn">
-                        <li className="rating">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                            className="popup-video btn"
-                          >
-                            Watch Now
-                          </a>
-                        </li>
-                        <li>
-                          <a href="movie-details.html" className="btn">
-                            Details
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Easy Reach</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
-                  <div className="movie-item movie-item-three mb-5">
-                    <div className="movie-poster">
-                      <img src="images/poster/ucm_poster05.jpg" alt="" />
-                      <ul className="overlay-btn">
-                        <li className="rating">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                            className="popup-video btn"
-                          >
-                            Watch Now
-                          </a>
-                        </li>
-                        <li>
-                          <a href="movie-details.html" className="btn">
-                            Details
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Cooking</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
+                    <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one">
+                      <div className="movie-item movie-item-three mb-5">
+                        <div className="movie-poster">
+                          <img src="images/poster/ucm_poster02.jpg" alt="" />
+                          <ul className="overlay-btn">
+                            <li className="rating">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
+                                className="popup-video btn"
+                              >
+                                Watch Now
+                              </a>
+                            </li>
+                            <li>
+                              <a href="movie-details.html" className="btn">
+                                Details
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="movie-content">
+                          <div className="top">
+                            <h5 className="title">
+                              <a href="movie-details.html">The Perfect Match</a>
+                            </h5>
+                            <span className="date">2021</span>
+                          </div>
+                          <div className="bottom">
+                            <ul>
+                              <li>
+                                <span className="quality">4k</span>
+                              </li>
+                              <li>
+                                <span className="duration">
+                                  <i className="far fa-clock" /> 128 min
+                                </span>
+                                <span className="rating">
+                                  <i className="fas fa-thumbs-up" /> 3.5
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one cat-two">
-                  <div className="movie-item movie-item-three mb-5">
-                    <div className="movie-poster">
-                      <img src="images/poster/ucm_poster06.jpg" alt="" />
-                      <ul className="overlay-btn">
-                        <li className="rating">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                            className="popup-video btn"
-                          >
-                            Watch Now
-                          </a>
-                        </li>
-                        <li>
-                          <a href="movie-details.html" className="btn">
-                            Details
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Hikaru Night</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one">
-                  <div className="movie-item movie-item-three mb-5">
-                    <div className="movie-poster">
-                      <img src="images/poster/ucm_poster07.jpg" alt="" />
-                      <ul className="overlay-btn">
-                        <li className="rating">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                            className="popup-video btn"
-                          >
-                            Watch Now
-                          </a>
-                        </li>
-                        <li>
-                          <a href="movie-details.html" className="btn">
-                            Details
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Life Quotes</a>
-                        </h5>
-                        <span className="date">2021</span>
-                      </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
+                    <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
+                      <div className="movie-item movie-item-three mb-5">
+                        <div className="movie-poster">
+                          <img src="images/poster/ucm_poster03.jpg" alt="" />
+                          <ul className="overlay-btn">
+                            <li className="rating">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
+                                className="popup-video btn"
+                              >
+                                Watch Now
+                              </a>
+                            </li>
+                            <li>
+                              <a href="movie-details.html" className="btn">
+                                Details
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="movie-content">
+                          <div className="top">
+                            <h5 className="title">
+                              <a href="movie-details.html">The Dog Woof</a>
+                            </h5>
+                            <span className="date">2021</span>
+                          </div>
+                          <div className="bottom">
+                            <ul>
+                              <li>
+                                <span className="quality">hd</span>
+                              </li>
+                              <li>
+                                <span className="duration">
+                                  <i className="far fa-clock" /> 128 min
+                                </span>
+                                <span className="rating">
+                                  <i className="fas fa-thumbs-up" /> 3.5
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one cat-two">
-                  <div className="movie-item movie-item-three mb-5">
-                    <div className="movie-poster">
-                      <img src="images/poster/ucm_poster08.jpg" alt="" />
-                      <ul className="overlay-btn">
-                        <li className="rating">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                        </li>
-                        <li>
-                          <a
-                            href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                            className="popup-video btn"
-                          >
-                            Watch Now
-                          </a>
-                        </li>
-                        <li>
-                          <a href="movie-details.html" className="btn">
-                            Details
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="movie-content">
-                      <div className="top">
-                        <h5 className="title">
-                          <a href="movie-details.html">The Beachball</a>
-                        </h5>
-                        <span className="date">2021</span>
+                    <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one">
+                      <div className="movie-item movie-item-three mb-5">
+                        <div className="movie-poster">
+                          <img src="images/poster/ucm_poster04.jpg" alt="" />
+                          <ul className="overlay-btn">
+                            <li className="rating">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
+                                className="popup-video btn"
+                              >
+                                Watch Now
+                              </a>
+                            </li>
+                            <li>
+                              <a href="movie-details.html" className="btn">
+                                Details
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="movie-content">
+                          <div className="top">
+                            <h5 className="title">
+                              <a href="movie-details.html">The Easy Reach</a>
+                            </h5>
+                            <span className="date">2021</span>
+                          </div>
+                          <div className="bottom">
+                            <ul>
+                              <li>
+                                <span className="quality">hd</span>
+                              </li>
+                              <li>
+                                <span className="duration">
+                                  <i className="far fa-clock" /> 128 min
+                                </span>
+                                <span className="rating">
+                                  <i className="fas fa-thumbs-up" /> 3.5
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
-                      <div className="bottom">
-                        <ul>
-                          <li>
-                            <span className="quality">hd</span>
-                          </li>
-                          <li>
-                            <span className="duration">
-                              <i className="far fa-clock" /> 128 min
-                            </span>
-                            <span className="rating">
-                              <i className="fas fa-thumbs-up" /> 3.5
-                            </span>
-                          </li>
-                        </ul>
+                    </div>
+                    <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
+                      <div className="movie-item movie-item-three mb-5">
+                        <div className="movie-poster">
+                          <img src="images/poster/ucm_poster05.jpg" alt="" />
+                          <ul className="overlay-btn">
+                            <li className="rating">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
+                                className="popup-video btn"
+                              >
+                                Watch Now
+                              </a>
+                            </li>
+                            <li>
+                              <a href="movie-details.html" className="btn">
+                                Details
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="movie-content">
+                          <div className="top">
+                            <h5 className="title">
+                              <a href="movie-details.html">The Cooking</a>
+                            </h5>
+                            <span className="date">2021</span>
+                          </div>
+                          <div className="bottom">
+                            <ul>
+                              <li>
+                                <span className="quality">hd</span>
+                              </li>
+                              <li>
+                                <span className="duration">
+                                  <i className="far fa-clock" /> 128 min
+                                </span>
+                                <span className="rating">
+                                  <i className="fas fa-thumbs-up" /> 3.5
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one cat-two">
+                      <div className="movie-item movie-item-three mb-5">
+                        <div className="movie-poster">
+                          <img src="images/poster/ucm_poster06.jpg" alt="" />
+                          <ul className="overlay-btn">
+                            <li className="rating">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
+                                className="popup-video btn"
+                              >
+                                Watch Now
+                              </a>
+                            </li>
+                            <li>
+                              <a href="movie-details.html" className="btn">
+                                Details
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="movie-content">
+                          <div className="top">
+                            <h5 className="title">
+                              <a href="movie-details.html">The Hikaru Night</a>
+                            </h5>
+                            <span className="date">2021</span>
+                          </div>
+                          <div className="bottom">
+                            <ul>
+                              <li>
+                                <span className="quality">hd</span>
+                              </li>
+                              <li>
+                                <span className="duration">
+                                  <i className="far fa-clock" /> 128 min
+                                </span>
+                                <span className="rating">
+                                  <i className="fas fa-thumbs-up" /> 3.5
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one">
+                      <div className="movie-item movie-item-three mb-5">
+                        <div className="movie-poster">
+                          <img src="images/poster/ucm_poster07.jpg" alt="" />
+                          <ul className="overlay-btn">
+                            <li className="rating">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
+                                className="popup-video btn"
+                              >
+                                Watch Now
+                              </a>
+                            </li>
+                            <li>
+                              <a href="movie-details.html" className="btn">
+                                Details
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="movie-content">
+                          <div className="top">
+                            <h5 className="title">
+                              <a href="movie-details.html">The Life Quotes</a>
+                            </h5>
+                            <span className="date">2021</span>
+                          </div>
+                          <div className="bottom">
+                            <ul>
+                              <li>
+                                <span className="quality">hd</span>
+                              </li>
+                              <li>
+                                <span className="duration">
+                                  <i className="far fa-clock" /> 128 min
+                                </span>
+                                <span className="rating">
+                                  <i className="fas fa-thumbs-up" /> 3.5
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one cat-two">
+                      <div className="movie-item movie-item-three mb-5">
+                        <div className="movie-poster">
+                          <img src="images/poster/ucm_poster08.jpg" alt="" />
+                          <ul className="overlay-btn">
+                            <li className="rating">
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                              <i className="fas fa-star" />
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
+                                className="popup-video btn"
+                              >
+                                Watch Now
+                              </a>
+                            </li>
+                            <li>
+                              <a href="movie-details.html" className="btn">
+                                Details
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="movie-content">
+                          <div className="top">
+                            <h5 className="title">
+                              <a href="movie-details.html">The Beachball</a>
+                            </h5>
+                            <span className="date">2021</span>
+                          </div>
+                          <div className="bottom">
+                            <ul>
+                              <li>
+                                <span className="quality">hd</span>
+                              </li>
+                              <li>
+                                <span className="duration">
+                                  <i className="far fa-clock" /> 128 min
+                                </span>
+                                <span className="rating">
+                                  <i className="fas fa-thumbs-up" /> 3.5
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1432,7 +1450,6 @@ function Movies() {
               </div>
             </div>
           </div>
-        
         </div>
       </section>
     </div>

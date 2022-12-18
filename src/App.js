@@ -14,7 +14,7 @@ import Crud from "./components/Crud";
 function App() {
   return (
     <div>   
-      <Crud/>  
+      <Crud/>
       {/* <Navbar/>
     
       <Routes>
