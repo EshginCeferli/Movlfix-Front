@@ -10,12 +10,14 @@ import React from "react";
 import Footer from "./components/Footer";
 import {Route,Routes } from 'react-router-dom';
 import Crud from "./components/Crud";
+import BlogDetail from "./pages/blogDetail/BlogDetail";
 
 function App() {
   return (
     <div>   
-      <Crud/>
-      {/* <Navbar/>
+      {/* <Crud/> */}
+      
+      <Navbar/>
     
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,10 +25,11 @@ function App() {
         <Route exact path="/movieDetail" element={<MovieDetail/>} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>  
    
-      <Footer />          */}
+      <Footer />         
     </div>
   );
 }

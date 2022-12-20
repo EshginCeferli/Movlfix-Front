@@ -1,132 +1,66 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function BlogComp() {
-  return (  
+  const [blogs, setBlogs] = useState([]);
+
+  //All Blogs Url
+  const baseUrl = "https://localhost:7079/api/Blog/GetAll";
+
+  function GetAllBlogs() {
+    axios.get(baseUrl).then((response) => {
+      setBlogs(response.data);
+    });
+  }
+
+  useEffect(() => {
+    GetAllBlogs();
+  }, []);
+
+  return (
     <div>
-      {" "}
-      <div className="blog-post-item">
-        <div className="blog-post-thumb">
-          <a href="blog-details.html">
-            <img src="images/blog/blog_thumb01.jpg" alt="" />
-          </a>
-        </div>
-        <div className="blog-post-content">
-          <span className="date">
-            <i className="far fa-clock" /> 10 Mar 2021
-          </span>
-          <h2 className="title">
-            <a href="blog-details.html">Your Free Movie Streaming Purposes</a>
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididun labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip exesa commodo consequat. Duis aute irure dolor in reprehend
-            .
-          </p>
-          <div className="blog-post-meta">
-            <ul>
-              <li>
-                <i className="far fa-user" /> by <a href="#">Admin</a>
-              </li>
-              <li>
-                <i className="far fa-thumbs-up" /> 63
-              </li>
-              <li>
-                <i className="far fa-comments" />
-                <a href="#">12 Comments</a>
-              </li>
-            </ul>
-            <div className="read-more">
+      {blogs.map((blog, i) => {
+        let thumb = blog.blogImages.find((item) => item.isMain == true).image;
+        return (
+          <div className="blog-post-item" key={i}>
+            <div className="blog-post-thumb">
               <a href="blog-details.html">
-                Read More <i className="fas fa-angle-double-right" />
+                <img src={`/images/blog/${thumb}`} alt="" />
               </a>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="blog-post-item">
-        <div className="blog-post-thumb">
-          <a href="blog-details.html">
-            <img src="images/blog/blog_thumb02.jpg" alt="" />
-          </a>
-        </div>
-        <div className="blog-post-content">
-          <span className="date">
-            <i className="far fa-clock" /> 10 Mar 2021
-          </span>
-          <h2 className="title">
-            <a href="blog-details.html">Where watch English movies free?</a>
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididun labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip exesa commodo consequat. Duis aute irure dolor in reprehend
-            .
-          </p>
-          <div className="blog-post-meta">
-            <ul>
-              <li>
-                <i className="far fa-user" /> by <a href="#">Admin</a>
-              </li>
-              <li>
-                <i className="far fa-thumbs-up" /> 63
-              </li>
-              <li>
-                <i className="far fa-comments" />
-                <a href="#">12 Comments</a>
-              </li>
-            </ul>
-            <div className="read-more">
-              <a href="blog-details.html">
-                Read More <i className="fas fa-angle-double-right" />
-              </a>
+            <div className="blog-post-content">
+              <span className="date">
+                <i className="far fa-clock" /> 10 Mar 2021
+              </span>
+              <h2 className="title">
+                <a href="blog-details.html">{blog.name}</a>
+              </h2>
+              <p>{blog.description}</p>
+              <div className="blog-post-meta">
+                <ul>
+                  <li>
+                    <i className="far fa-user" /> by <a href="#">{blog.by}</a>
+                  </li>
+                  <li>
+                    <i className="far fa-thumbs-up" /> 63
+                  </li>
+                  <li>
+                    <i className="far fa-comments" />
+                    <a href="#">12 Comments</a>
+                  </li>
+                </ul>
+                <div className="read-more">
+                  <Link to={`/blog/${blog.id}`}>
+                    Read More <i className="fas fa-angle-double-right" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="blog-post-item">
-        <div className="blog-post-thumb">
-          <a href="blog-details.html">
-            <img src="images/blog/blog_thumb03.jpg" alt="" />
-          </a>
-        </div>
-        <div className="blog-post-content">
-          <span className="date">
-            <i className="far fa-clock" /> 10 Mar 2021
-          </span>
-          <h2 className="title">
-            <a href="blog-details.html">House movie to is streaming website?</a>
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididun labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip exesa commodo consequat. Duis aute irure dolor in reprehend
-            .
-          </p>
-          <div className="blog-post-meta">
-            <ul>
-              <li>
-                <i className="far fa-user" /> by <a href="#">Admin</a>
-              </li>
-              <li>
-                <i className="far fa-thumbs-up" /> 63
-              </li>
-              <li>
-                <i className="far fa-comments" />
-                <a href="#">12 Comments</a>
-              </li>
-            </ul>
-            <div className="read-more">
-              <a href="blog-details.html">
-                Read More <i className="fas fa-angle-double-right" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+        );
+      })}
+
       <div className="pagination-wrap mt-60">
         <nav>
           <ul>

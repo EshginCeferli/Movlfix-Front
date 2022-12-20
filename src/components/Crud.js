@@ -26,7 +26,7 @@ function Crud() {
   async function getAllMovies() {
     await axios.get(baseUrlMovie).then((response) => {
       setMovies(response.data);
-      console.log(movies);
+      console.log(response.data);
     });
   }
 
