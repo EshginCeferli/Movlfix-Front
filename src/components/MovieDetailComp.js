@@ -1,6 +1,7 @@
 import React from "react";
 
-function MovieDetailComp() {
+function MovieDetailComp({movie}) {
+
   return (
     <section
       className="movie-details-area"
@@ -10,12 +11,12 @@ function MovieDetailComp() {
         <div className="row align-items-center position-relative">
           <div className="col-xl-3 col-lg-4">
             <div className="movie-details-img">
-              <img src="images/poster/movie_details_img.jpg" alt="" />
+              <img src={`/images/poster/${movie.poster}`} alt="" />
               <a
                 href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
                 className="popup-video"
               >
-                <img src="images/images/play_icon.png" alt="" />
+                <img src="/images/images/play_icon.png" alt="" />
               </a>
             </div>
           </div>
@@ -80,7 +81,7 @@ function MovieDetailComp() {
               className="download-btn"
               download=""
             >
-              Download <img src="fonts/download.svg" alt="" />
+              Download <img src="/fonts/download.svg" alt="" />
             </a>
           </div>
         </div>

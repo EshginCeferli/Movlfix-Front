@@ -1,14 +1,24 @@
-import React from "react";
-import { Link} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ScrollTop from "../components/ScrollTop";
+import { useTranslation } from "react-i18next";
+import Cookies from "js-cookie";
 import "../assets/css/bootstrap.min.css";
 
 function Navbar() {
-  
+
+  const { t } = useTranslation();
+
+  function changeLng(value) {
+    document.cookie = `i18next=${value}`;
+    window.location.reload(true);
+}
+
   return (
     <div>
       <>
-      <ScrollTop/>
+        <ScrollTop />
         {/* header-area */}
         <header>
           <div id="sticky-header" className="menu-area transparent-header">
@@ -21,16 +31,14 @@ function Navbar() {
                   <div className="menu-wrap">
                     <nav className="menu-nav show">
                       <div className="logo">
-                        <Link to="/">
-                        <img src="/images/logo/logo.png" alt="cam" />
-                        </Link>
-                          
-                        
+                        <NavLink to="/">
+                          <img src="/images/logo/logo.png" alt="cam" />
+                        </NavLink>
                       </div>
                       <div className="navbar-wrap main-menu d-none d-lg-flex">
                         <ul className="navigation">
                           <li className="active menu-item-has-children">
-                            <Link to="/">Home</Link>
+                            <NavLink to="/">{t(`home`)}</NavLink>
                             <ul className="submenu">
                               <li className="active">
                                 <a href="index.html">Home One</a>
@@ -41,24 +49,21 @@ function Navbar() {
                             </ul>
                           </li>
                           <li className="menu-item-has-children">
-                            <Link to="/movie">Movie</Link>
+                            <NavLink to="/movie">Movie</NavLink>
                             <ul className="submenu">
                               <li>
                                 <Link to="/movie">Movie</Link>
                               </li>
                               <li>
-                              <Link to="/movieDetail">Movie Detail</Link>
+                                <Link to="/movieDetail">Movie Detail</Link>
                               </li>
                             </ul>
                           </li>
                           <li>
-                            <a href="tv-show.html">tv show</a>
-                          </li>
-                          <li>
-                            <Link to="/pricing">Pricing</Link>
+                            <NavLink to="/pricing">Pricing</NavLink>
                           </li>
                           <li className="menu-item-has-children">
-                            <Link to="/blog">Blog</Link>
+                            <NavLink to="/blog">Blog</NavLink>
                             {/* <a href="#">blog</a> */}
                             <ul className="submenu">
                               <li>
@@ -70,7 +75,7 @@ function Navbar() {
                             </ul>
                           </li>
                           <li>
-                            <Link to="/contact">Contact</Link>
+                            <NavLink to="/contact">Contact</NavLink>
                           </li>
                         </ul>
                       </div>
@@ -90,11 +95,18 @@ function Navbar() {
                               <div className="icon">
                                 <i className="fas fa-sharp fa-solid fa-globe"></i>
                               </div>
-                              <select id="lang-dropdown">
-                                <option value="">En</option>
-                                <option value="">Au</option>
-                                <option value="">AR</option>
-                                <option value="">TU</option>
+                              <select                                
+                                name=""
+                                id=""
+                                defaultValue={Cookies.get("i18next")}
+                                onChange={(e) => changeLng(e.target.value)}
+                              >
+                                <option className="select-option" value="en">
+                                  Eng
+                                </option>
+                                <option className="select-option" value="az">
+                                  Az
+                                </option>
                               </select>
                             </form>
                           </li>
@@ -181,7 +193,6 @@ function Navbar() {
         </header>
         {/* header-area-end */}
       </>
- 
     </div>
   );
 }

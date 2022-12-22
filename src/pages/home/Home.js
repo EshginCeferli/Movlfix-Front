@@ -1,4 +1,4 @@
-import React from 'react' 
+import React, {useState} from 'react' 
 import Banner from '../../components/Banner'
 import Live from '../../components/Live'
 import Rated from '../../components/Rated'
@@ -7,11 +7,10 @@ import Trial from '../../components/Trial'
 import Upcoming from '../../components/Upcoming'
 
 
-
-
 function Home() {
+  
   return (
-    <div>     
+    <div>       
         <Banner/>       
         <Upcoming/>
         <Service/>

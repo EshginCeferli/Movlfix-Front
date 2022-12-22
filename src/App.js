@@ -8,28 +8,30 @@ import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import React from "react";
 import Footer from "./components/Footer";
-import {Route,Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Crud from "./components/Crud";
 import BlogDetail from "./pages/blogDetail/BlogDetail";
 
+
+
 function App() {
   return (
-    <div>   
+    <div>
       {/* <Crud/> */}
-      
-      <Navbar/>
-    
-      <Routes>
+
+      <Navbar />
+
+       <Routes>
         <Route path="/" element={<Home />} />
         <Route exact path="/movie" element={<Movie />} />
-        <Route exact path="/movieDetail" element={<MovieDetail/>} />
+        <Route exact path="/movie/:id" element={<MovieDetail />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
-      </Routes>  
-   
-      <Footer />         
+      </Routes>
+
+      <Footer />
     </div>
   );
 }

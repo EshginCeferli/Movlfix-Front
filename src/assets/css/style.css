@@ -200,7 +200,7 @@ label {
 }
 
 /* All-color */
-.navbar-wrap > ul > li.active > a,
+.navbar-wrap > ul > li > a.active,
 .navbar-wrap > ul > li:hover > a,
 .mobile-menu .navigation li.active > a,
 .header-lang form .icon,
@@ -1735,12 +1735,12 @@ label {
 }
 
 /* 11. Pagination */
-.pagination-wrap ul {
+.pagination {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
-.pagination-wrap ul li a {
+.pagination  li a {
     display: block;
     font-size: 14px;
     color: #c2c2c2;
@@ -1748,11 +1748,15 @@ label {
     padding: 10px 20px;
     border: 1.5px solid #c2c2c2;
 }
-.pagination-wrap ul li.active a,
-.pagination-wrap ul li a:hover {
+.pagination li.selected a,
+.pagination li a:hover {
     color: #171d22;
     border-color: #e4d804;
     background: #e4d804;
+}
+
+.pagination li.disabled a{
+    cursor: auto;
 }
 
 /* 12. Live-show */

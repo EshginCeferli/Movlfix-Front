@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 
 function BlogComp() {
   const [blogs, setBlogs] = useState([]);
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 3;
 
   //All Blogs Url
   const baseUrl = "https://localhost:7079/api/Blog/GetAll";
@@ -18,9 +23,23 @@ function BlogComp() {
     GetAllBlogs();
   }, []);
 
+
+  useEffect(() => {
+ 
+    const endOffset = itemOffset + itemsPerPage;   
+    setCurrentItems(blogs.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(blogs.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage ,blogs]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % blogs.length;
+    
+    setItemOffset(newOffset);
+  };
+
   return (
     <div>
-      {blogs.map((blog, i) => {
+      {currentItems.map((blog, i) => {
         let thumb = blog.blogImages.find((item) => item.isMain == true).image;
         return (
           <div className="blog-post-item" key={i}>
@@ -60,8 +79,24 @@ function BlogComp() {
           </div>
         );
       })}
+  
+   <ReactPaginate
+        breakLabel="..."
+        nextLabel="next>"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+        containerClassName="pagination"
+        pageLinkClassName="page-num"
+        previousClassName="page-num"
+        nextLinkClassName="page-num"
+        activeLinkClassName="active"
+        breakClassName="test"
+      />
 
-      <div className="pagination-wrap mt-60">
+      {/* <div className="pagination-wrap mt-60">
         <nav>
           <ul>
             <li className="active">
@@ -81,7 +116,7 @@ function BlogComp() {
             </li>
           </ul>
         </nav>
-      </div>
+      </div> */}
     </div>
   );
 }
