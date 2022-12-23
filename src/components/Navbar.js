@@ -7,18 +7,16 @@ import Cookies from "js-cookie";
 import "../assets/css/bootstrap.min.css";
 
 function Navbar() {
-
   const { t } = useTranslation();
 
   function changeLng(value) {
     document.cookie = `i18next=${value}`;
     window.location.reload(true);
-}
+  }
 
   return (
     <div>
-      <>
-        <ScrollTop />
+      <>   
         {/* header-area */}
         <header>
           <div id="sticky-header" className="menu-area transparent-header">
@@ -39,25 +37,9 @@ function Navbar() {
                         <ul className="navigation">
                           <li className="active menu-item-has-children">
                             <NavLink to="/">{t(`home`)}</NavLink>
-                            <ul className="submenu">
-                              <li className="active">
-                                <a href="index.html">Home One</a>
-                              </li>
-                              <li>
-                                <a href="index-2.html">Home Two</a>
-                              </li>
-                            </ul>
                           </li>
                           <li className="menu-item-has-children">
                             <NavLink to="/movie">Movie</NavLink>
-                            <ul className="submenu">
-                              <li>
-                                <Link to="/movie">Movie</Link>
-                              </li>
-                              <li>
-                                <Link to="/movieDetail">Movie Detail</Link>
-                              </li>
-                            </ul>
                           </li>
                           <li>
                             <NavLink to="/pricing">Pricing</NavLink>
@@ -65,14 +47,6 @@ function Navbar() {
                           <li className="menu-item-has-children">
                             <NavLink to="/blog">Blog</NavLink>
                             {/* <a href="#">blog</a> */}
-                            <ul className="submenu">
-                              <li>
-                                <a href="blog.html">Our Blog</a>
-                              </li>
-                              <li>
-                                <a href="blog-details.html">Blog Details</a>
-                              </li>
-                            </ul>
                           </li>
                           <li>
                             <NavLink to="/contact">Contact</NavLink>

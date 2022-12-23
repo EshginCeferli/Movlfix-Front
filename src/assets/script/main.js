@@ -1,4 +1,4 @@
-console.log('adas');
+
 // (function ($) {
 // 	"use strict";
 
@@ -53,20 +53,33 @@ console.log('adas');
 // 		$('body').removeClass('mobile-menu-visible');
 // 	});
 // }
+window.onscroll = function () {
+   
+    var scroll = window.scrollY;
+	if (scroll < 245) {
+    
+		document.querySelector("#sticky-header").classList.remove("sticky-menu");
+		document.querySelector('.scroll-to-target').classList.remove('open');
 
+	} else {
+      
+		document.querySelector("#sticky-header").classList.add("sticky-menu");
+		document.querySelector('.scroll-to-target').classList.add('open');
+	}
+}
 
-// /*=============================================
-// 	=     Menu sticky & Scroll to top      =
-// =============================================*/
-// $(window).on('scroll', function () {
-// 	var scroll = $(window).scrollTop();
+/*=============================================
+	=     Menu sticky & Scroll to top      =
+=============================================*/
+// document.querySelector(window).addEventListener('scroll', function () {
+// 	var scroll = document.querySelector(window).scrollTop;
 // 	if (scroll < 245) {
-// 		$("#sticky-header").removeClass("sticky-menu");
-// 		$('.scroll-to-target').removeClass('open');
+// 		document.querySelector("#sticky-header").classList.remove("sticky-menu");
+// 		document.querySelector('.scroll-to-target').classList.remove('open');
 
 // 	} else {
-// 		$("#sticky-header").addClass("sticky-menu");
-// 		$('.scroll-to-target').addClass('open');
+// 		document.querySelector("#sticky-header").classList.add("sticky-menu");
+// 		document.querySelector('.scroll-to-target').classList.add('open');
 // 	}
 // });
 
@@ -74,16 +87,19 @@ console.log('adas');
 // /*=============================================
 // 	=    		 Scroll Up  	         =
 // =============================================*/
-// if ($('.scroll-to-target').length) {
-//   $(".scroll-to-target").on('click', function () {
-//     var target = $(this).attr('data-target');
-//     // animate
-//     $('html, body').animate({
-//       scrollTop: $(target).offset().top
-//     }, 1000);
+if (document.getElementsByClassName('scroll-to-target').length) {
+  document.getElementsByClassName("scroll-to-target").addEventListener('click', function () {
+    console.log("da");
+    var target = document.querySelector(this).attr('data-target');
+    // animate
+    document.querySelector('html, body').animate({
+      scrollTop: document.querySelector(target).offset().top
+    }, 1000);
 
-//   });
-// }
+  });
+}
+
+let a = document.getElementsByClassName('scroll-to-target');
 
 
 // /*=============================================

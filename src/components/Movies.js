@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Categories from "./Categories";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ function Movies() {
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const ref = useRef(null);
   const itemsPerPage = 6;
 
   //Get Movie from Api
@@ -24,9 +25,7 @@ function Movies() {
     getAllMovies();
   }, []);
 
-
   useEffect(() => {
-
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(movies.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(movies.length / itemsPerPage));
@@ -36,22 +35,24 @@ function Movies() {
     const newOffset = (event.selected * itemsPerPage) % movies.length;
 
     setItemOffset(newOffset);
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
- 
   return (
     <div>
       <section
         className="movie-area movie-bg"
         style={{ backgroundImage: "url(/images/bg/movie_bg.jpg)" }}
-      // data-background="images/bg/movie_bg.jpg"
+        // data-background="images/bg/movie_bg.jpg"
       >
         <div className="container">
           <div className="row align-items-end mb-5">
             <div className="col-lg-6">
               <div className="section-title text-center text-lg-left">
                 <span className="sub-title">ONLINE STREAMING</span>
-                <h2 className="title">New Release Movies</h2>
+                <h2 className="title" ref={ref}>
+                  New Release Movies
+                </h2>
               </div>
             </div>
             <div className="col-lg-6">
@@ -138,7 +139,10 @@ function Movies() {
                   <div className="row">
                     {currentItems?.map((movie, i) => {
                       return (
-                        <div className="col-xl-4 col-lg-4 col-sm-6 grid-item grid-sizer cat-two" key={i}>
+                        <div
+                          className="col-xl-4 col-lg-4 col-sm-6 grid-item grid-sizer cat-two"
+                          key={i}
+                        >
                           <div className="movie-item movie-item-three mb-5">
                             <div className="movie-poster">
                               <img
@@ -162,7 +166,10 @@ function Movies() {
                                   </a>
                                 </li>
                                 <li>
-                                  <Link to={`/movie/${movie.id}`} className="btn">
+                                  <Link
+                                    to={`/movie/${movie.id}`}
+                                    className="btn"
+                                  >
                                     Details
                                   </Link>
                                 </li>
@@ -182,7 +189,8 @@ function Movies() {
                                   </li>
                                   <li>
                                     <span className="duration">
-                                      <i className="far fa-clock" /> {movie.length} min
+                                      <i className="far fa-clock" />{" "}
+                                      {movie.length} min
                                     </span>
                                     <span className="rating">
                                       <i className="fas fa-thumbs-up" /> 3.5
@@ -200,7 +208,6 @@ function Movies() {
               </div>
               <div className="row">
                 <div className="col-12">
-
                   <ReactPaginate
                     breakLabel="..."
                     nextLabel="next >"
@@ -218,7 +225,7 @@ function Movies() {
                 </div>
               </div>
             </div>
-
+            {/* 
             <div
               className="tab-pane fade"
               id="pills-profile"
@@ -1118,7 +1125,7 @@ function Movies() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

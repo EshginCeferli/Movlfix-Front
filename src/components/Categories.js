@@ -64,15 +64,7 @@ function Categories() {
             );
           })}
 
-          {/* <li>
-          <button href="#">Action Movies</button> <span>10</span>
-        </li>
-        <li>
-          <button href="#">Streaming</button> <span>9</span>
-        </li>
-        <li>
-          <button href="#">Download</button> <span>16</span>
-        </li> */}
+         
         </ul>
       </div>
     </div>

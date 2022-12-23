@@ -17,11 +17,10 @@ import BlogDetail from "./pages/blogDetail/BlogDetail";
 function App() {
   return (
     <div>
-      {/* <Crud/> */}
-
-      <Navbar />
-
-       <Routes>
+      <Crud/>
+{/* 
+       <Navbar /> 
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route exact path="/movie" element={<Movie />} />
         <Route exact path="/movie/:id" element={<MovieDetail />} />
@@ -30,8 +29,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }
