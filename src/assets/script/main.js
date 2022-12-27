@@ -56,15 +56,13 @@
 window.onscroll = function () {
    
     var scroll = window.scrollY;
-	if (scroll < 245) {
-    
+	if (scroll < 245) {    
 		document.querySelector("#sticky-header").classList.remove("sticky-menu");
-		document.querySelector('.scroll-to-target').classList.remove('open');
+		
 
-	} else {
-      
+	} else {      
 		document.querySelector("#sticky-header").classList.add("sticky-menu");
-		document.querySelector('.scroll-to-target').classList.add('open');
+	
 	}
 }
 
@@ -87,19 +85,19 @@ window.onscroll = function () {
 // /*=============================================
 // 	=    		 Scroll Up  	         =
 // =============================================*/
-if (document.getElementsByClassName('scroll-to-target').length) {
-  document.getElementsByClassName("scroll-to-target").addEventListener('click', function () {
-    console.log("da");
-    var target = document.querySelector(this).attr('data-target');
-    // animate
-    document.querySelector('html, body').animate({
-      scrollTop: document.querySelector(target).offset().top
-    }, 1000);
+// if (document.getElementsByClassName('scroll-to-target').length) {
+//   document.getElementsByClassName("scroll-to-target").addEventListener('click', function () {
+//     console.log("da");
+//     var target = document.querySelector(this).attr('data-target');
+//     // animate
+//     document.querySelector('html, body').animate({
+//       scrollTop: document.querySelector(target).offset().top
+//     }, 1000);
 
-  });
-}
+//   });
+// }
 
-let a = document.getElementsByClassName('scroll-to-target');
+// let a = document.getElementsByClassName('scroll-to-target');
 
 
 // /*=============================================

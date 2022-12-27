@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import { useTranslation } from "react-i18next";
+
 
 function BlogComp() {
+  
+  const { t } = useTranslation();
+  
   const [blogs, setBlogs] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -40,38 +45,38 @@ function BlogComp() {
   return (
     <div>
       {currentItems.map((blog, i) => {
-        let thumb = blog.blogImages.find((item) => item.isMain == true).image;
+        let thumb = blog.blogImages?.find((item) => item.isMain == true).image;
         return (
           <div className="blog-post-item" key={i}>
             <div className="blog-post-thumb">
-              <a href="blog-details.html">
+              <Link to={`/blog/${blog.id}`}>
                 <img src={`/images/blog/${thumb}`} alt="" />
-              </a>
+              </Link>
             </div>
             <div className="blog-post-content">
               <span className="date">
-                <i className="far fa-clock" /> 10 Mar 2021
+                <i className="far fa-clock" /> {blog.createDate}
               </span>
               <h2 className="title">
-                <a href="blog-details.html">{blog.name}</a>
+                <Link to={`/blog/${blog.id}`}>{blog.name}</Link>
               </h2>
               <p>{blog.description}</p>
               <div className="blog-post-meta">
                 <ul>
                   <li>
-                    <i className="far fa-user" /> by <a href="#">{blog.by}</a>
+                    <i className="far fa-user" />  {t(`by`)} <a href="#">{blog.by}</a>
                   </li>
                   <li>
                     <i className="far fa-thumbs-up" /> 63
                   </li>
                   <li>
                     <i className="far fa-comments" />
-                    <a href="#">12 Comments</a>
+                    <a href="#">12  {t(`comments`)}</a>
                   </li>
                 </ul>
                 <div className="read-more">
                   <Link to={`/blog/${blog.id}`}>
-                    Read More <i className="fas fa-angle-double-right" />
+                  {t(`read more`)} <i className="fas fa-angle-double-right" />
                   </Link>
                 </div>
               </div>
@@ -82,11 +87,11 @@ function BlogComp() {
   
    <ReactPaginate
         breakLabel="..."
-        nextLabel="next>"
+        nextLabel= {t(`next>`)}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel= {t(`<previous`)}
         renderOnZeroPageCount={null}
         containerClassName="pagination"
         pageLinkClassName="page-num"
@@ -96,27 +101,6 @@ function BlogComp() {
         breakClassName="test"
       />
 
-      {/* <div className="pagination-wrap mt-60">
-        <nav>
-          <ul>
-            <li className="active">
-              <a href="#">1</a>
-            </li>
-            <li>
-              <a href="#">2</a>
-            </li>
-            <li>
-              <a href="#">3</a>
-            </li>
-            <li>
-              <a href="#">4</a>
-            </li>
-            <li>
-              <a href="#">Next</a>
-            </li>
-          </ul>
-        </nav>
-      </div> */}
     </div>
   );
 }

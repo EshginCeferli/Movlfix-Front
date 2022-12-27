@@ -7,7 +7,7 @@ function Pricing() {
   return (
     <div>
         <PricingBanner/>
-        <PricingComp/>
+        <PricingComp/>        
         <Trial/>
     </div>
   )

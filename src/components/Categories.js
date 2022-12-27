@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+
 
 function Categories() {
+
+  const { t } = useTranslation();
+
   const baseUrlMovie = "https://localhost:7079/api/Movie/GetAll";
   const baseUrlCategory = "https://localhost:7079/api/MovieCategory/GetAll";
 
@@ -46,7 +51,7 @@ function Categories() {
   return (
     <div className="widget blog-widget">
       <div className="widget-title mb-5">
-        <h5 className="title">Categories</h5>
+        <h5 className="title">{t(`categories`)}</h5>
       </div>
       <div className="sidebar-cat">
         <ul>

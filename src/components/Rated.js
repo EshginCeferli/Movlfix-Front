@@ -1,7 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "../assets/css/style.css";
 
 function Rated() {
+
+  const { t } = useTranslation();
+  
   return (
     <div>
       <section
@@ -13,8 +17,8 @@ function Rated() {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="section-title text-center mb-5">
-                <span className="sub-title">ONLINE STREAMING</span>
-                <h2 className="title">Top Rated Movies</h2>
+                <span className="sub-title">  {t(`online streaming`)}</span>
+                <h2 className="title">  {t(`top rated movies`)}</h2>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import ScrollTop from "../components/ScrollTop";
+import Flag from 'react-world-flags'
 import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
 import "../assets/css/bootstrap.min.css";
@@ -37,19 +37,20 @@ function Navbar() {
                         <ul className="navigation">
                           <li className="active menu-item-has-children">
                             <NavLink to="/">{t(`home`)}</NavLink>
+                            
                           </li>
                           <li className="menu-item-has-children">
-                            <NavLink to="/movie">Movie</NavLink>
+                            <NavLink to="/movie">{t(`movie`)}</NavLink>
                           </li>
                           <li>
-                            <NavLink to="/pricing">Pricing</NavLink>
+                            <NavLink to="/pricing">{t(`pricing`)}</NavLink>
                           </li>
                           <li className="menu-item-has-children">
-                            <NavLink to="/blog">Blog</NavLink>
+                            <NavLink to="/blog">{t(`blog`)}</NavLink>
                             {/* <a href="#">blog</a> */}
                           </li>
                           <li>
-                            <NavLink to="/contact">Contact</NavLink>
+                            <NavLink to="/contact">{t(`contact`)}</NavLink>
                           </li>
                         </ul>
                       </div>
@@ -76,7 +77,7 @@ function Navbar() {
                                 onChange={(e) => changeLng(e.target.value)}
                               >
                                 <option className="select-option" value="en">
-                                  Eng
+                                Eng
                                 </option>
                                 <option className="select-option" value="az">
                                   Az
@@ -86,7 +87,7 @@ function Navbar() {
                           </li>
                           <li className="header-btn">
                             <a href="#" className="btn">
-                              Sign In
+                            {t(`sign in`)}
                             </a>
                           </li>
                         </ul>

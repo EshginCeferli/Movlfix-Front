@@ -1,6 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 
 function PricingComp() {
+
+  const { t } = useTranslation();
+
   return (
     <section
       className="pricing-area pricing-bg"
@@ -11,8 +16,8 @@ function PricingComp() {
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <div className="section-title title-style-three text-center mb-70">
-              <span className="sub-title">our pricing plans</span>
-              <h2 className="title">Our Pricing Strategy</h2>
+              <span className="sub-title"> {t(`our pricing plans`)}</span>
+              <h2 className="title"> {t(`our pricing strategy`)}</h2>
             </div>
           </div>
         </div>
@@ -21,34 +26,31 @@ function PricingComp() {
             <div className="col-lg-4 col-md-6 col-sm-8">
               <div className="pricing-box-item mb-30">
                 <div className="pricing-top">
-                  <h6>premium</h6>
+
+                  <h6>Standart</h6>
                   <div className="price">
                     <h3>$7.99</h3>
-                    <span>Monthly</span>
+                    <span> {t(`monthly`)}</span>
                   </div>
                 </div>
                 <div className="pricing-list">
                   <ul>
                     <li className="quality">
-                      <i className="fas fa-check" /> Video quality{" "}
-                      <span>Good</span>
+                      <i className="fas fa-check" /> {t(`video quality`)}
+                      <span> {t(`good`)}</span>
                     </li>
                     <li>
-                      <i className="fas fa-check" /> Resolution{" "}
-                      <span>480p</span>
-                    </li>
+                      <i className="fas fa-check" />  {t(`resolution`)}
+                      <span>720p</span>
+                    </li>                  
                     <li>
-                      <i className="fas fa-check" /> Screens you can watch{" "}
-                      <span>1</span>
-                    </li>
-                    <li>
-                      <i className="fas fa-check" /> Cancel anytime
+                      <i className="fas fa-check" />  {t(`cancel anytime`)}
                     </li>
                   </ul>
                 </div>
                 <div className="pricing-btn">
                   <a href="#" className="btn">
-                    Buy Now
+                  {t(`buy now`)}
                   </a>
                 </div>
               </div>
@@ -56,73 +58,35 @@ function PricingComp() {
             <div className="col-lg-4 col-md-6 col-sm-8">
               <div className="pricing-box-item active mb-30">
                 <div className="pricing-top">
-                  <h6>standard</h6>
+                  <h6>Premium</h6>
                   <div className="price">
                     <h3>$9.99</h3>
-                    <span>Monthly</span>
+                    <span> {t(`monthly`)}</span>
                   </div>
                 </div>
                 <div className="pricing-list">
-                  <ul>
+                <ul>
                     <li className="quality">
-                      <i className="fas fa-check" /> Video quality{" "}
-                      <span>Better</span>
+                      <i className="fas fa-check" /> {t(`video quality`)}
+                      <span> {t(`best`)}</span>
                     </li>
                     <li>
-                      <i className="fas fa-check" /> Resolution{" "}
+                      <i className="fas fa-check" />  {t(`resolution`)}
                       <span>1080p</span>
-                    </li>
+                    </li>                  
                     <li>
-                      <i className="fas fa-check" /> Screens you can watch{" "}
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <i className="fas fa-check" /> Cancel anytime
+                      <i className="fas fa-check" />  {t(`cancel anytime`)}
                     </li>
                   </ul>
                 </div>
                 <div className="pricing-btn">
                   <a href="#" className="btn">
-                    Buy Now
+                  {t(`Buy now`)}
                   </a>
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-8">
-              <div className="pricing-box-item mb-30">
-                <div className="pricing-top">
-                  <h6>premium</h6>
-                  <div className="price">
-                    <h3>$11.99</h3>
-                    <span>Monthly</span>
-                  </div>
-                </div>
-                <div className="pricing-list">
-                  <ul>
-                    <li className="quality">
-                      <i className="fas fa-check" /> Video quality{" "}
-                      <span>Best</span>
-                    </li>
-                    <li>
-                      <i className="fas fa-check" /> Resolution{" "}
-                      <span>4K+HDR</span>
-                    </li>
-                    <li>
-                      <i className="fas fa-check" /> Screens you can watch{" "}
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <i className="fas fa-check" /> Cancel anytime
-                    </li>
-                  </ul>
-                </div>
-                <div className="pricing-btn">
-                  <a href="#" className="btn">
-                    Buy Now
-                  </a>
-                </div>
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>

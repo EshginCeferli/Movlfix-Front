@@ -22,9 +22,9 @@ function MovieDetailComp({movie}) {
           </div>
           <div className="col-xl-6 col-lg-8">
             <div className="movie-details-content">
-              <h5>New Episodes</h5>
+              <h5>Enjoy it</h5>
               <h2>
-                The Easy <span>Reach</span>
+                {movie.name}
               </h2>
               <div className="banner-meta">
                 <ul>
@@ -33,24 +33,21 @@ function MovieDetailComp({movie}) {
                     <span>hd</span>
                   </li>
                   <li className="category">
-                    <a href="#">Romance,</a>
-                    <a href="#">Drama</a>
+                    <a href="#">{movie.movieCategoryName}</a>
+                  
                   </li>
                   <li className="release-time">
                     <span>
-                      <i className="far fa-calendar-alt" /> 2021
+                      <i className="far fa-calendar-alt" /> {movie.releaseYear}
                     </span>
                     <span>
-                      <i className="far fa-clock" /> 128 min
+                      <i className="far fa-clock" /> {movie.length} min
                     </span>
                   </li>
                 </ul>
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consecetur adipiscing elseddo
-                eiusmod tempor.There are many variations of passages of lorem
-                Ipsum available, but the majority have suffered alteration in
-                some injected humour.
+               {movie.description}
               </p>
               <div className="movie-details-prime">
                 <ul>

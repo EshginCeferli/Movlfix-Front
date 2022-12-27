@@ -10,17 +10,15 @@ import "./assets/css/animate.min.css"
 import "./index.css";
 import "./assets/script/main";
 import App from './App';
+import ScrollToTop from "./assets/helpers/ScrollTop";
+
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next) 
   .use(LanguageDetector)
   .use(HttpApi)
   .init({
-    // the translations
-    // (tip move them in a JSON file and import them,
-    // or even better, manage them via a UI: https://react.i18next.com/guides/multiple-translation-files#manage-your-translations-with-a-management-gui)
-
-
+ 
     fallbackLng: "en",
     detection: {
       order: ['cookie', 'localstorage', 'path', 'subdomain'],
@@ -42,6 +40,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <ScrollToTop/>
       <App />
     </BrowserRouter>
   </React.StrictMode>

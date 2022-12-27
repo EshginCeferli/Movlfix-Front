@@ -24,8 +24,10 @@
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
     "react-search-autocomplete": "^8.2.1",
+    "react-world-flags": "^1.5.1",
     "swiper": "^8.4.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "with": "^7.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -50,5 +52,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
+    "@types/react-world-flags": "^1.4.2"
   }
 }

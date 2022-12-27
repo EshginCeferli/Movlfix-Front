@@ -26,8 +26,7 @@ function MovieDetail() {
 
   return (
     <div>
-      <MovieDetailComp movie={movie}/>
-      <Episode/>
+      <MovieDetailComp movie={movie}/>     
       <Trial/>
     </div>
   )

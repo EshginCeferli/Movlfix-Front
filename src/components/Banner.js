@@ -1,8 +1,9 @@
 import React from "react";
-// import '../assets/css/bootstrap.min.css'
-// import '../assets/css/style.css'
+import { useTranslation } from "react-i18next";
 
 function Banner() {
+  const { t } = useTranslation();
+
   return (
     <div>
       <>
@@ -20,14 +21,14 @@ function Banner() {
                     data-wow-delay=".2s"
                     data-wow-duration="1.8s"
                   >
-                    Movflx
+                    {t(`movflix`)}
                   </h6>
                   <h2
                     className="title wow fadeInUp"
                     data-wow-delay=".4s"
                     data-wow-duration="1.8s"
                   >
-                    Unlimited <span>Movie</span>, TVs Shows, &amp; More.
+                     {t(`unlimited`)} <span> {t(`movie`)}</span>,  {t(`shows`)}, &amp;  {t(`more`)}.
                   </h2>
                   <div
                     className="banner-meta wow fadeInUp"
@@ -48,7 +49,7 @@ function Banner() {
                           <i className="far fa-calendar-alt" /> 2021
                         </span>
                         <span>
-                          <i className="far fa-clock" /> 128 min
+                          <i className="far fa-clock" /> 128  {t(`min`)}
                         </span>
                       </li>
                     </ul>
@@ -59,7 +60,7 @@ function Banner() {
                     data-wow-delay=".8s"
                     data-wow-duration="1.8s"
                   >
-                    <i className="fas fa-play" /> Watch Now
+                    <i className="fas fa-play" />  {t(`watch now`)}
                   </a>
                 </div>
               </div>

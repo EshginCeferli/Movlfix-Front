@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useTranslation } from "react-i18next";
 import { EffectCoverflow } from "swiper";
 
 import "swiper/css";
@@ -8,9 +8,10 @@ import "swiper/css/navigation";
 
 
 function Upcoming() {
-  return (
-    <div>
-      
+
+  const { t } = useTranslation();
+
+  return (    
       <>
         {/* up-coming-movie-area */}
         <section
@@ -25,8 +26,8 @@ function Upcoming() {
             <div className="row align-items-end mb-5">
               <div className="col-lg-6">
                 <div className="section-title text-center text-lg-left">
-                  <span className="sub-title">ONLINE STREAMING</span>
-                  <h2 className="title">Upcoming Movies</h2>
+                  <span className="sub-title"> {t(`online streaming`)}</span>
+                  <h2 className="title"> {t(`upcoming movies`)}</h2>
                   
                 </div>
               </div>
@@ -87,6 +88,7 @@ function Upcoming() {
                 role="tabpanel"
                 aria-labelledby="pills-home-tab"
               >
+                
                 <Swiper
                   loop={true}
                   spaceBetween={10}
@@ -137,6 +139,7 @@ function Upcoming() {
                       </div>
                     </div>
                   </SwiperSlide>
+
                   <SwiperSlide>
                     <div className="movie-item mb-50">
                       <div className="movie-poster">
@@ -169,6 +172,7 @@ function Upcoming() {
                       </div>
                     </div>
                   </SwiperSlide>
+
                   <SwiperSlide>
                     {" "}
                     <div className="movie-item mb-50">
@@ -202,6 +206,7 @@ function Upcoming() {
                       </div>
                     </div>
                   </SwiperSlide>
+
                   <SwiperSlide>
                     {" "}
                     <div className="movie-item mb-50">
@@ -235,6 +240,7 @@ function Upcoming() {
                       </div>
                     </div>
                   </SwiperSlide>
+
                   <SwiperSlide>
                     <div className="movie-item mb-50">
                       <div className="movie-poster">
@@ -652,8 +658,7 @@ function Upcoming() {
           </div>
         </section>
         {/* up-coming-movie-area-end */}
-      </>
-    </div>
+      </>  
   );
 }
 

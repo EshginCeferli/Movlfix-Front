@@ -1,8 +1,9 @@
 import React from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function BlogDetailComp({ blog }) {
+  const { t } = useTranslation();
+
   let thumb = blog.blogImages?.find((item) => item.isMain == true).image;
   let detailImg = blog.blogImages?.filter((item) => item.isMain == false);
   console.log(detailImg);
@@ -17,23 +18,15 @@ function BlogDetailComp({ blog }) {
         <div className="blog-post-content">
           <div className="blog-details-top-meta">
             <span className="user">
-              <i className="far fa-user" /> by <a href="#">{blog.name}</a>
+              <i className="far fa-user" /> {t(`by`)}{" "}
+              <a href="#">{blog.name}</a>
             </span>
             <span className="date">
-              <i className="far fa-clock" /> 10 Mar 2021
+              <i className="far fa-clock" /> {blog.createDate}
             </span>
           </div>
           <h2 className="title">Your Free Movie Streaming Purposes</h2>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuies, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was populrised in the 1960s with
-            the release of Letraset sheets containing Lorem Ipsum passages, and
-            more recently .
-          </p>
+          <p>{blog.description}</p>
           <p>
             Printing and typetting industry. Lorem Ipsum has been the industry's
             standrd dummy text ever since the, when an unknown printer took a
@@ -45,11 +38,12 @@ function BlogDetailComp({ blog }) {
           <blockquote>
             <i className="fas fa-quote-right" />
             <p>
-              Watch Mobflx movies &amp; TV shows online or stream rights to your
-              smart TV, game console, PC, mobile more.
+              {t(
+                `Watch Mobflx movies & TV shows online or stream rights to your smart TV, game console, PC, mobile more.`
+              )}
             </p>
             <figure>
-              <span>Frenk Smith</span> Founder ceo
+              <span>Frenk Smith</span> {t(`founder ceo`)}
             </figure>
           </blockquote>
           <div className="blog-img-wrap">
@@ -136,7 +130,7 @@ function BlogDetailComp({ blog }) {
       </div>
       <div className="blog-comment mb-80">
         <div className="widget-title mb-45">
-          <h5 className="title">Comment's (02)</h5>
+          <h5 className="title"> {t(`comment's`)} (02)</h5>
         </div>
         <ul>
           <li>
@@ -151,7 +145,7 @@ function BlogDetailComp({ blog }) {
                     <span className="comment-date">November 13, 2021</span>
                   </h5>
                   <a href="#" className="comment-reply-link">
-                    Reply <i className="fas fa-reply-all" />
+                    {t(`reply`)} <i className="fas fa-reply-all" />
                   </a>
                 </div>
                 <p>
@@ -189,25 +183,25 @@ function BlogDetailComp({ blog }) {
       </div>
       <div className="contact-form-wrap">
         <div className="widget-title mb-50">
-          <h5 className="title">Post a Comment</h5>
+          <h5 className="title"> {t(`post a comment`)}</h5>
         </div>
         <div className="contact-form">
           <form action="#">
             <div className="row">
               <div className="col-md-6">
-                <input type="text" placeholder="You Name *" />
+                <input type="text" placeholder={t(`your name *`)} />
               </div>
               <div className="col-md-6">
-                <input type="email" placeholder="You  Email *" />
+                <input type="email" placeholder={t(`your email`)} />
               </div>
             </div>
-            <input type="text" placeholder="Subject *" />
+            <input type="text" placeholder={t(`subject`)} />
             <textarea
               name="message"
-              placeholder="Type Your Message..."
+              placeholder={t(`your comment...`)}
               defaultValue={""}
             />
-            <button className="btn">Send Message</button>
+            <button className="btn"> {t(`send a message`)}</button>
           </form>
         </div>
       </div>
