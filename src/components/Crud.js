@@ -15,7 +15,6 @@ function Crud() {
   const [value, setValue] = useState("");
   const [categorys, setCategorys] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-
   let movies = [];
 
   async function getAllMovies() {
@@ -37,7 +36,7 @@ function Crud() {
 
   function getFilteredList(category) {
     if (category === "All") {
-      return items;
+      return setFilteredMovies(items);
     } else {
       var filteredMovies = items.filter(
         (item) =>
@@ -77,7 +76,7 @@ function Crud() {
           </button>
         );
       })}
-      <Footer movies={movies} />
+      
     </div>
   );
 }

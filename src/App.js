@@ -15,9 +15,9 @@ import BlogDetail from "./pages/blogDetail/BlogDetail";
 function App() {
   return (
     <div>
-      <Crud />
+      {/* <Crud /> */}
 
-      {/* <Navbar />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route exact path="/movie" element={<Movie />} />
@@ -27,7 +27,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }
