@@ -68,5 +68,6 @@
     "address": "address",
     "phone": "phone",
     "email": "email",
-    "enter your email": "enter your email"
+    "enter your email": "enter your email",
+    "no result found for search :))" : "No result found for search :))"
 }

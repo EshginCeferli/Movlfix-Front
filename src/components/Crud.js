@@ -1,82 +1,38 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Categories from "./Categories";
-import Movies from "./Movies";
-import Footer from "./Footer";
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 function Crud() {
-  //All Movie Url
-  const baseUrlMovie = "https://localhost:7079/api/Movie/GetAll";
+  const createUrl = "https://localhost:7079/api/Movflix/Create"
 
-  //All Category Url
-  const baseUrlCategory = "https://localhost:7079/api/MovieCategory/GetAll";
+  const [nameInput, setNameInput] = useState("");
+  const [descInput, setDescInput] = useState("");
 
-  const [items, setItems] = useState([]);
-  const [value, setValue] = useState("");
-  const [categorys, setCategorys] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  let movies = [];
+  async function CreateMovflix() {
+    await axios.post(createUrl, {
+      name: nameInput,
+      description: descInput,
 
-  async function getAllMovies() {
-    await axios.get(baseUrlMovie).then((response) => {
-      setItems(response.data);
-      setFilteredMovies(response.data);
-    });
-  }
+    })
+      .then(res => {
 
-  async function getAllCategories() {
-    await axios.get(baseUrlCategory).then((response) => {
-      setCategorys(response.data);
-    });
-  }
-  useEffect(() => {
-    getAllMovies();
-    getAllCategories();
-  }, []);
-
-  function getFilteredList(category) {
-    if (category === "All") {
-      return setFilteredMovies(items);
-    } else {
-      var filteredMovies = items.filter(
-        (item) =>
-          item.movieCategory.name.toLowerCase() === category.toLowerCase()
+        setNameInput("");
+        setDescInput("");
+        alert("success")
+      })
+      .catch(
+        alert("fail")
       );
-      setFilteredMovies(filteredMovies);
-    }
-  }
-
-  function searchItems(searchParam) {
-    movies = filteredMovies.filter((i) =>
-      i.name.toLowerCase().includes(searchParam.toLowerCase())
-    );
-    return movies;
   }
 
   return (
     <div className="app">
-      <input
-        placeholder="search movie"
-        type="text"
-        id="message"
-        name="message"
-        onChange={(e) => setValue(e.target.value)}
-        value={value}
-      ></input>
-
-      {searchItems(value).map((item, i) => {
-        return <div key={i}>{item.name}</div>;
-      })}
-
-      <button onClick={() => getFilteredList("All")}>All</button>
-      {categorys.map((category, i) => {
-        return (
-          <button key={i} onClick={() => getFilteredList(category.name)}>
-            {category.name}
-          </button>
-        );
-      })}
-      
+      <input onChange={(e) => setNameInput(e.target.value)} value={nameInput} placeholder="name"></input>
+      <input onChange={(e) => setDescInput(e.target.value)} value={descInput} placeholder="description"></input>
+      <button type="submit" onClick={() => CreateMovflix() } >Create</button>      
     </div>
   );
 }

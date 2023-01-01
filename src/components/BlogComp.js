@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { useTranslation } from "react-i18next";
 
-
 function BlogComp() {
-  
   const { t } = useTranslation();
-  
+
   const [blogs, setBlogs] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -28,17 +26,15 @@ function BlogComp() {
     GetAllBlogs();
   }, []);
 
-
   useEffect(() => {
- 
-    const endOffset = itemOffset + itemsPerPage;   
+    const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(blogs.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(blogs.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage ,blogs]);
+  }, [itemOffset, itemsPerPage, blogs]);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % blogs.length;
-    
+  const newOffset = (event.selected * itemsPerPage) % blogs.length;
+
     setItemOffset(newOffset);
   };
 
@@ -64,19 +60,20 @@ function BlogComp() {
               <div className="blog-post-meta">
                 <ul>
                   <li>
-                    <i className="far fa-user" />  {t(`by`)} <a href="#">{blog.by}</a>
+                    <i className="far fa-user" /> {t(`by`)}{" "}
+                    <a href="#">{blog.by}</a>
                   </li>
                   <li>
                     <i className="far fa-thumbs-up" /> 63
                   </li>
                   <li>
                     <i className="far fa-comments" />
-                    <a href="#">12  {t(`comments`)}</a>
+                    <a href="#">12 {t(`comments`)}</a>
                   </li>
                 </ul>
                 <div className="read-more">
                   <Link to={`/blog/${blog.id}`}>
-                  {t(`read more`)} <i className="fas fa-angle-double-right" />
+                    {t(`read more`)} <i className="fas fa-angle-double-right" />
                   </Link>
                 </div>
               </div>
@@ -84,14 +81,14 @@ function BlogComp() {
           </div>
         );
       })}
-  
-   <ReactPaginate
+
+      <ReactPaginate
         breakLabel="..."
-        nextLabel= {t(`next>`)}
+        nextLabel={t(`next>`)}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
-        previousLabel= {t(`<previous`)}
+        previousLabel={t(`<previous`)}
         renderOnZeroPageCount={null}
         containerClassName="pagination"
         pageLinkClassName="page-num"
@@ -100,7 +97,6 @@ function BlogComp() {
         activeLinkClassName="active"
         breakClassName="test"
       />
-
     </div>
   );
 }

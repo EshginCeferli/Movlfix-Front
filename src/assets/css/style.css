@@ -1755,8 +1755,10 @@ label {
     background: #e4d804;
 }
 
-.pagination li.disabled a{
+.pagination li.disabled a:hover{
     cursor: auto;
+    background-color: transparent;
+    transition: none;
 }
 
 /* 12. Live-show */
@@ -2850,11 +2852,33 @@ label {
     padding-right: 60px;
     box-shadow: inset 0px 4px 9px 0px rgba(0, 0, 0, 0.25);
 }
+
+  .search-movie {
+    width: 100%;
+    border: none;
+    background: #12151e;
+    color: #fff;
+    padding: 14px 20px;
+    font-size: 12px;
+    border-radius: 30px;
+    padding-right: 60px;
+    box-shadow: inset 0px 4px 9px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 30px;
+}
+
 .footer-search form input::placeholder {
     color: #656870;
     font-weight: 500;
     font-size: 12px;
 }
+
+
+.search-movie::placeholder {
+    color: #656870;
+    font-weight: 500;
+    font-size: 12px;
+}
+
 .footer-search form button {
     position: absolute;
     right: 20px;
@@ -2866,6 +2890,8 @@ label {
     color: #e4d804;
     padding: 0;
 }
+
+
 .footer-search form button::before {
     content: "|";
     position: absolute;
@@ -2875,6 +2901,7 @@ label {
     color: #656870;
     opacity: .34;
 }
+
 .footer-menu-wrap {
     position: relative;
     padding-bottom: 35px;

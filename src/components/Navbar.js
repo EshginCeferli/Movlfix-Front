@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import Flag from 'react-world-flags'
 import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
 import "../assets/css/bootstrap.min.css";
@@ -51,6 +49,9 @@ function Navbar() {
                           </li>
                           <li>
                             <NavLink to="/contact">{t(`contact`)}</NavLink>
+                          </li>
+                          <li>
+                            <NavLink to="/dashboard">{t(`dashboard`)}</NavLink>
                           </li>
                         </ul>
                       </div>
