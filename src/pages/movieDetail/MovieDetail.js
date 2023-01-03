@@ -4,6 +4,8 @@ import axios from 'axios'
 import Episode from '../../components/Episode'
 import MovieDetailComp from '../../components/MovieDetailComp'
 import Trial from '../../components/Trial'
+import { Navbar } from 'react-bootstrap'
+import Footer from '../../components/Footer'
 
 function MovieDetail() {
 
@@ -26,8 +28,10 @@ function MovieDetail() {
 
   return (
     <div>
+      <Navbar/>
       <MovieDetailComp movie={movie}/>     
       <Trial/>
+      <Footer/>
     </div>
   )
 }

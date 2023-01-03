@@ -19,13 +19,7 @@ function App() {
 
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route exact path="/movieTable" element={<MovieTable />} />
-        <Route path="/movieUpdate/:id" element={<MovieUpdateBtn />} />
-      </Routes>
-
-      {/* <Navbar/>
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route exact path="/movie" element={<Movie />} />
@@ -35,8 +29,11 @@ function App() {
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
         
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/movieTable" element={<MovieTable />} />
+        <Route path="/movieUpdate/:id" element={<MovieUpdateBtn />} />
       </Routes>
-      <Footer /> */}
+     
     </div>
   );
 }
