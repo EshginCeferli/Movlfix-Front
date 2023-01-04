@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import FilteredMovies from "./FilteredMovies";
+
 
 function Movies() {
   const { t } = useTranslation();
@@ -57,6 +59,18 @@ function Movies() {
     i.name.toLowerCase().includes(value.toLowerCase())
   );
 
+  //
+  var a = document.querySelectorAll(".filter-button");
+for (var i = 0, length = a.length; i < length; i++) {
+  a[i].onclick = function() {
+    var b = document.querySelector("ul button.active");
+    if (b) b.classList.remove("active");
+    this.parentNode.classList.add('active');
+  };
+}
+
+
+
 
   return (
     <div>
@@ -94,27 +108,27 @@ function Movies() {
                     className="search-movie"
                   />
 
-                  <ul>
+                  <ul >
                     <li>
                       {" "}
-                      <button
+                      <NavLink
                         onClick={() => getFilteredList("All")}
-                        className="filter-button"
+                        
                       >
                         All
-                      </button>
+                      </NavLink>
                     </li>
 
                     {categorys.map((category, index) => {
                       return (
                         <li key={index}>
-                          <button
+                          <NavLink
                             className="filter-button"
                             onClick={() => getFilteredList(category.name)}
                           >
                             {category.name}
-                          </button>
-                          <span>{filteredMovies.filter((i) => i.movieCategory.name ==category.name).length}</span>
+                          </NavLink>
+                          <span>{items.filter((i) => i.movieCategory.name ==category.name).length}</span>
                         </li>
                       );
                     })}

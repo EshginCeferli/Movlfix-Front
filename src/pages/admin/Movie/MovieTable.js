@@ -4,8 +4,7 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-
-
+import { type } from "@testing-library/user-event/dist/type";
 
 function MovieTable() {
   let count = 1;
@@ -22,6 +21,12 @@ function MovieTable() {
 
   const [categories, setCategories] = useState([]);
   const [id, setId] = useState();
+
+  let token = localStorage.getItem("token");
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+ 
 
   //sweet alert
   const Success = Swal.mixin({
@@ -69,15 +74,19 @@ function MovieTable() {
   //Create Movie
   async function CreateMovie() {
     await axios
-      .post(`${url}/api/Movie/Create`, {
-        name: nameInput,
-        description: descInput,
-        length: lengthInput,
-        poster: posterInput,
-        releaseYear: releaseInput,
-        country: countryInput,
-        movieCategoryId: categoryInput,
-      })
+      .post(
+        `${url}/api/Movie/Create`,
+        {
+          name: nameInput,
+          description: descInput,
+          length: lengthInput,
+          poster: posterInput,
+          releaseYear: releaseInput,
+          country: countryInput,
+          movieCategoryId: categoryInput,
+        },
+        config
+      )
       .then((res) => {
         setNameInput("");
         setDescInput("");
@@ -167,7 +176,7 @@ function MovieTable() {
                 <Link to={`/movieUpdate/${movie.id}`} state={categories}>
                   <button className="btn btn-primary">Update</button>
                 </Link>
-               
+
                 <button
                   onClick={() => DeleteMovie(movie.id)}
                   type="button"
@@ -175,8 +184,6 @@ function MovieTable() {
                 >
                   Delete
                 </button>
-             
-             
               </td>
             </tr>
           );

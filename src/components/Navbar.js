@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate} from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
 import Cookies from "js-cookie";
 import axios from "axios";
 import { Container, Nav, Form, Button } from "react-bootstrap";
@@ -64,6 +65,7 @@ const style = {
 
 
 function Navbar() {
+  const navigate = useNavigate();
   //Language Settings
   const { t } = useTranslation();
   function changeLng(value) {
@@ -231,7 +233,7 @@ function Navbar() {
   function clearToken(e) {
     e.preventDefault();
     localStorage.removeItem("token");
-    
+    navigate("/")
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -274,7 +276,7 @@ function Navbar() {
                           </li>
                           <li className="menu-item-has-children">
                             <NavLink to="/blog">{t(`blog`)}</NavLink>
-                            {/* <a href="#">blog</a> */}
+                            
                           </li>
                           <li>
                             <NavLink to="/contact">{t(`contact`)}</NavLink>

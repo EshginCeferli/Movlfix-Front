@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import MovieTable from "./Movie/MovieTable";
 
 export default function Dashboard() {
+
   return (
 
 <>
