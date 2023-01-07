@@ -19,6 +19,7 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import Login from "./pages/login/Login";
 import UpdatePassword from "./pages/login/UpdatePassword";
 import Profile from "./pages/profile/Profile";
+import Crud from "./components/Crud"
 function App() {
   return (
     <div>
@@ -42,6 +43,7 @@ function App() {
           <Route path="/movieUpdate/:id" element={<MovieUpdateBtn />} />
         </Route>
       </Routes>
+      {/* <Crud/> */}
     </div>
   );
 }

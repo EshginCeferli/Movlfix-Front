@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import ReactPaginate from "react-paginate";
 
 function FilteredMovies(props) {
-    
   const { t } = useTranslation();
   const ref = useRef(null);
 
@@ -30,14 +29,13 @@ function FilteredMovies(props) {
   console.log();
   return (
     <div className="row" ref={ref}>
-      
       {currentItems?.map((movie, i) => {
         return (
           <div
             className="col-xl-4 col-lg-4 col-sm-6 grid-item grid-sizer cat-two"
             key={i}
           >
-            <div className="movie-item movie-item-three mb-5" >
+            <div className="movie-item movie-item-three mb-5">
               <Link to={`/movie/${movie.id}`}>
                 <div className="movie-poster">
                   <img src={`/images/poster/${movie.poster}`} alt="" />
@@ -50,7 +48,7 @@ function FilteredMovies(props) {
                       <i className="fas fa-star" />
                     </li>
                     <li>
-                      {/* <Link
+                      <Link
                         to="https://www.youtube.com/watch?v=R2gbPxeNk2E"
                         className="popup-video btn"
                       >
@@ -60,7 +58,7 @@ function FilteredMovies(props) {
                     <li>
                       <Link to={`/movie/${movie.id}`} className="btn">
                         {t(`details`)}
-                      </Link> */}
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -68,7 +66,7 @@ function FilteredMovies(props) {
               <div className="movie-content">
                 <div className="top">
                   <h5 className="title">
-                    {/* <Link to={`/movie/${movie.id}`}>{movie.name}</Link> */}
+                    <Link to={`/movie/${movie.id}`}>{movie.name}</Link>
                   </h5>
                   <span className="date">{movie.releaseYear}</span>
                 </div>

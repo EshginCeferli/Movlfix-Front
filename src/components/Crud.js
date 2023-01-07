@@ -1,38 +1,35 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
+import React from "react";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
+import StarRatings from "react-star-ratings";
+import ReactStars from "react-stars";
+import { useState } from "react";
 
 function Crud() {
-  const createUrl = "https://localhost:7079/api/Movflix/Create"
 
-  const [nameInput, setNameInput] = useState("");
-  const [descInput, setDescInput] = useState("");
 
-  async function CreateMovflix() {
-    await axios.post(createUrl, {
-      name: nameInput,
-      description: descInput,
-
-    })
-      .then(res => {
-
-        setNameInput("");
-        setDescInput("");
-        alert("success")
-      })
-      .catch(
-        alert("fail")
-      );
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () =>
+        resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
+      
+      reader.onerror = (error) => reject(error);
+    });
+  }
+  
+  function base64Img(file) {
+    var base64String = getBase64(file);
+    base64String.then(function (result) {
+     console.log(result);
+    });
   }
 
   return (
-    <div className="app">
-      <input onChange={(e) => setNameInput(e.target.value)} value={nameInput} placeholder="name"></input>
-      <input onChange={(e) => setDescInput(e.target.value)} value={descInput} placeholder="description"></input>
-      <button type="submit" onClick={() => CreateMovflix() } >Create</button>      
+    <div>
+      <input type="file"
+      onChange={(e) => base64Img(e.target.files[0])}></input>
     </div>
   );
 }

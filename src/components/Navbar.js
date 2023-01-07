@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate} from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import Cookies from "js-cookie";
@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Swal from "sweetalert2";
 import "../assets/css/bootstrap.min.css";
-
 
 const style = {
   login: {
@@ -63,7 +62,6 @@ const style = {
   },
 };
 
-
 function Navbar() {
   const navigate = useNavigate();
   //Language Settings
@@ -73,7 +71,7 @@ function Navbar() {
     window.location.reload(true);
   }
 
-  const url = "https://localhost:7079"
+  const url = "https://localhost:7079";
 
   //Prop for api start
   const [fullname, setFullname] = useState();
@@ -85,7 +83,7 @@ function Navbar() {
   const [email, setEmail] = useState();
   const [logpassword, setLogpassword] = useState();
   const [forgotmail, setForgotmail] = useState();
- 
+
   async function register(e) {
     e.preventDefault();
     await axios
@@ -110,7 +108,7 @@ function Navbar() {
           timer: 1500,
         });
       })
-      .catch(function (error) { });
+      .catch(function (error) {});
   }
 
   async function login(e) {
@@ -124,7 +122,7 @@ function Navbar() {
         },
         { "Content-Type": "multipart/form-data" }
       )
-      .then(function (response) {        
+      .then(function (response) {
         if (response.data.status === "success" || response.status === 200) {
           localStorage.setItem("token", response.data);
           Swal.fire({
@@ -146,7 +144,7 @@ function Navbar() {
 
         setLoginOpen(false);
       })
-      .catch(function (error) { });
+      .catch(function (error) {});
   }
 
   async function resetpassword(e) {
@@ -169,8 +167,9 @@ function Navbar() {
           showConfirmButton: false,
           timer: 1500,
         });
+        console.log(response);
       })
-      .catch(function (error) { });
+      .catch(function (error) {});
   }
 
   const handleOpen = () => {
@@ -187,8 +186,6 @@ function Navbar() {
     setProfile(true);
   };
   const handleProfileClose = () => setProfile(false);
-
-
 
   const [forgotOpen, setForgotOpen] = useState(false);
   const handleForgotOpen = () => {
@@ -233,7 +230,7 @@ function Navbar() {
   function clearToken(e) {
     e.preventDefault();
     localStorage.removeItem("token");
-    navigate("/")
+    navigate("/");
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -242,7 +239,6 @@ function Navbar() {
       timer: 1500,
     });
   }
-
 
   return (
     <div>
@@ -276,13 +272,15 @@ function Navbar() {
                           </li>
                           <li className="menu-item-has-children">
                             <NavLink to="/blog">{t(`blog`)}</NavLink>
-                            
                           </li>
                           <li>
                             <NavLink to="/contact">{t(`contact`)}</NavLink>
                           </li>
                           <li>
                             <NavLink to="/dashboard">{t(`dashboard`)}</NavLink>
+                          </li>
+                          <li>
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3/OAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANCSURBVEiJtZZPbBtFFMZ/M7ubXdtdb1xSFyeilBapySVU8h8OoFaooFSqiihIVIpQBKci6KEg9Q6H9kovIHoCIVQJJCKE1ENFjnAgcaSGC6rEnxBwA04Tx43t2FnvDAfjkNibxgHxnWb2e/u992bee7tCa00YFsffekFY+nUzFtjW0LrvjRXrCDIAaPLlW0nHL0SsZtVoaF98mLrx3pdhOqLtYPHChahZcYYO7KvPFxvRl5XPp1sN3adWiD1ZAqD6XYK1b/dvE5IWryTt2udLFedwc1+9kLp+vbbpoDh+6TklxBeAi9TL0taeWpdmZzQDry0AcO+jQ12RyohqqoYoo8RDwJrU+qXkjWtfi8Xxt58BdQuwQs9qC/afLwCw8tnQbqYAPsgxE1S6F3EAIXux2oQFKm0ihMsOF71dHYx+f3NND68ghCu1YIoePPQN1pGRABkJ6Bus96CutRZMydTl+TvuiRW1m3n0eDl0vRPcEysqdXn+jsQPsrHMquGeXEaY4Yk4wxWcY5V/9scqOMOVUFthatyTy8QyqwZ+kDURKoMWxNKr2EeqVKcTNOajqKoBgOE28U4tdQl5p5bwCw7BWquaZSzAPlwjlithJtp3pTImSqQRrb2Z8PHGigD4RZuNX6JYj6wj7O4TFLbCO/Mn/m8R+h6rYSUb3ekokRY6f/YukArN979jcW+V/S8g0eT/N3VN3kTqWbQ428m9/8k0P/1aIhF36PccEl6EhOcAUCrXKZXXWS3XKd2vc/TRBG9O5ELC17MmWubD2nKhUKZa26Ba2+D3P+4/MNCFwg59oWVeYhkzgN/JDR8deKBoD7Y+ljEjGZ0sosXVTvbc6RHirr2reNy1OXd6pJsQ+gqjk8VWFYmHrwBzW/n+uMPFiRwHB2I7ih8ciHFxIkd/3Omk5tCDV1t+2nNu5sxxpDFNx+huNhVT3/zMDz8usXC3ddaHBj1GHj/As08fwTS7Kt1HBTmyN29vdwAw+/wbwLVOJ3uAD1wi/dUH7Qei66PfyuRj4Ik9is+hglfbkbfR3cnZm7chlUWLdwmprtCohX4HUtlOcQjLYCu+fzGJH2QRKvP3UNz8bWk1qMxjGTOMThZ3kvgLI5AzFfo379UAAAAASUVORK5CYII=" />
                           </li>
                         </ul>
                       </div>
@@ -318,8 +316,7 @@ function Navbar() {
                             </form>
                           </li>
 
-                          <button className="btn"
-                           onClick={handleOpen}>
+                          <button className="btn" onClick={handleOpen}>
                             <i className="far fa-user-circle"></i>
                           </button>
                         </ul>
@@ -399,7 +396,6 @@ function Navbar() {
           </div>
         </header>
 
-        
         <Container>
           {/* Login Modal */}
           <Modal

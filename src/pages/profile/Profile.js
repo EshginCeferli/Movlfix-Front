@@ -27,8 +27,7 @@ function Profile() {
   }
 
   const [user, setUser] = useState();
-  useEffect(() => {
-    //BasketResult();
+  useEffect(() => {  
     if (token != null) {
       let usermail = parseJwt(token).sub[1];
       axios.get(`${url}/api/Account/GetUserByEmail/${usermail}`).then((res) => {
@@ -42,7 +41,7 @@ function Profile() {
   const [phonenumber, setPhoneNumber] = useState();
 
   async function updateuser(e) {
-    debugger;
+ 
     e.preventDefault();
     await axios
       .put(

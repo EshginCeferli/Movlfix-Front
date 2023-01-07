@@ -1,12 +1,85 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-function BlogDetailComp({ blog }) {
+function BlogDetailComp(props) {
   const { t } = useTranslation();
 
-  let thumb = blog.blogImages?.find((item) => item.isMain == true).image;
-  let detailImg = blog.blogImages?.filter((item) => item.isMain == false);
-  console.log(detailImg);
+  const url = "https://localhost:7079";
+
+  let thumb = props.blog.blogImages?.find((item) => item.isMain == true).image;
+  let detailImg = props.blog.blogImages?.filter((item) => item.isMain == false);
+  //Comment items
+  const [by, setBy] = useState();
+  const [context, setContext] = useState();
+  const comments = props.blog.comments;
+
+  //USer items
+  let token = localStorage.getItem("token");
+ 
+  function parseJwt(token) {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+  }
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {  
+    if (token != null) {
+      let usermail = parseJwt(token).sub[1];
+      axios.get(`${url}/api/Account/GetUserByEmail/${usermail}`).then((res) => {
+        setUser(res.data);
+      });
+    }
+  }, []);
+
+  console.log(comments);
+
+  async function AddComment(e) {
+    e.preventDefault();
+
+    await axios
+      .post(`${url}/api/Comment/Create`, {
+        By: user?.userName,
+        Context: context,
+        BlogId: props.id,
+      })
+
+      .then(function (response) {
+        if (response.data.status === "success" || response.status === 200) {
+          Swal.fire({
+            position: "center",
+
+            title: "Your comment added",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          window.location.reload();
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Something went wrong",
+          showConfirmButton: true,
+          timer: 5000,
+        });
+      });
+  }
+
   return (
     <>
       <div className="blog-post-item blog-details-wrap">
@@ -19,14 +92,14 @@ function BlogDetailComp({ blog }) {
           <div className="blog-details-top-meta">
             <span className="user">
               <i className="far fa-user" /> {t(`by`)}{" "}
-              <a href="#">{blog.name}</a>
+              <a href="#">{props.blog.name}</a>
             </span>
             <span className="date">
-              <i className="far fa-clock" /> {blog.createDate}
+              <i className="far fa-clock" /> {props.blog.createDate}
             </span>
           </div>
           <h2 className="title">Your Free Movie Streaming Purposes</h2>
-          <p>{blog.description}</p>
+          <p>{props.blog.description}</p>
           <p>
             Printing and typetting industry. Lorem Ipsum has been the industry's
             standrd dummy text ever since the, when an unknown printer took a
@@ -98,87 +171,37 @@ function BlogDetailComp({ blog }) {
           </div>
         </div>
       </div>
-      <div className="avatar-post mt-40 mb-80">
-        <div className="post-avatar-img">
-          <img src="/images/blog/post_avatar_img.png" alt="images" />
-        </div>
-        <div className="post-avatar-content">
-          <h5>Thomas Herlihy</h5>
-          <p>
-            Printing and typetting industry. Lorem Ipsum has been the instry
-            standrd the dummy text ever since the, when an unknown printer took
-            a galley .
-          </p>
-          <ul>
-            <li>
-              <a href="#">
-                <i className="fab fa-facebook-f" />
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fab fa-twitter" />
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fab fa-instagram" />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+
       <div className="blog-comment mb-80">
         <div className="widget-title mb-45">
-          <h5 className="title"> {t(`comment's`)} (02)</h5>
+          <h5 className="title"> {t(`comment's`)} ({comments?.length})</h5>
         </div>
         <ul>
-          <li>
-            <div className="single-comment">
-              <div className="comment-avatar-img">
-                <img src="/images/blog/comment_avatar01.jpg" alt="images" />
-              </div>
-              <div className="comment-text">
-                <div className="comment-avatar-info">
-                  <h5>
-                    Daisy Waterstone{" "}
-                    <span className="comment-date">November 13, 2021</span>
-                  </h5>
-                  <a href="#" className="comment-reply-link">
-                    {t(`reply`)} <i className="fas fa-reply-all" />
-                  </a>
+          {comments?.map((comment, i) => {
+            return (
+              <li key={i}>
+                <div className="single-comment">
+                  <div className="comment-avatar-img">
+                    <img src="/images/blog/comment_avatar01.jpg" alt="images" />
+                  </div>
+                  <div className="comment-text">
+                    <div className="comment-avatar-info">
+                      <h5>
+                        {comment.by}
+                        <span className="comment-date">{comment.createDate}</span>
+                      </h5>
+                      <a href="#" className="comment-reply-link">
+                        {t(`reply`)} <i className="fas fa-reply-all" />
+                      </a>
+                    </div>
+                    <p>
+                     {comment.context}
+                    </p>
+                  </div>
                 </div>
-                <p>
-                  Printing and typetting industry. Lorem Ipsum has been the
-                  instry standrd the dummy text ever since the, when an unknown
-                  printer took a galley .
-                </p>
-              </div>
-            </div>
-          </li>
-          <li className="comment-reply">
-            <div className="single-comment">
-              <div className="comment-avatar-img">
-                <img src="/images/blog/comment_avatar02.jpg" alt="images" />
-              </div>
-              <div className="comment-text">
-                <div className="comment-avatar-info">
-                  <h5>
-                    Jon Deo{" "}
-                    <span className="comment-date">November 13, 2021</span>
-                  </h5>
-                  <a href="#" className="comment-reply-link">
-                    Reply <i className="fas fa-reply-all" />
-                  </a>
-                </div>
-                <p>
-                  Printing and typetting industry. Lorem Ipsum has been the
-                  instry standrd the dummy text ever since the, when an unknown
-                  printer took a galley .
-                </p>
-              </div>
-            </div>
-          </li>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="contact-form-wrap">
@@ -186,21 +209,24 @@ function BlogDetailComp({ blog }) {
           <h5 className="title"> {t(`post a comment`)}</h5>
         </div>
         <div className="contact-form">
-          <form action="#">
+          <form onSubmit={(e) => AddComment(e)}>
             <div className="row">
-              <div className="col-md-6">
-                <input type="text" placeholder={t(`your name *`)} />
+              <div className="col-md-12">
+                <input
+                  type="text"
+                  onChange={(e) => setBy(e.target.value)}
+                  placeholder={t(`your name *`)}
+                />
               </div>
-              <div className="col-md-6">
-                <input type="email" placeholder={t(`your email`)} />
+              <div className="col-md-12">
+                <textarea
+                  type="text"
+                  onChange={(e) => setContext(e.target.value)}
+                  placeholder={t(`your email`)}
+                />
               </div>
             </div>
-            <input type="text" placeholder={t(`subject`)} />
-            <textarea
-              name="message"
-              placeholder={t(`your comment...`)}
-              defaultValue={""}
-            />
+
             <button className="btn"> {t(`send a message`)}</button>
           </form>
         </div>

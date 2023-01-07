@@ -4,11 +4,9 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import FilteredMovies from "./FilteredMovies";
 
-
 function Movies() {
   const { t } = useTranslation();
- 
-  
+
   //All Movie Url
   const baseUrlMovie = "https://localhost:7079/api/Movie/GetAll";
 
@@ -61,16 +59,13 @@ function Movies() {
 
   //
   var a = document.querySelectorAll(".filter-button");
-for (var i = 0, length = a.length; i < length; i++) {
-  a[i].onclick = function() {
-    var b = document.querySelector("ul button.active");
-    if (b) b.classList.remove("active");
-    this.parentNode.classList.add('active');
-  };
-}
-
-
-
+  for (var i = 0, length = a.length; i < length; i++) {
+    a[i].onclick = function () {
+      var b = document.querySelector("ul button.active");
+      if (b) b.classList.remove("active");
+      this.parentNode.classList.add("active");
+    };
+  }
 
   return (
     <div>
@@ -83,9 +78,7 @@ for (var i = 0, length = a.length; i < length; i++) {
             <div className="col-lg-6">
               <div className="section-title text-center text-lg-left">
                 <span className="sub-title">{t(`online streaming`)}</span>
-                <h2 className="title" >
-                  {t(`new release movies`)}
-                </h2>
+                <h2 className="title">{t(`new release movies`)}</h2>
               </div>
             </div>
           </div>
@@ -97,7 +90,6 @@ for (var i = 0, length = a.length; i < length; i++) {
                   <h5 className="title">{t(`categories`)}</h5>
                 </div>
                 <div className="sidebar-cat">
-                
                   <input
                     placeholder="search movie"
                     type="text"
@@ -108,13 +100,10 @@ for (var i = 0, length = a.length; i < length; i++) {
                     className="search-movie"
                   />
 
-                  <ul >
+                  <ul>
                     <li>
                       {" "}
-                      <NavLink
-                        onClick={() => getFilteredList("All")}
-                        
-                      >
+                      <NavLink onClick={() => getFilteredList("All")}>
                         All
                       </NavLink>
                     </li>
@@ -128,7 +117,13 @@ for (var i = 0, length = a.length; i < length; i++) {
                           >
                             {category.name}
                           </NavLink>
-                          <span>{items.filter((i) => i.movieCategory.name ==category.name).length}</span>
+                          <span>
+                            {
+                              items.filter(
+                                (i) => i.movieCategory.name == category.name
+                              ).length
+                            }
+                          </span>
                         </li>
                       );
                     })}
@@ -137,8 +132,11 @@ for (var i = 0, length = a.length; i < length; i++) {
               </div>
             </div>
             <div className="col-9">
-            {result.length == 0 ? <h1>{t(`no result found for search :))`)}</h1> : <FilteredMovies result={result} />}
-              
+              {result.length == 0 ? (
+                <h1>{t(`no result found for search :))`)}</h1>
+              ) : (
+                <FilteredMovies result={result} />
+              )}
             </div>
           </div>
         </div>

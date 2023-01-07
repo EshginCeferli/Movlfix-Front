@@ -9,9 +9,7 @@ function MovieUpdateBtn(props) {
   const { t } = useTranslation();
   const { id } = useParams();
   const location = useLocation();
-  const categories = location.state;
-
-  
+  const categories = location.state; 
 
  
   const url = "https://localhost:7079";
@@ -104,7 +102,6 @@ function MovieUpdateBtn(props) {
   useEffect(() =>{
     GetMovie()
   },[])
-console.log(categoryInput);
   return (
     <div className="container">
       <Form onSubmit={(e) => UpdateMovie(e)}>

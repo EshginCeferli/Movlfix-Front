@@ -36,7 +36,7 @@ function BlogDetail() {
         <div className="container">
           <div className="row">
             <div className="col-lg-8">
-              <BlogDetailComp blog={blog} />
+              <BlogDetailComp blog={blog} id={id} />
             </div>
             <div className="col-lg-4">
               <aside className="blog-sidebar">

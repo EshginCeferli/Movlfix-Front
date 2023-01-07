@@ -73,8 +73,7 @@ const navigate = useNavigate();
     }
   }
   const { t } = useTranslation();
-  console.log(newpassword);
-  console.log(repeatpass);
+ 
   return (
     <div className="row justify-content-between container">
       <div className="col-lg-8 col-md-9 col-sm-12  mt-4">
