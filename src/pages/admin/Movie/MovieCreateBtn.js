@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
+import Swal from "sweetalert2";
+import axios from "axios";
+
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,9 +13,147 @@ import Select from "@mui/material/Select";
 
 import { useTranslation } from "react-i18next";
 
-function MovieCreateBtn(props) {
+function MovieCreateBtn() {
   const { t } = useTranslation();
 
+  const url = "https://localhost:7079";
+
+  const [movies, setMovies] = useState([]);
+  const [nameInput, setNameInput] = useState("");
+  const [descInput, setDescInput] = useState("");
+  const [lengthInput, setLengthInput] = useState("");
+  const [releaseInput, setReleaseInput] = useState("");
+  const [posterInput, setPosterInput] = useState("");
+  const [countryInput, setCountryInput] = useState("");
+  const [categoryInput, setCategoryInput] = useState("");
+  const [photo, setPhoto] = useState("");
+
+  const [categories, setCategories] = useState([]);
+
+  let token = localStorage.getItem("token");
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  //sweet alert
+  const Success = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+  const Reject = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
+   //Get Movies from Api
+   async function GetMovies() {
+    await axios.get(`${url}/api/Movie/GetAll`,  { 'headers': { 'Authorization': 'Bearer' +token } }).then((res) => {
+      setMovies(res.data);
+    });
+  }
+
+  //Get Categories from Api
+  async function GetCategories() {
+    await axios.get(`${url}/api/MovieCategory/GetAll`).then((res) => {
+      setCategories(res.data);
+    });
+  }
+
+  useEffect(() => {
+    GetMovies();
+    GetCategories();
+  }, []);
+
+  //Create Movie
+  async function CreateMovie() {
+    await axios
+      .post(
+        `${url}/api/Movie/Create`,
+        {
+          name: nameInput,
+          description: descInput,
+          length: lengthInput,
+          poster: posterInput,
+          releaseYear: releaseInput,
+          country: countryInput,
+          movieCategoryId: categoryInput,
+          photo : photo
+        }        
+      )
+      .then((res) => {
+        setNameInput("");
+        setDescInput("");
+        setLengthInput("");
+        setReleaseInput("");
+        setCountryInput("");
+        setCategoryInput("");
+        console.log(res);
+        Success.fire({
+          icon: "success",
+          title: "Movie successfully created",
+        });
+      })
+      .catch(
+        Reject.fire({
+          icon: "error",
+          title: "Something went wrong",
+        })
+      );
+  }
+
+  //Delete Movie
+  const DeleteMovie = async (id) => {
+    await axios
+      .delete(`${url}/api/Movie/Delete?id=${id}`, config)
+      .then(function (response) {
+        Swal.fire("", "Deleted", "success");
+        console.log(response)
+      })
+      .catch(function (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="">Why do I have this issue?</a>',
+        });
+        console.log(error);
+      });
+    GetMovies();
+  };
+
+
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () =>
+        resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
+      reader.onerror = (error) => reject(error);
+    });
+  }
+
+  function base64Img(file) {
+    var base64String = getBase64(file);
+    base64String.then(function (result) {
+      setPhoto(result);
+      console.log(result);
+    });
+  }
   return (
     <div className="create-btn-area">
       <div className="my-3 me-3">
@@ -59,16 +200,16 @@ function MovieCreateBtn(props) {
               <div className="row">
                 <div className="col-6">
                   <TextField
-                    onChange={(e) => props.setNameInput(e.target.value)}
-                    value={props.nameInput}
+                    onChange={(e) => setNameInput(e.target.value)}
+                    value={nameInput}
                     className="student-input"
                     id="outlined-basic"
                     label={t("Name")}
                     variant="outlined"
                   />
                   <TextField
-                    onChange={(e) => props.setPosterInput(e.target.value)}
-                    value={props.posterInput}
+                    onChange={(e) => setPosterInput(e.target.value)}
+                    value={ posterInput}
                     className="student-input"
                     id="outlined-basic"
                     label={t("Name")}
@@ -78,8 +219,8 @@ function MovieCreateBtn(props) {
 
                 <div className="col-6">
                   <TextField
-                    onChange={(e) => props.setDescInput(e.target.value)}
-                    value={props.descInput}
+                    onChange={(e) =>  setDescInput(e.target.value)}
+                    value={ descInput}
                     className="student-input"
                     id="outlined-basic"
                     label={t("Description")}
@@ -91,8 +232,8 @@ function MovieCreateBtn(props) {
                 <div className="col-6">
                   <TextField
                     autoComplete="off"
-                    onChange={(e) => props.setLengthInput(e.target.value)}
-                    value={props.lengthInput}
+                    onChange={(e) =>  setLengthInput(e.target.value)}
+                    value={ lengthInput}
                     type="number"
                     className="student-input"
                     id="outlined-basic"
@@ -104,8 +245,8 @@ function MovieCreateBtn(props) {
                   <TextField
                     autoComplete="off"
                     type="number"
-                    onChange={(e) => props.setReleaseInput(e.target.value)}
-                    value={props.releaseInput}
+                    onChange={(e) =>  setReleaseInput(e.target.value)}
+                    value={ releaseInput}
                     className="student-input"
                     id="outlined-basic"
                     label={t("Release Year")}
@@ -119,29 +260,30 @@ function MovieCreateBtn(props) {
                 <div className="col-6">
                   <TextField
                     autoComplete="off"
-                    onChange={(e) => props.setCountryInput(e.target.value)}
-                    value={props.countryInput}
+                    onChange={(e) =>  setCountryInput(e.target.value)}
+                    value={ countryInput}
                     type="text"
                     className="movie-input"
                     id="outlined-basic"
                     label="Country"
                     variant="outlined"                    
-                  />
+                  />                 
                   
                 </div>
+                <input type="file"  onChange={(e) => base64Img(e.target.files[0])}></input>
                 <div className="col-6">
                   <Box sx={{ width: 210 }}>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">{t("resource")}</InputLabel>
+                      <InputLabel id="demo-simple-select-label">{t("category")}</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={props.resourceInput}
-                        label={t("resource")}
-                        onChange={(e) => props.setCategoryInput(e.target.value)}
+                        value={ categoryInput}
+                        label={t("category")}
+                        onChange={(e) =>  setCategoryInput(e.target.value)}
                         defaultValue=""
                       >
-                        {props.categories.map(res => (
+                        { categories.map(res => (
                           <MenuItem key={res.id} value={res.id}>{res.name}</MenuItem>
                         ))}
 
@@ -153,7 +295,7 @@ function MovieCreateBtn(props) {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" onClick={() => props.CreateMovie()} data-bs-dismiss="modal" className="btn btn-outline-primary student-button">{t("save")}</button>
+              <button type="button" onClick={() =>  CreateMovie()} data-bs-dismiss="modal" className="btn btn-outline-primary student-button">{t("save")}</button>
               <button type="button" data-bs-dismiss="modal" className="btn btn-outline-warning student-button">{t("cancel")}</button>
             </div>
           </div>

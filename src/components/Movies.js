@@ -57,16 +57,6 @@ function Movies() {
     i.name.toLowerCase().includes(value.toLowerCase())
   );
 
-  //
-  var a = document.querySelectorAll(".filter-button");
-  for (var i = 0, length = a.length; i < length; i++) {
-    a[i].onclick = function () {
-      var b = document.querySelector("ul button.active");
-      if (b) b.classList.remove("active");
-      this.parentNode.classList.add("active");
-    };
-  }
-
   return (
     <div>
       <section
@@ -103,7 +93,7 @@ function Movies() {
                   <ul>
                     <li>
                       {" "}
-                      <NavLink onClick={() => getFilteredList("All")}>
+                      <NavLink onClick={() => getFilteredList("All")} className="filter-button">
                         All
                       </NavLink>
                     </li>

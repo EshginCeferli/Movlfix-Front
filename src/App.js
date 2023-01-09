@@ -43,7 +43,7 @@ function App() {
           <Route path="/movieUpdate/:id" element={<MovieUpdateBtn />} />
         </Route>
       </Routes>
-      {/* <Crud/> */}
+      <Crud/>
     </div>
   );
 }

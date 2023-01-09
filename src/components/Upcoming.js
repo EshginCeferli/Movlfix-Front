@@ -25,7 +25,7 @@ function Upcoming() {
     GetNewMovies();
   }, []);
 
-  console.log(movies);
+
   return (
     <>
       {/* up-coming-movie-area */}

@@ -44,7 +44,7 @@ function BlogDetailComp(props) {
     }
   }, []);
 
-  console.log(comments);
+
 
   async function AddComment(e) {
     e.preventDefault();

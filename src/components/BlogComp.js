@@ -40,8 +40,8 @@ function BlogComp() {
 
   return (
     <div>
-      {currentItems.map((blog, i) => {
-        let thumb = blog.blogImages?.find((item) => item.isMain == true).image;
+      {currentItems?.map((blog, i) => {
+        let thumb = blog?.blogImages?.find((item) => item?.isMain == true).image;
         return (
           <div className="blog-post-item" key={i}>
             <div className="blog-post-thumb">

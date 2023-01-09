@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { EffectCoverflow, Autoplay, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import "../assets/css/style.css";
+// 
 
 function Rated() {
   const { t } = useTranslation();

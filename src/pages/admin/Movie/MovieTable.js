@@ -11,22 +11,14 @@ function MovieTable() {
   const url = "https://localhost:7079";
 
   const [movies, setMovies] = useState([]);
-  const [nameInput, setNameInput] = useState("");
-  const [descInput, setDescInput] = useState("");
-  const [lengthInput, setLengthInput] = useState("");
-  const [releaseInput, setReleaseInput] = useState("");
-  const [posterInput, setPosterInput] = useState("");
-  const [countryInput, setCountryInput] = useState("");
-  const [categoryInput, setCategoryInput] = useState("");
 
   const [categories, setCategories] = useState([]);
-  const [id, setId] = useState();
 
-  let token = localStorage.getItem("token");
+  let token = JSON.parse(localStorage.getItem("token"));
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
- 
 
   //sweet alert
   const Success = Swal.mixin({
@@ -54,13 +46,16 @@ function MovieTable() {
 
   //Get Movies from Api
   async function GetMovies() {
-    await axios.get(`${url}/api/Movie/GetAll`).then((res) => {
-      setMovies(res.data);
-    });
+    await axios
+      .get(`${url}/api/Movie/GetAll`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setMovies(res.data);
+      });
   }
-
-  //Get Categories from Api
-  async function GetCategories() {
+   //Get Categories from Api
+   async function GetCategories() {
     await axios.get(`${url}/api/MovieCategory/GetAll`).then((res) => {
       setCategories(res.data);
     });
@@ -71,48 +66,13 @@ function MovieTable() {
     GetCategories();
   }, []);
 
-  //Create Movie
-  async function CreateMovie() {
-    await axios
-      .post(
-        `${url}/api/Movie/Create`,
-        {
-          name: nameInput,
-          description: descInput,
-          length: lengthInput,
-          poster: posterInput,
-          releaseYear: releaseInput,
-          country: countryInput,
-          movieCategoryId: categoryInput,
-        },
-        config
-      )
-      .then((res) => {
-        setNameInput("");
-        setDescInput("");
-        setLengthInput("");
-        setReleaseInput("");
-        setCountryInput("");
-        setCategoryInput("");
-        Success.fire({
-          icon: "success",
-          title: "Movie successfully created",
-        });
-      })
-      .catch(
-        Reject.fire({
-          icon: "error",
-          title: "Something went wrong",
-        })
-      );
-  }
-
   //Delete Movie
   const DeleteMovie = async (id) => {
     await axios
-      .delete(`${url}/api/Movie/Delete?id=${id}`)
+      .delete(`${url}/api/Movie/Delete?id=${id}`, config)
       .then(function (response) {
         Swal.fire("", "Deleted", "success");
+        console.log(response);
       })
       .catch(function (error) {
         Swal.fire({
@@ -121,75 +81,75 @@ function MovieTable() {
           text: "Something went wrong!",
           footer: '<a href="">Why do I have this issue?</a>',
         });
+        console.log(error);
       });
     GetMovies();
   };
 
   return (
-    <table className="table table-striped table-dark">
-      <thead>
-        <tr>
-          <th scope="col">
-            <MovieCreateBtn
-              nameInput={nameInput}
-              setNameInput={setNameInput}
-              descInput={descInput}
-              setDescInput={setDescInput}
-              lengthInput={lengthInput}
-              setLengthInput={setLengthInput}
-              posterInput={posterInput}
-              setPosterInput={setPosterInput}
-              releaseInput={releaseInput}
-              setReleaseInput={setReleaseInput}
-              countryInput={countryInput}
-              setCountryInput={setCountryInput}
-              categoryInput={categoryInput}
-              setCategoryInput={setCategoryInput}
-              categories={categories}
-              setCategories={setCategories}
-              CreateMovie={CreateMovie}
-            />
-          </th>
-          <th scope="col">Name </th>
-          <th scope="col">Description </th>
-          <th scope="col">Length </th>
-          <th scope="col">Poster image </th>
-          <th scope="col">Release Year </th>
-          <th scope="col">Producter Country </th>
-          <th scope="col">Categories </th>
-          <th scope="col">Settings </th>
-        </tr>
-      </thead>
-      <tbody>
-        {movies.map((movie, i) => {
-          return (
-            <tr key={i}>
-              <td scope="row">{count++}</td>
-              <td>{movie.name}</td>
-              <td>{movie.description}</td>
-              <td>{movie.length}</td>
-              <td>{movie.posterz}</td>
-              <td>{movie.name}</td>
-              <td>{movie.name}</td>
-              <td>{movie.name}</td>
-              <td>
-                <Link to={`/movieUpdate/${movie.id}`} state={categories}>
-                  <button className="btn btn-primary">Update</button>
-                </Link>
+    <div className="col-lg-12 grid-margin stretch-card">
+      <div className="card">
+        <div className="card-body">
+          <h4 className="card-title d-flex justify-content-between">
+            Movies
+            <MovieCreateBtn />
+          </h4>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th> Movie Image </th>
+                <th> Movie Name </th>
+                <th> Movie Description </th>
 
-                <button
-                  onClick={() => DeleteMovie(movie.id)}
-                  type="button"
-                  className="btn btn-warning"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+                <th> Movie Length </th>
+                <th> Movie Country </th>
+                <th> Movie Year </th>
+                <th> Settings </th>
+              </tr>
+            </thead>
+            <tbody>
+              {movies.map((movie, i) => (
+                <tr key={i}>
+                  <td>{++count}</td>
+                  <td className="py-1">
+                    <img
+                      style={{
+                        width: "100px",
+                        height: "70px",
+                        borderRadius: "unset",
+                      }}
+                      src={`data:image/jpeg;base64,${movie.photo}`}
+                      alt=""
+                    />
+
+                    {console.log(movie.photo)}
+                  </td>
+                  <td className="py-1">{movie.name}</td>
+                  <td className="py-1">{movie.description}</td>
+                  <td className="py-1">{movie.length} min</td>
+                  <td className="py-1">{movie.country}</td>
+                  <td className="py-1">{movie.releaseYear} s year</td>
+
+                  <td>
+                    <Link to={`/movieUpdate/${movie.id}`} state={categories}>
+                      <button className="btn btn-primary">Update</button>
+                    </Link>
+                    <button
+                      onClick={() => DeleteMovie(movie.id)}
+                      type="button"
+                      className="btn btn-warning"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   );
 }
 
