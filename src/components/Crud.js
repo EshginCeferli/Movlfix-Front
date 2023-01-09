@@ -59,7 +59,7 @@ function Crud() {
   useEffect(() => {
     GetMovies()
   }, [])
-  console.log(movies);
+
   return (
     <div>
 

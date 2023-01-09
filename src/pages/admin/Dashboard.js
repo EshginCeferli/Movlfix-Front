@@ -31,9 +31,11 @@ export default function Dashboard() {
           </tr>
           <tr>
             <th scope="row">2</th>
-            <td>Blog</td>
             <td>
-              <Link to="/">
+              <h3>Blogs</h3>
+            </td>
+            <td>
+              <Link to="/blogTable">
                 <button type="button" className="btn btn-primary">
                   Manage
                 </button>

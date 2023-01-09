@@ -8,7 +8,9 @@ function BlogDetailComp(props) {
 
   const url = "https://localhost:7079";
 
-  let thumb = props.blog.blogImages?.find((item) => item.isMain == true).image;
+  console.log(props.blog.blogImages?.find((item) => item.isMain == true));
+  let thumb = props?.blog?.blogImages?.find((item) => item?.isMain == true)?.image;
+  let a = "sdd";
   let detailImg = props.blog.blogImages?.filter((item) => item.isMain == false);
   //Comment items
   const [by, setBy] = useState();

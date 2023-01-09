@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import MovieCreateBtn from "./MovieCreateBtn";
+// import MovieCreateBtn from "./MovieCreateBtn";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
+import BlogCreateBtn from "./BlogCreateBtn";
 
-
-function MovieTable() {
+function BlogTable() {
   let count = 0;
   const url = "https://localhost:7079";
 
-  const [movies, setMovies] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
   const [categories, setCategories] = useState([]);
 
@@ -44,31 +44,31 @@ function MovieTable() {
   });
 
   //Get Movies from Api
-  async function GetMovies() {
+  async function GetBlogs() {
     await axios
-      .get(`${url}/api/Movie/GetAll`, {
+      .get(`${url}/api/Blog/GetAll`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        setMovies(res.data);
+        setBlogs(res.data);
       });
   }
   //Get Categories from Api
-  async function GetCategories() {
-    await axios.get(`${url}/api/MovieCategory/GetAll`).then((res) => {
-      setCategories(res.data);
-    });
-  }
+  //   async function GetCategories() {
+  //     await axios.get(`${url}/api/MovieCategory/GetAll`).then((res) => {
+  //       setCategories(res.data);
+  //     });
+  //   }
 
   useEffect(() => {
-    GetMovies();
-    GetCategories();
+    GetBlogs();
+    // GetCategories();
   }, []);
 
   //Delete Movie
-  const DeleteMovie = async (id) => {
+  const DeleteBlog = async (id) => {
     await axios
-      .delete(`${url}/api/Movie/Delete?id=${id}`, config)
+      .delete(`${url}/api/Blog/Delete?id=${id}`, config)
       .then(function (response) {
         Swal.fire("", "Deleted", "success");
         console.log(response);
@@ -82,7 +82,7 @@ function MovieTable() {
         });
         console.log(error);
       });
-    GetMovies();
+    GetBlogs();
   };
 
   return (
@@ -90,25 +90,24 @@ function MovieTable() {
       <div className="card">
         <div className="card-body">
           <h4 className="card-title d-flex justify-content-between">
-            Movies
-            <MovieCreateBtn />
+            Blogs
+            <BlogCreateBtn />
           </h4>
           <table className="table table-striped">
             <thead>
               <tr>
                 <th>#</th>
-                <th> Movie Image </th>
-                <th> Movie Name </th>
-                <th> Movie Description </th>
+                <th> Blog Image </th>
+                <th> Blog Name </th>
+                <th> Blog Author </th>
+                <th> Blog Description </th>
+                <th> Blog Create Date </th>
 
-                <th> Movie Length </th>
-                <th> Movie Country </th>
-                <th> Movie Year </th>
                 <th> Settings </th>
               </tr>
             </thead>
             <tbody>
-              {movies.map((movie, i) => (
+              {blogs.map((blog, i) => (
                 <tr key={i}>
                   <td>{++count}</td>
                   <td className="py-1">
@@ -118,22 +117,21 @@ function MovieTable() {
                         height: "70px",
                         borderRadius: "unset",
                       }}
-                      src={`data:image/jpeg;base64,${movie.photo}`}
+                      src={`data:image/jpeg;base64,${blog.photo}`}
                       alt=""
                     />
                   </td>
-                  <td className="py-1">{movie.name}</td>
-                  <td className="py-1">{movie.description}</td>
-                  <td className="py-1">{movie.length} min</td>
-                  <td className="py-1">{movie.country}</td>
-                  <td className="py-1">{movie.releaseYear} s year</td>
+                  <td className="py-1">{blog.name}</td>
+                  <td className="py-1">{blog.by}</td>
+                  <td className="py-1">{blog.description} min</td>
+                  <td className="py-1">{blog.createDate}</td>
 
                   <td>
-                    <Link to={`/movieUpdate/${movie.id}`} state={categories}>
+                    <Link to={`/blogUpdate/${blog.id}`}>
                       <button className="btn btn-primary">Update</button>
                     </Link>
                     <button
-                      onClick={() => DeleteMovie(movie.id)}
+                      onClick={() => DeleteBlog(blog.id)}
                       type="button"
                       className="btn btn-warning"
                     >
@@ -150,4 +148,4 @@ function MovieTable() {
   );
 }
 
-export default MovieTable;
+export default BlogTable;

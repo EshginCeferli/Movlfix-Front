@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/home/Home";
@@ -8,18 +9,17 @@ import Pricing from "./pages/pricing/Pricing";
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import ForgotPassword from "./pages/login/ForgotPassword";
-import Footer from "./components/Footer";
-
 import BlogDetail from "./pages/blogDetail/BlogDetail";
 import Dashboard from "./pages/admin/Dashboard";
 import MovieTable from "./pages/admin/Movie/MovieTable";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MovieUpdateBtn from "./pages/admin/Movie/MovieUpdateBtn";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Login from "./pages/login/Login";
 import UpdatePassword from "./pages/login/UpdatePassword";
 import Profile from "./pages/profile/Profile";
 import Crud from "./components/Crud"
+import BlogTable from "./pages/admin/Blog/BlogTable";
+import BlogUpdateBtn from "./pages/admin/Blog/BlogUpdateBtn";
 function App() {
   return (
     <div>
@@ -41,6 +41,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route exact path="/movieTable" element={<MovieTable />} />
           <Route path="/movieUpdate/:id" element={<MovieUpdateBtn />} />
+          <Route exact path="/blogTable" element={<BlogTable/>} />
+          <Route path="/blogUpdate/:id" element={<BlogUpdateBtn/>} />
+
         </Route>
       </Routes>
       <Crud/>

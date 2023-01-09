@@ -13,22 +13,17 @@ import Select from "@mui/material/Select";
 
 import { useTranslation } from "react-i18next";
 
-function MovieCreateBtn() {
+function BlogCreateBtn() {
   const { t } = useTranslation();
 
   const url = "https://localhost:7079";
 
-  const [movies, setMovies] = useState([]);
+  const [blogs, setblogs] = useState([]);
   const [nameInput, setNameInput] = useState("");
   const [descInput, setDescInput] = useState("");
-  const [lengthInput, setLengthInput] = useState("");
-  const [releaseInput, setReleaseInput] = useState("");
-  const [posterInput, setPosterInput] = useState("");
-  const [countryInput, setCountryInput] = useState("");
-  const [categoryInput, setCategoryInput] = useState("");
+  const [byInput, setByInput] = useState(""); 
   const [photo, setPhoto] = useState("");
 
-  const [categories, setCategories] = useState([]);
 
   let token = localStorage.getItem("token");
 
@@ -60,52 +55,37 @@ function MovieCreateBtn() {
     },
   });
 
-   //Get Movies from Api
-   async function GetMovies() {
-    await axios.get(`${url}/api/Movie/GetAll`,  config).then((res) => {
-      setMovies(res.data);
+   //Get blogs from Api
+   async function GetBlogs() {
+    await axios.get(`${url}/api/Blog/GetAll`,  config).then((res) => {
+      setblogs(res.data);
     });
   }
 
-  //Get Categories from Api
-  async function GetCategories() {
-    await axios.get(`${url}/api/MovieCategory/GetAll`).then((res) => {
-      setCategories(res.data);
-    });
-  }
 
   useEffect(() => {
-    GetMovies();
-    GetCategories();
+    GetBlogs();
+   
   }, []);
 
-  //Create Movie
-  async function CreateMovie() {
+  //Create Blog
+  async function CreateBlog() {
     await axios
       .post(
-        `${url}/api/Movie/Create`,
+        `${url}/api/Blog/Create`,
         {
           name: nameInput,
           description: descInput,
-          length: lengthInput,
-          poster: posterInput,
-          releaseYear: releaseInput,
-          country: countryInput,
-          movieCategoryId: categoryInput,
+          by: byInput,          
           photo : photo
         }        
       )
       .then((res) => {
-        setNameInput("");
-        setDescInput("");
-        setLengthInput("");
-        setReleaseInput("");
-        setCountryInput("");
-        setCategoryInput("");
+
         console.log(res);
         Success.fire({
           icon: "success",
-          title: "Movie successfully created",
+          title: "Blog successfully created",
         });
       })
       .catch(
@@ -131,7 +111,7 @@ function MovieCreateBtn() {
     var base64String = getBase64(file);
     base64String.then(function (result) {
       setPhoto(result);
-  
+      
     });
   }
   return (
@@ -141,7 +121,7 @@ function MovieCreateBtn() {
           type="button"
           className="btn btn-outline-success create-btn"
           data-bs-toggle="modal"
-          data-bs-target="#create-movie"
+          data-bs-target="#create-Blog"
         >
           +Add
         </button>
@@ -149,7 +129,7 @@ function MovieCreateBtn() {
 
       <div
         className="modal fade"
-        id="create-movie"
+        id="create-Blog"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -162,13 +142,13 @@ function MovieCreateBtn() {
               </h5>
               <button
                 type="button"
-                className="btn-close movie-button"
+                className="btn-close Blog-button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
             <div className="modal-body container addition">
-              <h6 className="addition-title">{t("Create your movie")}</h6>
+              <h6 className="addition-title">{t("Create your Blog")}</h6>
               <div className="row">
                 <div className="col-6"></div>
                 <div className="col-6"></div>
@@ -188,8 +168,8 @@ function MovieCreateBtn() {
                     variant="outlined"
                   />
                   <TextField
-                    onChange={(e) => setPosterInput(e.target.value)}
-                    value={ posterInput}
+                    onChange={(e) => setByInput(e.target.value)}
+                    value={ byInput}
                     className="student-input"
                     id="outlined-basic"
                     label={t("Name")}
@@ -208,74 +188,16 @@ function MovieCreateBtn() {
                   />
                 </div>
               </div>
-              <div className="row my-3">
-                <div className="col-6">
-                  <TextField
-                    autoComplete="off"
-                    onChange={(e) =>  setLengthInput(e.target.value)}
-                    value={ lengthInput}
-                    type="number"
-                    className="student-input"
-                    id="outlined-basic"
-                    label="Movie Length (By minutes)"
-                    variant="outlined"
-                  />
-                </div>
-                <div className="col-6">
-                  <TextField
-                    autoComplete="off"
-                    type="number"
-                    onChange={(e) =>  setReleaseInput(e.target.value)}
-                    value={ releaseInput}
-                    className="student-input"
-                    id="outlined-basic"
-                    label={t("Release Year")}
-                    variant="outlined"
-                  />
-                </div>
-              </div>
-
+             
 
               <div className="row my-3">
-                <div className="col-6">
-                  <TextField
-                    autoComplete="off"
-                    onChange={(e) =>  setCountryInput(e.target.value)}
-                    value={ countryInput}
-                    type="text"
-                    className="movie-input"
-                    id="outlined-basic"
-                    label="Country"
-                    variant="outlined"                    
-                  />                 
-                  
-                </div>
+              
                 <input type="file"  onChange={(e) => base64Img(e.target.files[0])}></input>
-                <div className="col-6">
-                  <Box sx={{ width: 210 }}>
-                    <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">{t("category")}</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={ categoryInput}
-                        label={t("category")}
-                        onChange={(e) =>  setCategoryInput(e.target.value)}
-                        defaultValue=""
-                      >
-                        { categories.map(res => (
-                          <MenuItem key={res.id} value={res.id}>{res.name}</MenuItem>
-                        ))}
-
-
-                      </Select>
-                    </FormControl>
-                  </Box>
-                </div>
+               
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" onClick={() =>  CreateMovie()} data-bs-dismiss="modal" className="btn btn-outline-primary student-button">{t("save")}</button>
+              <button type="button" onClick={() =>  CreateBlog()} data-bs-dismiss="modal" className="btn btn-outline-primary student-button">{t("save")}</button>
               <button type="button" data-bs-dismiss="modal" className="btn btn-outline-warning student-button">{t("cancel")}</button>
             </div>
           </div>
@@ -285,4 +207,4 @@ function MovieCreateBtn() {
   );
 }
 
-export default MovieCreateBtn;
+export default BlogCreateBtn;

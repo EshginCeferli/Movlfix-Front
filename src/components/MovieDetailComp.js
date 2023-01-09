@@ -221,7 +221,7 @@ function MovieDetailComp(props) {
             modules={[EffectCoverflow, Autoplay, Pagination]}
           >
             {movies?.map((movie, i) => {
-              console.log(movies);
+             
               return (
                 <SwiperSlide key={i}>
                   <div className="movie-item mb-50">

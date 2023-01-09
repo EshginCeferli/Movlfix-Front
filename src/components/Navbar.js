@@ -124,7 +124,7 @@ function Navbar() {
       )
       .then(function (response) {
         if (response.data.status === "success" || response.status === 200) {
-          localStorage.setItem("token", response.data);
+          localStorage.setItem("token", JSON.stringify(response.data));
           Swal.fire({
             position: "top-end",
             icon: "success",
