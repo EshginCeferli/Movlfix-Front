@@ -20,6 +20,8 @@ import Profile from "./pages/profile/Profile";
 import Crud from "./components/Crud"
 import BlogTable from "./pages/admin/Blog/BlogTable";
 import BlogUpdateBtn from "./pages/admin/Blog/BlogUpdateBtn";
+import ContactTable from "./pages/admin/Contact/ContactTable";
+import ContactUpdateBtn from "./pages/admin/Contact/ContactUpdateBtn";
 function App() {
   return (
     <div>
@@ -43,6 +45,8 @@ function App() {
           <Route path="/movieUpdate/:id" element={<MovieUpdateBtn />} />
           <Route exact path="/blogTable" element={<BlogTable/>} />
           <Route path="/blogUpdate/:id" element={<BlogUpdateBtn/>} />
+          <Route exact path="/contactTable" element={<ContactTable/>} />
+          <Route path="/contactUpdate/:id" element={<ContactUpdateBtn/>} />
 
         </Route>
       </Routes>

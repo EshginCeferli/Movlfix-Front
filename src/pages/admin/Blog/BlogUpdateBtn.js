@@ -11,7 +11,11 @@ function BlogUpdateBtn() {
     const { t } = useTranslation();
     const { id } = useParams();
 
+    let token = localStorage.getItem("token");
 
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
 
     const url = "https://localhost:7079";
 
@@ -22,7 +26,7 @@ function BlogUpdateBtn() {
     const [photo, setPhoto] = useState("");
 
 
-    //Movie for id
+    //Blog for id
     async function GetBlog() {
         await axios.get(`${url}/api/Blog/Get?id=${id}`).then((res) => {
             setblog(res.data);
@@ -30,7 +34,7 @@ function BlogUpdateBtn() {
             setDescInput(res.data.description);
             setByInput(res.data.by);          
             setPhoto(res.data.photo);
-
+           
         });
     }
 
@@ -72,7 +76,7 @@ function BlogUpdateBtn() {
                 description: descInput,
                 by: byInput,
                 photo: photo
-            })
+            },config)
             .then((res) => {
 
                 Success.fire({

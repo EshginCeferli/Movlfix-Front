@@ -5,12 +5,6 @@ import { TextField } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-
 import { useTranslation } from "react-i18next";
 
 function BlogCreateBtn() {
@@ -19,10 +13,10 @@ function BlogCreateBtn() {
   const url = "https://localhost:7079";
 
   const [blogs, setblogs] = useState([]);
-  const [nameInput, setNameInput] = useState("");
-  const [descInput, setDescInput] = useState("");
-  const [byInput, setByInput] = useState(""); 
-  const [photo, setPhoto] = useState("");
+  const [nameInput, setNameInput] = useState();
+  const [descInput, setDescInput] = useState();
+  const [byInput, setByInput] = useState(); 
+  const [photo, setPhoto] = useState();
 
 
   let token = localStorage.getItem("token");
@@ -82,11 +76,12 @@ function BlogCreateBtn() {
       )
       .then((res) => {
 
-        console.log(res);
+       
         Success.fire({
           icon: "success",
           title: "Blog successfully created",
         });
+        window.location.reload();
       })
       .catch(
         Reject.fire({

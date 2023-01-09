@@ -13,6 +13,12 @@ function MovieUpdateBtn() {
   const location = useLocation();
   const categories = location.state;
 
+  let token = JSON.parse(localStorage.getItem("token"));
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
   const url = "https://localhost:7079";
 
   const [movie, setMovie] = useState([]);
@@ -80,7 +86,7 @@ function MovieUpdateBtn() {
         releaseYear: releaseInput,
         country: countryInput,
         movieCategoryId: categoryInput,
-      })
+      }, config)
       .then((res) => {
     
         Success.fire({

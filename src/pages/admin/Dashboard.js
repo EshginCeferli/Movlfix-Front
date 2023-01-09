@@ -42,6 +42,19 @@ export default function Dashboard() {
               </Link>
             </td>
           </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>
+              <h3>Contact</h3>
+            </td>
+            <td>
+              <Link to="/contactTable">
+                <button type="button" className="btn btn-primary">
+                  Manage
+                </button>
+              </Link>
+            </td>
+          </tr>
         </tbody>
       </table>
     </>
