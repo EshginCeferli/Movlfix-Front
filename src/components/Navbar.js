@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Swal from "sweetalert2";
 import "../assets/css/bootstrap.min.css";
+import { borderRadius } from "@mui/system";
 
 const style = {
   login: {
@@ -53,12 +54,14 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "350px",
-    height: "350px",
-    bgcolor: "background.paper",
+    width: "340px",
+    height: "340px",
+    bgcolor: "#e4d804",
     border: "px solid #000",
     boxShadow: 24,
     p: 4,
+    borderRadius:"17%",
+  
   },
 };
 
@@ -316,7 +319,7 @@ function Navbar() {
                             </form>
                           </li>
 
-                          <button className="btn" onClick={handleOpen}>
+                          <button className="btn" onClick={handleOpen} style ={{fontSize:"20px"}}>
                             <i className="far fa-user-circle"></i>
                           </button>
                         </ul>
@@ -623,10 +626,10 @@ function Navbar() {
                           {t("shifreyenile")}
                         </Link>
                       </li>
-                      <li className="p-2">
+                      <li >
                         <Link to={"/"} onClick={(e) => handleProfileClose(e)}>
                           <button
-                            className="logout"
+                            className="btn"
                             onClick={(e) => clearToken(e)}
                           >
                             {t("logout")}

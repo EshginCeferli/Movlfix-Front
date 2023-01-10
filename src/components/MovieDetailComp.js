@@ -275,7 +275,7 @@ function MovieDetailComp(props) {
                   <div className="single-comment">
                     <div className="comment-avatar-img">
                       <img
-                        src="/images/blog/comment_avatar01.jpg"
+                        src="/images/blog/commentAvatar.png"
                         alt="images"
                       />
                     </div>
@@ -287,9 +287,9 @@ function MovieDetailComp(props) {
                             {comment.createDate}
                           </span>
                         </h5>
-                        <a href="#" className="comment-reply-link">
+                        {/* <a href="#" className="comment-reply-link">
                           {t(`reply`)} <i className="fas fa-reply-all" />
-                        </a>
+                        </a> */}
                       </div>
                       <p>{comment.context}</p>
                     </div>

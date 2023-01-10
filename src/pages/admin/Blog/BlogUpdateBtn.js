@@ -33,8 +33,7 @@ function BlogUpdateBtn() {
             setNameInput(res.data.name);
             setDescInput(res.data.description);
             setByInput(res.data.by);          
-            setPhoto(res.data.photo);
-           
+            setPhoto(res.data.photo);           
         });
     }
 

@@ -7,16 +7,13 @@ import axios from "axios";
 
 import { useTranslation } from "react-i18next";
 
-function BlogCreateBtn() {
+function BannerCreate() {
   const { t } = useTranslation();
 
   const url = "https://localhost:7079";
 
-  const [blogs, setblogs] = useState([]);
-  const [nameInput, setNameInput] = useState();
-  const [descInput, setDescInput] = useState();
-  const [byInput, setByInput] = useState(); 
-  const [photo, setPhoto] = useState();
+  const [banner, setBanner] = useState([]);
+  const [image, setImage] = useState();
 
 
   let token = localStorage.getItem("token");
@@ -49,29 +46,26 @@ function BlogCreateBtn() {
     },
   });
 
-   //Get blogs from Api
-   async function GetBlogs() {
-    await axios.get(`${url}/api/Blog/GetAll`,  config).then((res) => {
-      setblogs(res.data);
+   //Get Banner from Api
+   async function GetBanner() {
+    await axios.get(`${url}/api/Banner/GetAll`,  config).then((res) => {
+      setBanner(res.data);
     });
   }
 
 
   useEffect(() => {
-    GetBlogs();
+    GetBanner();
    
   }, []);
 
-  //Create Blog
-  async function CreateBlog() {
+  //Create Banner
+  async function CreateBanner() {
     await axios
       .post(
-        `${url}/api/Blog/Create`,
-        {
-          name: nameInput,
-          description: descInput,
-          by: byInput,          
-          photo : photo
+        `${url}/api/Banner/Create`,
+        {                   
+          Image : image
         }        
       )
       .then((res) => {
@@ -79,7 +73,7 @@ function BlogCreateBtn() {
        
         Success.fire({
           icon: "success",
-          title: "Blog successfully created",
+          title: "Banner successfully created",
         });
         window.location.reload();
       }
@@ -107,7 +101,7 @@ function BlogCreateBtn() {
   function base64Img(file) {
     var base64String = getBase64(file);
     base64String.then(function (result) {
-      setPhoto(result);
+      setImage(result);
       
     });
   }
@@ -118,7 +112,7 @@ function BlogCreateBtn() {
           type="button"
           className="btn btn-outline-success create-btn"
           data-bs-toggle="modal"
-          data-bs-target="#create-Blog"
+          data-bs-target="#create-Banner"
         >
           +Add
         </button>
@@ -126,7 +120,7 @@ function BlogCreateBtn() {
 
       <div
         className="modal fade"
-        id="create-Blog"
+        id="create-Banner"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -139,13 +133,13 @@ function BlogCreateBtn() {
               </h5>
               <button
                 type="button"
-                className="btn-close Blog-button"
+                className="btn-close Banner-button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
             <div className="modal-body container addition">
-              <h6 className="addition-title">{t("Create your Blog")}</h6>
+              <h6 className="addition-title">{t("Create your Banner")}</h6>
               <div className="row">
                 <div className="col-6"></div>
                 <div className="col-6"></div>
@@ -154,39 +148,7 @@ function BlogCreateBtn() {
                 <div className="col-6"></div>
               </div>
               <h6 className="mt-4 addition-title">{t("contact")}</h6>
-              <div className="row">
-                <div className="col-6">
-                  <TextField
-                    onChange={(e) => setNameInput(e.target.value)}
-                    value={nameInput}
-                    className="student-input"
-                    id="outlined-basic"
-                    label={t("Name")}
-                    variant="outlined"
-                  />
-                  <TextField
-                    onChange={(e) => setByInput(e.target.value)}
-                    value={ byInput}
-                    className="student-input"
-                    id="outlined-basic"
-                    label={t("Name")}
-                    variant="outlined"
-                  />
-                </div>
-
-                <div className="col-6">
-                  <TextField
-                    onChange={(e) =>  setDescInput(e.target.value)}
-                    value={ descInput}
-                    className="student-input"
-                    id="outlined-basic"
-                    label={t("Description")}
-                    variant="outlined"
-                  />
-                </div>
-              </div>
              
-
               <div className="row my-3">
               
                 <input type="file"  onChange={(e) => base64Img(e.target.files[0])}></input>
@@ -194,7 +156,7 @@ function BlogCreateBtn() {
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" onClick={() =>  CreateBlog()} data-bs-dismiss="modal" className="btn btn-outline-primary student-button">{t("save")}</button>
+              <button type="button" onClick={() =>  CreateBanner()} data-bs-dismiss="modal" className="btn btn-outline-primary student-button">{t("save")}</button>
               <button type="button" data-bs-dismiss="modal" className="btn btn-outline-warning student-button">{t("cancel")}</button>
             </div>
           </div>
@@ -204,4 +166,4 @@ function BlogCreateBtn() {
   );
 }
 
-export default BlogCreateBtn;
+export default BannerCreate;

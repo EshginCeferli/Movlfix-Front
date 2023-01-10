@@ -1,15 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 function Footer(props) {
   const { t } = useTranslation();
 
-  let movies = props.movies
- 
+  let movies = props.movies;
+
   return (
     <div>
-    
-
       <footer>
         <div className="footer-top-wrap">
           <div className="container">
@@ -59,13 +58,13 @@ function Footer(props) {
                   <div className="quick-link-list">
                     <ul>
                       <li>
-                        <a href="#">{t(`about`)}</a>
+                        <Link to={"/about"} >{t(`about`)}</Link>
                       </li>
                       <li>
-                        <a href="#">{t(`terms of use`)}</a>
+                        <Link to={"/terms"} >{t(`terms of use`)}</Link>
                       </li>
                       <li>
-                        <a href="#">{t(`privacy`)}</a>
+                        <Link to={"/privacy"} >{t(`privacy`)}</Link>
                       </li>
                     </ul>
                   </div>
@@ -120,9 +119,6 @@ function Footer(props) {
           </div>
         </div>
       </footer>
-      {movies?.map((item, i) => {
-        return <div key={i}>{item.name}</div>;
-      })} 
     </div>
   );
 }

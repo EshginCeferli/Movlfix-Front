@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
 import Home from "./pages/home/Home";
 import Movie from "./pages/movie/Movie";
 import MovieDetail from "./pages/movieDetail/MovieDetail";
@@ -22,6 +21,10 @@ import BlogTable from "./pages/admin/Blog/BlogTable";
 import BlogUpdateBtn from "./pages/admin/Blog/BlogUpdateBtn";
 import ContactTable from "./pages/admin/Contact/ContactTable";
 import ContactUpdateBtn from "./pages/admin/Contact/ContactUpdateBtn";
+import BannerTable from "./pages/admin/Banner/BannerTable"
+import BannerUpdate from "./pages/admin/Banner/BannerUpdate";
+
+
 function App() {
   return (
     <div>
@@ -47,7 +50,8 @@ function App() {
           <Route path="/blogUpdate/:id" element={<BlogUpdateBtn/>} />
           <Route exact path="/contactTable" element={<ContactTable/>} />
           <Route path="/contactUpdate/:id" element={<ContactUpdateBtn/>} />
-
+          <Route exact path="/bannerTable" element={<BannerTable/>} />
+          <Route path="/bannerUpdate/:id" element={<BannerUpdate/>} />
         </Route>
       </Routes>
       <Crud/>

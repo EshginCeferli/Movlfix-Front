@@ -3300,7 +3300,7 @@ label {
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
     height: 500px;
-    padding: 1rem;
+    padding: 23px;
     border-radius: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     ul {
@@ -3319,19 +3319,21 @@ label {
             color: rgba(107, 114, 128, var(--tw-text-opacity));
           }
         }
+
+		.btn{
+			margin-top: 30px;
+		}
       }
   
-      li:hover {
-        // transition: 1s;
-        background-color: black;
+      li.p-2:hover {
+        transition: 1s;
+		background-color: #12151e;
         border-radius: 20px;
         a {
           color: white;
-          .logout{
-            background-color: black;
-            color: white;
-          }
+          
         }
+		
       }
     }
   }

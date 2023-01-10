@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Footer from "../../components/Footer";
 
 function UpdatePassword() {
+  const url = "https://localhost:7079";
 
-    const url = "https://localhost:7079"
-
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const [repeatpass, setRepeatpass] = useState();
 
   function parseJwt(token) {
@@ -55,7 +56,7 @@ const navigate = useNavigate();
         )
         .then(function (response) {
           Swal.fire("Şifrəniz Yeniləndi", "Updated", "success");
-          navigate("/")
+          navigate("/");
         })
         .catch(function (error) {
           Swal.fire({
@@ -73,55 +74,67 @@ const navigate = useNavigate();
     }
   }
   const { t } = useTranslation();
- 
+
   return (
-    <div className="row justify-content-between container">
-      <div className="col-lg-8 col-md-9 col-sm-12  mt-4">
-        <h2 className="mt-5">{t("shifreyenile")}</h2>
-        <div className="passwords mt-5">
-          <Form onSubmit={(e) => resetPassword(e)}>
-            <div className="mt-4 updatepassw">
-              <Form.Group className="mb-3" controlId="formBasicOldPassword">
-                <Form.Label className="labtext">{t("currentpass")}</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder=""
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                />
-              </Form.Group>
+    <div style={{ backgroundImage: "url(/images/bg/blog_bg.jpg)" }}>
+      <Navbar/>
+      <div className="row justify-content-between container">
+        <div className="col-12  mt-5 mb-5">
+          <h2 className="mt-5">.</h2>
+          <div className="passwords mt-5 " style={{ marginLeft :"20%"}}>
+            <Form onSubmit={(e) => resetPassword(e)}>
+              <div className="mt-4 updatepassw">
+                <Form.Group className="mb-3" controlId="formBasicOldPassword">
+                  <Form.Label className="labtext">
+                    {t("currentpass")}
+                  </Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder=""
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label className="labtext">{t("newpass")}</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder=""
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label className="labtext">{t("newpass")}</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder=""
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                <Form.Label className="labtext">
-                  {t("confirmnewpass")}{" "}
-                </Form.Label>
-                <Form.Control
-                  type="password"
-                  onChange={(e) => setRepeatpass(e.target.value)}
-                  placeholder=""
-                />
-                <p>{repeatpass !== newpassword ? "Confirm password is wrong" : ""}</p>
-              </Form.Group>
-            </div>
-            <div className="mt-4 ">
-              <div className="passbut">
-                <Button className="passbutton" type="submit">
-                  {t("savechanges")}
-                </Button>
+                <Form.Group
+                  className="mb-3"
+                  controlId="formBasicConfirmPassword"
+                >
+                  <Form.Label className="labtext">
+                    {t("confirmnewpass")}{" "}
+                  </Form.Label>
+                  <Form.Control
+                    type="password"
+                    onChange={(e) => setRepeatpass(e.target.value)}
+                    placeholder=""
+                  />
+                  <p>
+                    {repeatpass !== newpassword
+                      ? "Confirm password is wrong"
+                      : ""}
+                  </p>
+                </Form.Group>
               </div>
-            </div>
-          </Form>
+              <div className="mt-4 ">
+                <div className="passbut">
+                  <Button className="passbutton" type="submit">
+                    {t("savechanges")}
+                  </Button>
+                </div>
+              </div>
+            </Form>
+          </div>
         </div>
       </div>
- 
+      <Footer/>
     </div>
   );
 }

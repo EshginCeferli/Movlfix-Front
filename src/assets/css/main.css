@@ -3218,7 +3218,7 @@ label {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
   height: 500px;
-  padding: 1rem;
+  padding: 23px;
   border-radius: 20px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -3235,14 +3235,14 @@ label {
   background-color: inherit;
   color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
-.ordersidebar ul li:hover {
-  background-color: black;
+.ordersidebar ul li .btn {
+  margin-top: 30px;
+}
+.ordersidebar ul li.p-2:hover {
+  transition: 1s;
+  background-color: #12151e;
   border-radius: 20px;
 }
-.ordersidebar ul li:hover a {
-  color: white;
-}
-.ordersidebar ul li:hover a .logout {
-  background-color: black;
+.ordersidebar ul li.p-2:hover a {
   color: white;
 }/*# sourceMappingURL=main.css.map */

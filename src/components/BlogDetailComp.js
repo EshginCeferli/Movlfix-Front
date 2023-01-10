@@ -8,9 +8,9 @@ function BlogDetailComp(props) {
 
   const url = "https://localhost:7079";
 
-  console.log(props.blog.blogImages?.find((item) => item.isMain == true));
+ 
   let thumb = props?.blog?.blogImages?.find((item) => item?.isMain == true)?.image;
-  let a = "sdd";
+ 
   let detailImg = props.blog.blogImages?.filter((item) => item.isMain == false);
   //Comment items
   const [by, setBy] = useState();
@@ -87,7 +87,7 @@ function BlogDetailComp(props) {
       <div className="blog-post-item blog-details-wrap">
         <div className="blog-post-thumb">
           <a href="blog-details.html">
-            <img src={`/images/blog/${thumb}`} alt="" />
+          <img src={`data:image/jpeg;base64,${props?.blog?.photo}`} alt="" />
           </a>
         </div>
         <div className="blog-post-content">
@@ -121,7 +121,7 @@ function BlogDetailComp(props) {
               <span>Frenk Smith</span> {t(`founder ceo`)}
             </figure>
           </blockquote>
-          <div className="blog-img-wrap">
+          {/* <div className="blog-img-wrap">
             <div className="row">
               {detailImg?.map((img, i) => {
                 return (
@@ -131,7 +131,7 @@ function BlogDetailComp(props) {
                 );
               })}
             </div>
-          </div>
+          </div> */}
           <p>
             Lorem Ipsum is simply dummy text of the printing and typetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -184,7 +184,7 @@ function BlogDetailComp(props) {
               <li key={i}>
                 <div className="single-comment">
                   <div className="comment-avatar-img">
-                    <img src="/images/blog/comment_avatar01.jpg" alt="images" />
+                    <img src="/images/blog/commentAvatar.png" alt="images" />
                   </div>
                   <div className="comment-text">
                     <div className="comment-avatar-info">
@@ -192,9 +192,9 @@ function BlogDetailComp(props) {
                         {comment.by}
                         <span className="comment-date">{comment.createDate}</span>
                       </h5>
-                      <a href="#" className="comment-reply-link">
+                      {/* <a href="#" className="comment-reply-link">
                         {t(`reply`)} <i className="fas fa-reply-all" />
-                      </a>
+                      </a> */}
                     </div>
                     <p>
                      {comment.context}
@@ -213,13 +213,7 @@ function BlogDetailComp(props) {
         <div className="contact-form">
           <form onSubmit={(e) => AddComment(e)}>
             <div className="row">
-              <div className="col-md-12">
-                <input
-                  type="text"
-                  onChange={(e) => setBy(e.target.value)}
-                  placeholder={t(`your name *`)}
-                />
-              </div>
+             
               <div className="col-md-12">
                 <textarea
                   type="text"

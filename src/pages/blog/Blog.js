@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar";
 import Recent from "../../components/Recent";
 import SideSearch from "../../components/SideSearch";
 import Tag from "../../components/Tag";
+import Trial from "../../components/Trial"
 
 function Blog() {
   return (<>
@@ -24,12 +25,14 @@ function Blog() {
               <SideSearch />
               <Categories />
               <Recent />
-              <Tag />
+            
             </aside>
           </div>
         </div>
+      
       </div>
     </section>
+    <Trial/>
     <Footer/>
     </>
   );

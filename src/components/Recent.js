@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
 import { useTranslation } from "react-i18next";
 function Recent() {
+  const { t } = useTranslation();
 
-  const {t} = useTranslation();
+  const url = "https://localhost:7079";
+
+  const [blogs, setBlogs] = useState([]);
+
+  async function GetBlogs() {
+    await axios.get(`${url}/api/Blog/GetRecentBlogs`).then((res) => {
+      setBlogs(res.data);
+    });
+  }
+
+  useEffect(() => {
+    GetBlogs();
+  }, []);
+
   return (
     <div className="widget blog-widget">
       <div className="widget-title mb-3">
@@ -10,51 +27,25 @@ function Recent() {
       </div>
       <div className="rc-post">
         <ul>
-          <li className="rc-post-item">
-            <div className="thumb">
-              <a href="blog-details.html">
-                <img src="images/blog/rc_post_thumb01.jpg" alt="" />
-              </a>
-            </div>
-            <div className="content">
-              <h5 className="title">
-                <a href="blog-details.html">Express Management Effective</a>
-              </h5>
-              <span className="date">
-                <i className="far fa-clock" /> 10 Mar 2021
-              </span>
-            </div>
-          </li>
-          <li className="rc-post-item">
-            <div className="thumb">
-              <a href="blog-details.html">
-                <img src="images/blog/rc_post_thumb02.jpg" alt="" />
-              </a>
-            </div>
-            <div className="content">
-              <h5 className="title">
-                <a href="blog-details.html">Where watch English movies free?</a>
-              </h5>
-              <span className="date">
-                <i className="far fa-clock" /> 10 Mar 2021
-              </span>
-            </div>
-          </li>
-          <li className="rc-post-item">
-            <div className="thumb">
-              <a href="blog-details.html">
-                <img src="images/blog/rc_post_thumb03.jpg" alt="" />
-              </a>
-            </div>
-            <div className="content">
-              <h5 className="title">
-                <a href="blog-details.html">House movie streaming website</a>
-              </h5>
-              <span className="date">
-                <i className="far fa-clock" /> 10 Mar 2021
-              </span>
-            </div>
-          </li>
+          {blogs.map((blog, i) => {
+            return (
+              <li className="rc-post-item" key={i}>
+                <div className="thumb">
+                <Link to={`/blog/${blog.id}`}>
+              <img src={`data:image/jpeg;base64,${blog.photo}`} alt="" />
+              </Link>
+                </div>
+                <div className="content">
+                  <h5 className="title">
+                    <Link to={`/blog/${blog.id}`} >{blog.name}</Link>
+                  </h5>
+                  <span className="date">
+                    <i className="far fa-clock" /> {blog.createDate}
+                  </span>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

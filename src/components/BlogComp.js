@@ -46,7 +46,7 @@ function BlogComp() {
           <div className="blog-post-item" key={i}>
             <div className="blog-post-thumb">
               <Link to={`/blog/${blog.id}`}>
-                <img src={`/images/blog/${thumb}`} alt="" />
+              <img src={`data:image/jpeg;base64,${blog.photo}`} alt="" />
               </Link>
             </div>
             <div className="blog-post-content">

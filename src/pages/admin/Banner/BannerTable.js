@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
+// import MovieCreateBtn from "./MovieCreateBtn";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-import BlogCreateBtn from "./BlogCreateBtn";
+import BannerCreate from "./BannerCreate"
 
-function BlogTable() {
+function BannerTable() {
   let count = 0;
   const url = "https://localhost:7079";
 
-  const [blogs, setBlogs] = useState([]);
-
+  const [banner, setbanner] = useState([]);
 
   let token = JSON.parse(localStorage.getItem("token"));
 
@@ -41,26 +41,26 @@ function BlogTable() {
     },
   });
 
-  //Get Blogs from Api
-  async function GetBlogs() {
+  //Get Movies from Api
+  async function GetBanner() {
     await axios
-      .get(`${url}/api/Blog/GetAll`, {
+      .get(`${url}/api/Banner/GetAll`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        setBlogs(res.data);
+        setbanner(res.data);
       });
   }
 
   useEffect(() => {
-    GetBlogs();
-    // GetCategories();
+    GetBanner();
+    
   }, []);
 
-  //Delete Movie
-  const DeleteBlog = async (id) => {
+  //Delete Banner
+  const DeleteBanner = async (id) => {
     await axios
-      .delete(`${url}/api/Blog/Delete?id=${id}`, config)
+      .delete(`${url}/api/Banner/Delete?id=${id}`, config)
       .then(function (response) {
         Swal.fire("", "Deleted", "success");
         console.log(response);
@@ -74,7 +74,7 @@ function BlogTable() {
         });
         console.log(error);
       });
-    GetBlogs();
+    GetBanner();
   };
 
   return (
@@ -82,24 +82,20 @@ function BlogTable() {
       <div className="card">
         <div className="card-body">
           <h4 className="card-title d-flex justify-content-between">
-            Blogs
-            <BlogCreateBtn />
+            Banner
+            <BannerCreate />
           </h4>
           <table className="table table-striped">
             <thead>
               <tr>
                 <th>#</th>
-                <th> Blog Image </th>
-                <th> Blog Name </th>
-                <th> Blog Author </th>
-                <th> Blog Description </th>
-                <th> Blog Create Date </th>
-
+                <th> Banner Image </th>
+                <th> Banner Create Date </th>
                 <th> Settings </th>
               </tr>
             </thead>
             <tbody>
-              {blogs.map((blog, i) => (
+              {banner.map((Banner, i) => (
                 <tr key={i}>
                   <td>{++count}</td>
                   <td className="py-1">
@@ -109,21 +105,17 @@ function BlogTable() {
                         height: "70px",
                         borderRadius: "unset",
                       }}
-                      src={`data:image/jpeg;base64,${blog.photo}`}
+                      src={`data:image/jpeg;base64,${Banner.image}`}
                       alt=""
                     />
-                  </td>
-                  <td className="py-1">{blog.name}</td>
-                  <td className="py-1">{blog.by}</td>
-                  <td className="py-1">{blog.description} min</td>
-                  <td className="py-1">{blog.createDate}</td>
-
+                  </td>         
+                  <td className="py-1">{Banner.createDate}</td>
                   <td>
-                    <Link to={`/blogUpdate/${blog.id}`}>
+                    <Link to={`/bannerUpdate/${Banner.id}`}>
                       <button className="btn btn-primary">Update</button>
                     </Link>
                     <button
-                      onClick={() => DeleteBlog(blog.id)}
+                      onClick={() => DeleteBanner(Banner.id)}
                       type="button"
                       className="btn btn-warning"
                     >
@@ -140,4 +132,4 @@ function BlogTable() {
   );
 }
 
-export default BlogTable;
+export default BannerTable;

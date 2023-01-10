@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 function Profile() {
   const url = "https://localhost:7079";
@@ -27,7 +28,7 @@ function Profile() {
   }
 
   const [user, setUser] = useState();
-  useEffect(() => {  
+  useEffect(() => {
     if (token != null) {
       let usermail = parseJwt(token).sub[1];
       axios.get(`${url}/api/Account/GetUserByEmail/${usermail}`).then((res) => {
@@ -41,7 +42,6 @@ function Profile() {
   const [phonenumber, setPhoneNumber] = useState();
 
   async function updateuser(e) {
- 
     e.preventDefault();
     await axios
       .put(
@@ -66,72 +66,71 @@ function Profile() {
       });
   }
 
-
   const { t } = useTranslation();
   return (
-    <>
-       <Navbar/>
-     <div className="row justify-content-between container">
-      <div className="col-lg-8 col-md-9 col-sm-12  mt-4">
-        <h2 className="mt-5">{t("profiledata")}</h2>
-        <div className="profile mt-5">
-          <Form onSubmit={(e) => updateuser(e)}>
-            <div className="mt-4 profilemenu">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="proflab">E-poçt</Form.Label>
-                <Form.Control
-                  type="email"
-                  readOnly
-                  defaultValue={user?.email}
-                  placeholder=""
-                />
-              </Form.Group>
+    <div style={{ backgroundImage: "url(/images/bg/blog_bg.jpg)" }}>
+      <Navbar />
+      <div className="row justify-content-between container">
+        <div className="col-12  mt-5 mb-5">
+          <h2 className="mt-5">{t("profile")}</h2>
+          <div className="profile mt-5" style={{ marginLeft :"20%"}}>
+            <Form onSubmit={(e) => updateuser(e)}>
+              <div className="mt-4 profilemenu">
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label className="proflab">E-poçt</Form.Label>
+                  <Form.Control
+                    type="email"
+                    readOnly
+                    defaultValue={user?.email}
+                    placeholder=""
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicText">
-                <Form.Label className="proflab">FullName</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => setFullName(e.target.value)}
-                  defaultValue={user?.fullName}
-                  placeholder=""
-                />
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                  <Form.Label className="proflab">FullName</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => setFullName(e.target.value)}
+                    defaultValue={user?.fullName}
+                    placeholder=""
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicText">
-                <Form.Label className="proflab">UserName</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => setUserName(e.target.value)}
-                  defaultValue={user?.userName}
-                  placeholder=""
-                />
-              </Form.Group>
-            </div>
-            <div className="mt-4 profilemenu">
-              <Form.Group className="mb-3" controlId="formBasicNumber">
-                <Form.Label className="proflab">Telefon Nömrəsi</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  defaultValue={user?.phoneNumber}
-                  placeholder=""
-                />
-              </Form.Group>
-            </div>
-
-            <div className="mt-4 ">
-              <div className="profilebut">
-                <Button type="submit" className="profilebutton">
-                  {t("savechanges")}
-                </Button>
+                <Form.Group className="mb-3" controlId="formBasicText">
+                  <Form.Label className="proflab">UserName</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => setUserName(e.target.value)}
+                    defaultValue={user?.userName}
+                    placeholder=""
+                  />
+                </Form.Group>
               </div>
-            </div>
-          </Form>
+              <div className="mt-4 profilemenu">
+                <Form.Group className="mb-3" controlId="formBasicNumber">
+                  <Form.Label className="proflab">Telefon Nömrəsi</Form.Label>
+                  <Form.Control
+                    type="text"
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    defaultValue={user?.phoneNumber}
+                    placeholder=""
+                  />
+                </Form.Group>
+              </div>
+
+              <div className="mt-4 ">
+                <div className="profilebut">
+                  <Button type="submit" className="profilebutton">
+                    {t("savechanges")}
+                  </Button>
+                </div>
+              </div>
+            </Form>
+          </div>
         </div>
       </div>
-    </div></>
- 
-   
+      <Footer />
+    </div>
   );
 }
 
