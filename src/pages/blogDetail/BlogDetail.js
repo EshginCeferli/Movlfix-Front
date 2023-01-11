@@ -3,7 +3,7 @@ import BlogDetailComp from "../../components/BlogDetailComp";
 import Categories from "../../components/Categories";
 import Recent from "../../components/Recent";
 import SideSearch from "../../components/SideSearch";
-import Tag from "../../components/Tag";
+import Tag from "../../components/Tag"
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../../components/Footer";
@@ -43,7 +43,7 @@ function BlogDetail() {
                 <SideSearch />
                 <Categories />
                 <Recent />
-                <Tag />
+              
               </aside>
             </div>
           </div>

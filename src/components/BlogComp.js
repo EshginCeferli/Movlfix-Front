@@ -68,7 +68,8 @@ function BlogComp() {
                   </li>
                   <li>
                     <i className="far fa-comments" />
-                    <a href="#">12 {t(`comments`)}</a>
+                    <a href="#">{blog.comments?.length} {t(`comments`)}</a>
+                    {console.log(blog)}
                   </li>
                 </ul>
                 <div className="read-more">
@@ -86,17 +87,18 @@ function BlogComp() {
         breakLabel="..."
         nextLabel={t(`next>`)}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel={t(`<previous`)}
+        marginPagesDisplayed={0}
+        pageRangeDisplayed={3}
+        pageCount={pageCount}       
+        previousLabel={t(`previous`)}
         renderOnZeroPageCount={null}
         containerClassName="pagination"
         pageLinkClassName="page-num"
         previousClassName="page-num"
         nextLinkClassName="page-num"
         activeLinkClassName="active"
-        breakClassName="test"
       />
+      
     </div>
   );
 }

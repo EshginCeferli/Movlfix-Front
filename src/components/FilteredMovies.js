@@ -38,7 +38,7 @@ function FilteredMovies(props) {
             <div className="movie-item movie-item-three mb-5">
               <Link to={`/movie/${movie.id}`}>
                 <div className="movie-poster">
-                  <img src={`/images/poster/${movie.poster}`} alt="" />
+                <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
                   <ul className="overlay-btn">
                     <li className="rating">
                       <i className="fas fa-star" />
@@ -94,8 +94,9 @@ function FilteredMovies(props) {
         breakLabel="..."
         nextLabel={t(`next>`)}
         onPageChange={handlePageClick}
-        pageRangeDisplayed={1}
-        pageCount={pageCount}
+        marginPagesDisplayed={0}
+        pageRangeDisplayed={3}
+        pageCount={pageCount}       
         previousLabel={t(`previous`)}
         renderOnZeroPageCount={null}
         containerClassName="pagination"

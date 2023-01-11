@@ -2414,6 +2414,7 @@ label {
 }
 .rc-post-item .thumb img {
   border-radius: 3px;
+  width: 100%;
 }
 .rc-post-item .content {
   flex-grow: 1;

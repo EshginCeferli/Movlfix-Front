@@ -37,21 +37,20 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route exact path="/movie" element={<Movie />} />
-        <Route exact path="/movie/:id" element={<MovieDetail />} />
+        <Route exact path="/" element={<Home />} />
+        <Route  path="/movie" element={<Movie />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login/>} />
-        <Route exact path="/forgotpassword/:email/*" element={<ForgotPassword />} />
+        <Route path="/forgotpassword/:email/*" element={<ForgotPassword />} />
         <Route path="/updatePassword" element={<UpdatePassword/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/terms" element={<Terms/>} />
         <Route path="/privacy" element={<Privacy/>} />
-
 
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />

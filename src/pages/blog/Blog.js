@@ -27,7 +27,7 @@ function Blog() {
               <SideSearch />
               <Categories />
               <Recent />
-            
+              <Tag/>
             </aside>
           </div>
         </div>

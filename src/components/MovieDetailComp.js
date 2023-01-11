@@ -12,10 +12,24 @@ function MovieDetailComp(props) {
 
   const url = "https://localhost:7079";
 
+  const getMovie = `https://localhost:7079/api/Movie/Get?id=${props.id}`;
+
+  const [movie, setMovie] = useState([]);
+  const category = movie.movieCategory?.name;
+
+  async function getMovieById() {
+    await axios.get(getMovie).then((response) => {
+      setMovie(response.data);
+    });
+  }
+  useEffect(() => {
+    getMovieById();
+  }, []);
+
   //Comment items
-  const [by, setBy] = useState();
+ 
   const [context, setContext] = useState();
-  const comments = props.movie.comments;
+  const comments = movie.comments;
 
   //USer items
   let token = localStorage.getItem("token");
@@ -81,26 +95,37 @@ function MovieDetailComp(props) {
       });
   }
 
+ const [rate, setRate] = useState(0)
   //Rate items
   const ratingChanged = async (e) => {
-    await axios
-      .post(`https://localhost:7079/api/Movie/Rate?id=${props.id}&rate=${e}`)
+    
+    if(e !== 0){
+      await axios
+      .post(`https://localhost:7079/api/Movie/Rate?id=${props.id}&rate=${rate}`)      
       .then(function (response) {
         Swal.fire({
           icon: "success",
           title: `You rated movie ${e} points`,
           text: "Thank you for your feedback!",
         });
+        setRate(e)
       })
       .catch(function (error) {
         console.log(error);
       });
+    }
+    else{
+      e = rate;
+    }
+ 
   };
+  console.log(rate);
 
   //Slider items
 
   const [movies, setMovies] = useState([]);
-  const category = props.movie.movieCategory?.name;
+ 
+
 
   const GetRatedMovies = async () => {
     await axios
@@ -114,7 +139,7 @@ function MovieDetailComp(props) {
 
   useEffect(() => {
     GetRatedMovies();
-  }, category);
+  }, [category]);
 
   return (
     <section
@@ -125,7 +150,7 @@ function MovieDetailComp(props) {
         <div className="row align-items-center position-relative">
           <div className="col-xl-3 col-lg-4">
             <div className="movie-details-img">
-            <img src={`data:image/jpeg;base64,${props.movie.photo}`} alt="" />
+            <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
               <a
                 href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
                 className="popup-video"
@@ -136,7 +161,7 @@ function MovieDetailComp(props) {
           </div>
           <div className="col-xl-6 col-lg-8">
             <div className="movie-details-content">
-              <h2>{props.movie.name}</h2>
+              <h2>{movie.name}</h2>
               <div className="banner-meta">
                 <ul>
                   <li className="quality">
@@ -144,23 +169,23 @@ function MovieDetailComp(props) {
                     <span>hd</span>
                   </li>
                   <li className="category">
-                    <a href="#">{props.movie.movieCategoryName}</a>
+                    <a href="#">{movie.movieCategoryName}</a>
                   </li>
                   <li className="release-time">
                     <span>
                       <i className="far fa-calendar-alt" />{" "}
-                      {props.movie.releaseYear}
+                      {movie.releaseYear}
                     </span>
                     <span>
-                      <i className="far fa-clock" /> {props.movie.length} min
+                      <i className="far fa-clock" /> {movie.length} min
                     </span>
                     <span>
-                      <i className="far fa-clock" /> {props.movie.country} 
+                      <i className="far fa-clock" /> {movie.country} 
                     </span>
                   </li>
                 </ul>
               </div>
-              <p>{props.movie.description}</p>
+              <p>{movie.description}</p>
               <h5>Rate Movie</h5>
               <StarsRating onChange={ratingChanged} />
               <div className="movie-details-prime">
@@ -233,7 +258,7 @@ function MovieDetailComp(props) {
                     <div className="movie-content">
                       <div className="top">
                         <h5 className="title">
-                          <Link to={`/movie/${movie.id}`}>{movie.name}</Link>
+                        <Link to={`/movie/${movie.id}`}>{movie.name}</Link>
                         </h5>
                         <span className="date">{movie.releaseYear}</span>
                       </div>
