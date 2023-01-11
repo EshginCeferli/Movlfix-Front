@@ -15,19 +15,19 @@ function MovieDetailComp(props) {
   const getMovie = `https://localhost:7079/api/Movie/Get?id=${props.id}`;
 
   const [movie, setMovie] = useState([]);
-  const category = movie.movieCategory?.name;
+ 
 
   async function getMovieById() {
     await axios.get(getMovie).then((response) => {
       setMovie(response.data);
     });
   }
-  useEffect(() => {
-    getMovieById();
-  }, []);
+  // useEffect(() => {
+    
+  // }, []);
 
   //Comment items
- 
+
   const [context, setContext] = useState();
   const comments = movie.comments;
 
@@ -63,7 +63,7 @@ function MovieDetailComp(props) {
 
   async function AddComment(e) {
     e.preventDefault();
-   
+
     await axios
       .post(`${url}/api/MovieComment/Create`, {
         By: user?.userName,
@@ -95,51 +95,58 @@ function MovieDetailComp(props) {
       });
   }
 
- const [rate, setRate] = useState(0)
+
+  const [rate, setRate] = useState(0)
   //Rate items
   const ratingChanged = async (e) => {
-    
-    if(e !== 0){
+
+    if (e !== 0) {
       await axios
-      .post(`https://localhost:7079/api/Movie/Rate?id=${props.id}&rate=${rate}`)      
-      .then(function (response) {
-        Swal.fire({
-          icon: "success",
-          title: `You rated movie ${e} points`,
-          text: "Thank you for your feedback!",
+        .post(`https://localhost:7079/api/Movie/Rate?id=${props.id}&rate=${rate}`)
+        .then(function (response) {
+          Swal.fire({
+            icon: "success",
+            title: `You rated movie ${e} points`,
+            text: "Thank you for your feedback!",
+          });
+          setRate(e)
+        })
+        .catch(function (error) {
+          console.log(error);
         });
-        setRate(e)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
     }
-    else{
+    else {
       e = rate;
     }
- 
+
   };
-  console.log(rate);
 
   //Slider items
 
   const [movies, setMovies] = useState([]);
- 
+
 
 
   const GetRatedMovies = async () => {
     await axios
       .get(
-        `https://localhost:7079/api/Movie/GetMoviesByCategory?category=${category}`
+        `https://localhost:7079/api/Movie/RelatedMovies?id=${props.id}`
       )
       .then((response) => {
         setMovies(response.data);
       });
   };
 
+
   useEffect(() => {
-    GetRatedMovies();
-  }, [category]);
+    getMovieById()    
+  });
+
+  useEffect(() => {
+    GetRatedMovies();    
+  },[]);
+  
+
 
   return (
     <section
@@ -150,7 +157,7 @@ function MovieDetailComp(props) {
         <div className="row align-items-center position-relative">
           <div className="col-xl-3 col-lg-4">
             <div className="movie-details-img">
-            <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
+              <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
               <a
                 href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
                 className="popup-video"
@@ -180,7 +187,7 @@ function MovieDetailComp(props) {
                       <i className="far fa-clock" /> {movie.length} min
                     </span>
                     <span>
-                      <i className="far fa-clock" /> {movie.country} 
+                      <i className="far fa-clock" /> {movie.country}
                     </span>
                   </li>
                 </ul>
@@ -230,7 +237,7 @@ function MovieDetailComp(props) {
             effect={"coverflow"}
             grabCursor={true}
             slidesPerView={"4"}
-           
+
             autoplay={{
               delay: 2000,
               disableOnInteraction: false,
@@ -246,19 +253,19 @@ function MovieDetailComp(props) {
             modules={[EffectCoverflow, Autoplay, Pagination]}
           >
             {movies?.map((movie, i) => {
-             
+
               return (
                 <SwiperSlide key={i}>
                   <div className="movie-item mb-50">
                     <div className="movie-poster">
                       <Link to={`/movie/${movie.id}`}>
-                      <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
+                        <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
                       </Link>
                     </div>
                     <div className="movie-content">
                       <div className="top">
                         <h5 className="title">
-                        <Link to={`/movie/${movie.id}`}>{movie.name}</Link>
+                          <Link to={`/movie/${movie.id}`}>{movie.name}</Link>
                         </h5>
                         <span className="date">{movie.releaseYear}</span>
                       </div>
@@ -330,7 +337,7 @@ function MovieDetailComp(props) {
           </div>
           <div className="contact-form">
             <form onSubmit={(e) => AddComment(e)}>
-              <div className="row">          
+              <div className="row">
                 <div className="col-md-12">
                   <textarea
                     type="text"
