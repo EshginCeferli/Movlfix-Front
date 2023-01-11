@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-function ContactBanner() {
+function BlogBanner() {
   const { t } = useTranslation();
 
   return (
@@ -14,14 +14,14 @@ function ContactBanner() {
           <div className="row">
             <div className="col-12">
               <div className="breadcrumb-content">
-                <h2 className="title">{t(`Contact Us`)}</h2>
+                <h2 className="title">{t(`blog`)}</h2>
                 <nav aria-label="breadcrumb">
                   <ol className="breadcrumb">
                     <li className="breadcrumb-item">
                       <a href="index.html">{t(`home`)}</a>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
-                      {t(`contact`)}
+                      {t(`blog`)}
                     </li>
                   </ol>
                 </nav>
@@ -34,4 +34,4 @@ function ContactBanner() {
   );
 }
 
-export default ContactBanner;
+export default BlogBanner;

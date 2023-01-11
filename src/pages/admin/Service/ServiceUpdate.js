@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 
 
-function BannerUpdate() {
+function ServiceUpdate() {
   const { t } = useTranslation();
   const { id } = useParams();
 
@@ -19,22 +19,21 @@ function BannerUpdate() {
 
   const url = "https://localhost:7079";
 
-  const [banner, setbanner] = useState([]);
+  const [service, setservice] = useState([]);
   const [image, setImage] = useState("");
 
 
 
-  //banner for id
-  async function Getbanner() {
-    await axios.get(`${url}/api/Banner/Get?id=${id}`).then((res) => {
-      setbanner(res.data);
+  //service for id
+  async function Getservice() {
+    await axios.get(`${url}/api/Servise/Get?id=${id}`).then((res) => {
+      setservice(res.data);
       setImage(res.data.image);
-
     });
   }
 
   useEffect(() => {
-    Getbanner();
+    Getservice();
   }, []);
 
   //sweet alert
@@ -62,17 +61,17 @@ function BannerUpdate() {
   });
 
   //Movie Update
-  async function Updatebanner(e) {
+  async function Updateservice(e) {
     e.preventDefault();
     await axios
-      .put(`${url}/api/Banner/Update/${id}`, {
+      .put(`${url}/api/Servise/Update/${id}`, {
         
         Image: image
       }, config)
       .then((res) => {      
         Success.fire({
           icon: "success",
-          title: "Banner successfully updated",
+          title: "Service successfully updated",
         });
        
      
@@ -107,11 +106,11 @@ function BannerUpdate() {
 
   return (
     <div className="container">
-      <Form onSubmit={(e) => Updatebanner(e)}>
+      <Form onSubmit={(e) => Updateservice(e)}>
 
 
         <Form.Group className="mb-3" controlId="formBasicDatetime">
-         <h1>Banner Image</h1>
+         <h1>Service Image</h1>
             <img
               style={{
                 width: "200px",
@@ -135,4 +134,4 @@ function BannerUpdate() {
   );
 }
 
-export default BannerUpdate;
+export default ServiceUpdate;

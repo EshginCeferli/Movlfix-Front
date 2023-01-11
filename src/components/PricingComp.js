@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 
 function PricingComp() {
-
   const { t } = useTranslation();
+  const url = "https://localhost:7079";
+
+  const [pricings, setPricings] = useState([]);
+
+  //Get Pricings from Api
+  async function GetPricings() {
+    await axios.get(`${url}/api/Pricing/GetAll`).then((res) => {
+      setPricings(res.data);
+    });
+  }
+
+  useEffect(() => {
+    GetPricings();
+  }, []);
 
   return (
     <section
@@ -23,70 +37,41 @@ function PricingComp() {
         </div>
         <div className="pricing-box-wrap">
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-md-6 col-sm-8">
-              <div className="pricing-box-item mb-30">
-                <div className="pricing-top">
-
-                  <h6>Standart</h6>
-                  <div className="price">
-                    <h3>$7.99</h3>
-                    <span> {t(`monthly`)}</span>
+            {pricings.map((price, i) => {
+              return (
+                <div className="col-lg-4 col-md-6 col-sm-8" key={i}>
+                  <div className="pricing-box-item mb-30">
+                    <div className="pricing-top">
+                      <h6>{price.name}</h6>
+                      <div className="price">
+                        <h3>${price.price}</h3>
+                        <span> {t(`monthly`)}</span>
+                      </div>
+                    </div>
+                    <div className="pricing-list">
+                      <ul>
+                        <li className="quality">
+                          <i className="fas fa-check" /> {t(`video quality`)}
+                          <span> {t(`${price.quality}`)}</span>
+                        </li>
+                        <li>
+                          <i className="fas fa-check" /> {t(`resolution`)}
+                          <span>{price.resolution}</span>
+                        </li>
+                        <li>
+                          <i className="fas fa-check" /> {t(`cancel anytime`)}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="pricing-btn">
+                      <a href="#" className="btn">
+                        {t(`buy now`)}
+                      </a>
+                    </div>
                   </div>
                 </div>
-                <div className="pricing-list">
-                  <ul>
-                    <li className="quality">
-                      <i className="fas fa-check" /> {t(`video quality`)}
-                      <span> {t(`good`)}</span>
-                    </li>
-                    <li>
-                      <i className="fas fa-check" />  {t(`resolution`)}
-                      <span>720p</span>
-                    </li>                  
-                    <li>
-                      <i className="fas fa-check" />  {t(`cancel anytime`)}
-                    </li>
-                  </ul>
-                </div>
-                <div className="pricing-btn">
-                  <a href="#" className="btn">
-                  {t(`buy now`)}
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-8">
-              <div className="pricing-box-item active mb-30">
-                <div className="pricing-top">
-                  <h6>Premium</h6>
-                  <div className="price">
-                    <h3>$9.99</h3>
-                    <span> {t(`monthly`)}</span>
-                  </div>
-                </div>
-                <div className="pricing-list">
-                <ul>
-                    <li className="quality">
-                      <i className="fas fa-check" /> {t(`video quality`)}
-                      <span> {t(`best`)}</span>
-                    </li>
-                    <li>
-                      <i className="fas fa-check" />  {t(`resolution`)}
-                      <span>1080p</span>
-                    </li>                  
-                    <li>
-                      <i className="fas fa-check" />  {t(`cancel anytime`)}
-                    </li>
-                  </ul>
-                </div>
-                <div className="pricing-btn">
-                  <a href="#" className="btn">
-                  {t(`Buy now`)}
-                  </a>
-                </div>
-              </div>
-            </div>
-          
+              );
+            })}
           </div>
         </div>
       </div>

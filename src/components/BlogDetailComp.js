@@ -9,9 +9,9 @@ function BlogDetailComp(props) {
   const url = "https://localhost:7079";
 
  
-  let thumb = props?.blog?.blogImages?.find((item) => item?.isMain == true)?.image;
+  // let thumb = props?.blog?.blogImages?.find((item) => item?.isMain == true)?.image;
  
-  let detailImg = props.blog.blogImages?.filter((item) => item.isMain == false);
+  // let detailImg = props.blog.blogImages?.filter((item) => item.isMain == false);
   //Comment items
   const [by, setBy] = useState();
   const [context, setContext] = useState();
@@ -94,13 +94,13 @@ function BlogDetailComp(props) {
           <div className="blog-details-top-meta">
             <span className="user">
               <i className="far fa-user" /> {t(`by`)}{" "}
-              <a href="#">{props.blog.name}</a>
+              <a href="#">{props.blog.by}</a>
             </span>
             <span className="date">
               <i className="far fa-clock" /> {props.blog.createDate}
             </span>
           </div>
-          <h2 className="title">Your Free Movie Streaming Purposes</h2>
+          <h2 className="title">{props.blog.name}</h2>
           <p>{props.blog.description}</p>
           <p>
             Printing and typetting industry. Lorem Ipsum has been the industry's

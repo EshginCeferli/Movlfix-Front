@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 
-function ContactUpdateBtn() {
+function CategoryUpdateBtn() {
   const { t } = useTranslation();
 
   let token = JSON.parse(localStorage.getItem("token"));
@@ -19,24 +19,20 @@ function ContactUpdateBtn() {
 
   const url = "https://localhost:7079";
 
-  const [contact, setContact] = useState([]);
+  const [category, setCategory] = useState([]);
 
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
-  //Contact for id
-  async function getContact() {
-    await axios.get(`${url}/api/Contact/Get?id=${id}`).then((res) => {
-      setContact(res.data);
-      setAddress(res.data.address);
-      setEmail(res.data.email);
-      setPhone(res.data.phone);
+  //Category for id
+  async function getCategory() {
+    await axios.get(`${url}/api/MovieCategory/Get?id=${id}`).then((res) => {
+      setCategory(res.data);
+      setName(res.data.name);      
     });
   }
 
   useEffect(() => {
-    getContact();
+    getCategory();
   }, []);
 
   //sweet alert
@@ -63,23 +59,21 @@ function ContactUpdateBtn() {
     },
   });
 
-  //Contact Update
-  async function updateContact(e) {
+  //Category Update
+  async function updateCategory(e) {
     e.preventDefault();
     await axios
       .put(
-        `${url}/api/Contact/Update/${id}`,
+        `${url}/api/MovieCategory/Update/${id}`,
         {
-          Address: address,
-          Phone: phone,
-          Email: email,
+          Name : name
         },
         config
       )
       .then((res) => {
         Success.fire({
           icon: "success",
-          title: "Contact successfully updated",
+          title: "Category successfully updated",
         });
       })
       .catch(
@@ -92,37 +86,16 @@ function ContactUpdateBtn() {
 
   return (
     <div className="container">
-      <Form onSubmit={(e) => updateContact(e)}>
+      <Form onSubmit={(e) => updateCategory(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Address</Form.Label>
+          <Form.Label>Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Contact Address"
-            onChange={(e) => setAddress(e.target.value)}
-            defaultValue={address}
+            placeholder="Enter Category Address"
+            onChange={(e) => setName(e.target.value)}
+            defaultValue={name}
           />
         </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicDatetime">
-          <Form.Label>Contact Number</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Contact Number"
-            onChange={(e) => setPhone(e.target.value)}
-            defaultValue={phone}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicDatetime">
-          <Form.Label>Contact email</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Contact Email"
-            onFocus={(e) => setEmail(e.target.value)}
-            defaultValue={email}
-          />
-        </Form.Group>
-
         <Button variant="primary" type="submit" className="mt-3">
           Submit
         </Button>
@@ -131,4 +104,4 @@ function ContactUpdateBtn() {
   );
 }
 
-export default ContactUpdateBtn;
+export default CategoryUpdateBtn;

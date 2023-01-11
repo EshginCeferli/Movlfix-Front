@@ -23,7 +23,15 @@ import ContactTable from "./pages/admin/Contact/ContactTable";
 import ContactUpdateBtn from "./pages/admin/Contact/ContactUpdateBtn";
 import BannerTable from "./pages/admin/Banner/BannerTable"
 import BannerUpdate from "./pages/admin/Banner/BannerUpdate";
-
+import ServiceTable from "./pages/admin/Service/ServiceTable";
+import ServiceUpdate from "./pages/admin/Service/ServiceUpdate";
+import PricingTable from "./pages/admin/Pricing/PricingTable";
+import PricingUpdateBtn from "./pages/admin/Pricing/PricingUpdateBtn";
+import CategoryTable from "./pages/admin/Category/CategoryTable";
+import CategoryUpdateBtn from "./pages/admin/Category/CategoryUpdateBtn";
+import About from "./pages/about/About"
+import Terms from "./pages/terms/Terms";
+import Privacy from "./pages/privacy/Privacy";
 
 function App() {
   return (
@@ -40,6 +48,9 @@ function App() {
         <Route exact path="/forgotpassword/:email/*" element={<ForgotPassword />} />
         <Route path="/updatePassword" element={<UpdatePassword/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/terms" element={<Terms/>} />
+        <Route path="/privacy" element={<Privacy/>} />
 
 
         <Route element={<PrivateRoutes />}>
@@ -52,6 +63,12 @@ function App() {
           <Route path="/contactUpdate/:id" element={<ContactUpdateBtn/>} />
           <Route exact path="/bannerTable" element={<BannerTable/>} />
           <Route path="/bannerUpdate/:id" element={<BannerUpdate/>} />
+          <Route exact path="/serviceTable" element={<ServiceTable/>} />
+          <Route path="/serviceUpdate/:id" element={<ServiceUpdate/>} />
+          <Route exact path="/pricingTable" element={<PricingTable/>} />
+          <Route path="/pricingUpdate/:id" element={<PricingUpdateBtn/>} />
+          <Route exact path="/categoryTable" element={<CategoryTable/>} />
+          <Route path="/categoryUpdate/:id" element={<CategoryUpdateBtn/>} />
         </Route>
       </Routes>
       <Crud/>

@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 
-function BlogUpdateBtn() {
+function PricingUpdateBtn() {
   const { t } = useTranslation();
   const { id } = useParams();
 
@@ -18,25 +18,27 @@ function BlogUpdateBtn() {
 
   const url = "https://localhost:7079";
 
-  const [blog, setblog] = useState([]);
-  const [nameInput, setNameInput] = useState("");
-  const [descInput, setDescInput] = useState("");
-  const [byInput, setByInput] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [pricings, setpricings] = useState([]);
+  const [nameInput, setNameInput] = useState();
+  const [priceInput, setPriceInput] = useState();
+  const [qualityInput, setQualityInput] = useState();
+  const [resolutionInput, setResolutionInput] = useState();
+  const [screenInput, setScreenInput] = useState();
 
-  //Blog for id
-  async function GetBlog() {
-    await axios.get(`${url}/api/Blog/Get?id=${id}`).then((res) => {
-      setblog(res.data);
+  //Pricing for id
+  async function GetPricing() {
+    await axios.get(`${url}/api/Pricing/Get?id=${id}`).then((res) => {
+      setpricings(res.data);
       setNameInput(res.data.name);
-      setDescInput(res.data.description);
-      setByInput(res.data.by);
-      setPhoto(res.data.photo);
+      setPriceInput(res.data.price);
+      setQualityInput(res.data.quality);
+      setResolutionInput(res.data.resolution);
+      setScreenInput(res.data.screen);
     });
   }
 
   useEffect(() => {
-    GetBlog();
+    GetPricing();
   }, []);
 
   //sweet alert
@@ -64,24 +66,24 @@ function BlogUpdateBtn() {
   });
 
   //Movie Update
-  async function UpdateBlog(e) {
+  async function UpdatePricing(e) {
     e.preventDefault();
     await axios
       .put(
-        `${url}/api/Blog/Update/${id}`,
+        `${url}/api/Pricing/Update/${id}`,
         {
-          id: id,
           name: nameInput,
-          description: descInput,
-          by: byInput,
-          photo: photo,
+          price: priceInput,
+          quality: qualityInput,
+          resolution: resolutionInput,
+          screen: screenInput,
         },
         config
       )
       .then((res) => {
         Success.fire({
           icon: "success",
-          title: "Blog successfully updated",
+          title: "Pricing successfully updated",
         });
       })
       .catch(
@@ -92,66 +94,58 @@ function BlogUpdateBtn() {
       );
   }
 
-  //Convert img to base
-  function getBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () =>
-        resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
-      reader.onerror = (error) => reject(error);
-    });
-  }
-
-  function base64Img(file) {
-    var base64String = getBase64(file);
-    base64String.then(function (result) {
-      setPhoto(result);
-    });
-  }
-
   return (
     <div className="container">
-      <Form onSubmit={(e) => UpdateBlog(e)}>
+      <Form onSubmit={(e) => UpdatePricing(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Blog Name</Form.Label>
+          <Form.Label>Subscription Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Blog Name"
+            placeholder="Enter Pricing Name"
             onChange={(e) => setNameInput(e.target.value)}
             defaultValue={nameInput}
           />
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="formBasicDatetime">
-          <Form.Label>Blog Description</Form.Label>
+          <Form.Label>Subscription price</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Blog Description"
-            onChange={(e) => setDescInput(e.target.value)}
-            defaultValue={descInput}
+            placeholder="Enter Subscription Price"
+            onChange={(e) => setPriceInput(e.target.value)}
+            defaultValue={priceInput}
           />
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="formBasicDatetime">
-          <Form.Label>Blog Author</Form.Label>
+          <Form.Label>Pricing Quality</Form.Label>
+          <Form.Control
+           
+            placeholder="Enter Pricing Quality"
+            onFocus={(e) => setQualityInput(e.target.value)}
+            defaultValue={qualityInput}
+            step="0.1"
+            min="0"
+            max="20"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicDatetime">
+          <Form.Label>Pricing Resolution</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Blog Author"
-            onFocus={(e) => setByInput(e.target.value)}
-            defaultValue={byInput}
+            placeholder="Enter Pricing Resolution"
+            onFocus={(e) => setResolutionInput(e.target.value)}
+            defaultValue={resolutionInput}
           />
-        </Form.Group>
-
+        </Form.Group>{" "}
         <Form.Group className="mb-3" controlId="formBasicDatetime">
-          <Form.Label>Movie Thumb</Form.Label>
+          <Form.Label>Screen Count</Form.Label>
           <Form.Control
-            type="file"
-            onChange={(e) => base64Img(e.target.files[0])}
-            defaultValue={photo}
+            type="number"
+            placeholder="Enter Screen Count"
+            onFocus={(e) => setScreenInput(e.target.value)}
+            defaultValue={screenInput}           
+            min="0"           
           />
         </Form.Group>
-
         <Button variant="primary" type="submit" className="mt-3">
           Submit
         </Button>
@@ -160,4 +154,4 @@ function BlogUpdateBtn() {
   );
 }
 
-export default BlogUpdateBtn;
+export default PricingUpdateBtn;

@@ -39,7 +39,7 @@ function PrivateRoutes() {
       }    
      
   
-    return currentUser ? <Outlet /> : <Navigate to="/login" />
+    return currentUser ? <Outlet /> : <Navigate to="/" />
 }
 
 export default PrivateRoutes

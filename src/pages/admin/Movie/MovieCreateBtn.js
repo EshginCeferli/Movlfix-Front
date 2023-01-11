@@ -61,7 +61,7 @@ function MovieCreateBtn() {
 
   //Get Movies from Api
   async function GetMovies() {
-    await axios.get(`${url}/api/Movie/GetAll`, config).then((res) => {
+    await axios.get(`${url}/api/Movie/GetAll`).then((res) => {
       setMovies(res.data);
     });
   }

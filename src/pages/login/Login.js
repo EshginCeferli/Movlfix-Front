@@ -46,8 +46,7 @@ function Login() {
               timer: 1500,
             });
           } else {
-            localStorage.setItem("token", JSON.stringify(response.data));
-      
+            localStorage.setItem("token", JSON.stringify(response.data));      
 
             Swal.fire({
               position: "top-end",

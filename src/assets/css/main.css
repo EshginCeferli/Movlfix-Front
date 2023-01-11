@@ -3060,6 +3060,7 @@ label {
 .copyright-wrap {
   background: #171b22;
   padding: 25px 0;
+  margin-bottom: -20px;
 }
 
 .copyright-text > p {

@@ -7,22 +7,22 @@ import axios from "axios";
 
 import { useTranslation } from "react-i18next";
 
-function BlogCreateBtn() {
+function ServiceCreateBtn() {
   const { t } = useTranslation();
 
   const url = "https://localhost:7079";
 
-  const [blogs, setblogs] = useState([]);
-  const [nameInput, setNameInput] = useState();
-  const [descInput, setDescInput] = useState();
-  const [byInput, setByInput] = useState();
-  const [photo, setPhoto] = useState();
+  const [service, setService] = useState([]);
+  const [image, setImage] = useState();
+
 
   let token = JSON.parse(localStorage.getItem("token"));
+
 
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
+
 
   //sweet alert
   const Success = Swal.mixin({
@@ -48,44 +48,47 @@ function BlogCreateBtn() {
     },
   });
 
-  //Get blogs from Api
-  async function GetBlogs() {
-    await axios.get(`${url}/api/Blog/GetAll`, config).then((res) => {
-      setblogs(res.data);
+   //Get Service from Api
+   async function GetService() {
+    await axios.get(`${url}/api/Servise/GetAll`).then((res) => {
+      setService(res.data);
     });
   }
 
+
   useEffect(() => {
-    GetBlogs();
+    GetService();
+   
   }, []);
 
-  //Create Blog
-  async function CreateBlog() {
+  //Create Service
+  async function CreateService() {
     await axios
       .post(
-        `${url}/api/Blog/Create`,
-        {
-          name: nameInput,
-          description: descInput,
-          by: byInput,
-          photo: photo,
-        },
-        config
+        `${url}/api/Servise/Create`,
+        {                   
+          Image : image
+        } ,
+        config       
       )
       .then((res) => {
+       
         Success.fire({
           icon: "success",
-          title: "Blog successfully created",
+          title: "Service successfully created",
         });
         window.location.reload();
-      })
+      }
+      )
       .catch(
         Reject.fire({
           icon: "error",
           title: "Something went wrong",
         })
       );
+      
   }
+
 
   function getBase64(file) {
     return new Promise((resolve, reject) => {
@@ -100,7 +103,8 @@ function BlogCreateBtn() {
   function base64Img(file) {
     var base64String = getBase64(file);
     base64String.then(function (result) {
-      setPhoto(result);
+      setImage(result);
+      
     });
   }
   return (
@@ -110,7 +114,7 @@ function BlogCreateBtn() {
           type="button"
           className="btn btn-outline-success create-btn"
           data-bs-toggle="modal"
-          data-bs-target="#create-Blog"
+          data-bs-target="#create-Service"
         >
           +Add
         </button>
@@ -118,7 +122,7 @@ function BlogCreateBtn() {
 
       <div
         className="modal fade"
-        id="create-Blog"
+        id="create-Service"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -126,18 +130,18 @@ function BlogCreateBtn() {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              {/* <h5 className="modal-title create-header" id="exampleModalLabel">
+              <h5 className="modal-title create-header" id="exampleModalLabel">
                 {t("please fill the blank")}:
-              </h5> */}
+              </h5>
               <button
                 type="button"
-                className="btn-close Blog-button"
+                className="btn-close Service-button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
             <div className="modal-body container addition">
-              {/* <h6 className="addition-title">{t("Create your Blog")}</h6> */}
+              <h6 className="addition-title">{t("Create your Service")}</h6>
               <div className="row">
                 <div className="col-6"></div>
                 <div className="col-6"></div>
@@ -145,62 +149,17 @@ function BlogCreateBtn() {
               <div className="row mt-2">
                 <div className="col-6"></div>
               </div>
-              <h6 className="mt-4 addition-title">{t("blog")}</h6>
-              <div className="row">
-                <div className="col-6">
-                  <TextField
-                    onChange={(e) => setNameInput(e.target.value)}
-                    value={nameInput}
-                    className="student-input"
-                    id="outlined-basic"
-                    label={t("name")}
-                    variant="outlined"
-                  />
-                  <TextField
-                    onChange={(e) => setByInput(e.target.value)}
-                    value={byInput}
-                    className="student-input"
-                    id="outlined-basic"
-                    label={t("author")}
-                    variant="outlined"
-                  />
-                </div>
-
-                <div className="col-6">
-                  <TextField
-                    onChange={(e) => setDescInput(e.target.value)}
-                    value={descInput}
-                    className="student-input"
-                    id="outlined-basic"
-                    label={t("description")}
-                    variant="outlined"
-                  />
-                </div>
-              </div>
-
+              <h6 className="mt-4 addition-title">{t("contact")}</h6>
+             
               <div className="row my-3">
-                <input
-                  type="file"
-                  onChange={(e) => base64Img(e.target.files[0])}
-                ></input>
+              
+                <input type="file"  onChange={(e) => base64Img(e.target.files[0])}></input>
+               
               </div>
             </div>
             <div className="modal-footer">
-              <button
-                type="button"
-                onClick={() => CreateBlog()}
-                data-bs-dismiss="modal"
-                className="btn btn-outline-primary student-button"
-              >
-                {t("save")}
-              </button>
-              <button
-                type="button"
-                data-bs-dismiss="modal"
-                className="btn btn-outline-warning student-button"
-              >
-                {t("cancel")}
-              </button>
+              <button type="button" onClick={() =>  CreateService()} data-bs-dismiss="modal" className="btn btn-outline-primary student-button">{t("save")}</button>
+              <button type="button" data-bs-dismiss="modal" className="btn btn-outline-warning student-button">{t("cancel")}</button>
             </div>
           </div>
         </div>
@@ -209,4 +168,4 @@ function BlogCreateBtn() {
   );
 }
 
-export default BlogCreateBtn;
+export default ServiceCreateBtn;

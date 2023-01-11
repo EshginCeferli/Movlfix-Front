@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-import ContactUpdateBtn from "./ContactUpdateBtn";
+import CategoryUpdateBtn from "./CategoryUpdateBtn";
+import CategoryCreateBtn from "./CategoryCreateBtn";
 
-function ContactTable() {
+function CategoryTable() {
   let count = 0;
-  
+
   const url = "https://localhost:7079";
 
-  const [contact, setContact] = useState([]);
+  const [category, setCategory] = useState([]);
 
   let token = JSON.parse(localStorage.getItem("token"));
 
@@ -43,45 +44,73 @@ function ContactTable() {
   });
 
   //Get Movies from Api
-  async function getContact() {
-    await axios.get(`${url}/api/Contact/GetAll`).then((res) => {
-      setContact(res.data);
+  async function getCategory() {
+    await axios.get(`${url}/api/MovieCategory/GetAll`).then((res) => {
+      setCategory(res.data);
     });
   }
 
   useEffect(() => {
-    getContact();
+    getCategory();
   }, []);
+
+    //Delete Category
+    const DeleteCategory = async (id) => {
+      await axios
+        .delete(`${url}/api/MovieCategory/Delete?id=${id}`, config)
+        .then(function (response) {
+          Swal.fire("", "Deleted", "success");
+          console.log(response);
+        })
+        .catch(function (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="">Why do I have this issue?</a>',
+          });
+          console.log(error);
+        });
+      getCategory();
+    };
+  
 
   return (
     <div className="col-lg-12 grid-margin stretch-card">
       <div className="card">
         <div className="card-body">
-          <h4 className="card-title d-flex justify-content-between">Contact</h4>
+          <h4 className="card-title d-flex justify-content-between">
+            Category
+            <CategoryCreateBtn/>
+          </h4>
           <table className="table table-striped">
             <thead>
               <tr>
                 <th>#</th>
-                <th> Address </th>
-                <th> Contact Number </th>
-                <th> Email </th>
+                <th> Name </th>
 
                 <th> Settings </th>
               </tr>
             </thead>
             <tbody>
-              {contact?.map((cont, i) => (
+              {category?.map((cat, i) => (
                 <tr key={i}>
                   <td>{++count}</td>
 
-                  <td className="py-1">{cont.address}</td>
-                  <td className="py-1">{cont.phone}</td>
-                  <td className="py-1">{cont.email} </td>
+                  <td className="py-1">{cat.name}</td>
 
                   <td>
-                    <Link to={`/contactUpdate/${cont.id}`}>
+                    <Link to={`/categoryUpdate/${cat.id}`}>
                       <button className="btn btn-primary">Update</button>
                     </Link>
+
+                    <button
+                      onClick={() => DeleteCategory(cat.id)}
+                      type="button"
+                      className="btn btn-warning"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -93,4 +122,4 @@ function ContactTable() {
   );
 }
 
-export default ContactTable;
+export default CategoryTable;

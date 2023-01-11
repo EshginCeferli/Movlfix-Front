@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 import { useTranslation } from "react-i18next";
 
-function BannerCreate() {
+function CategoryCreateBtn() {
   const { t } = useTranslation();
 
   const url = "https://localhost:7079";
 
-  const [banner, setBanner] = useState([]);
-  const [image, setImage] = useState();
+  const [category, setCategory] = useState();
+  const [nameInput, setNameInput] = useState();
 
   let token = JSON.parse(localStorage.getItem("token"));
 
@@ -45,33 +43,35 @@ function BannerCreate() {
     },
   });
 
-  //Get Banner from Api
-  async function GetBanner() {
-    await axios.get(`${url}/api/Banner/GetAll`, config).then((res) => {
-      setBanner(res.data);
+  //Get pricings from Api
+  async function GetCategorys() {
+    await axios.get(`${url}/api/MovieCategory/GetAll`, config).then((res) => {
+      setCategory(res.data);
     });
   }
 
   useEffect(() => {
-    GetBanner();
+    GetCategorys();
   }, []);
 
-  //Create Banner
-  async function CreateBanner() {
+  //Create Category
+  async function CreateCategory() {
     await axios
       .post(
-        `${url}/api/Banner/Create`,
+        `${url}/api/MovieCategory/Create`,
         {
-          Image: image,
+          name: nameInput,
         },
         config
       )
       .then((res) => {
-        Success.fire({
-          icon: "success",
-          title: "Banner successfully created",
-        });
         window.location.reload();
+        if (res.data.status === "success" || res.status === 200) {
+          Success.fire({
+            icon: "success",
+            title: "Category successfully created",
+          });
+        }
       })
       .catch(
         Reject.fire({
@@ -81,22 +81,6 @@ function BannerCreate() {
       );
   }
 
-  function getBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () =>
-        resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
-      reader.onerror = (error) => reject(error);
-    });
-  }
-
-  function base64Img(file) {
-    var base64String = getBase64(file);
-    base64String.then(function (result) {
-      setImage(result);
-    });
-  }
   return (
     <div className="create-btn-area">
       <div className="my-3 me-3">
@@ -104,7 +88,7 @@ function BannerCreate() {
           type="button"
           className="btn btn-outline-success create-btn"
           data-bs-toggle="modal"
-          data-bs-target="#create-Banner"
+          data-bs-target="#create-Category"
         >
           +Add
         </button>
@@ -112,46 +96,38 @@ function BannerCreate() {
 
       <div
         className="modal fade"
-        id="create-Banner"
+        id="create-Category"
         tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledquality="exampleModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title create-header" id="exampleModalLabel">
-                {t("please fill the blank")}:
-              </h5>
               <button
                 type="button"
-                className="btn-close Banner-button"
+                className="btn-close Category-button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
             <div className="modal-body container addition">
-              <h6 className="addition-title">{t("Create your Banner")}</h6>
+              {/* <h6 className="addition-title">{t("Create your Category")}</h6> */}
               <div className="row">
-                <div className="col-6"></div>
-                <div className="col-6"></div>
-              </div>
-              <div className="row mt-2">
-                <div className="col-6"></div>
-              </div>
-              <h6 className="mt-4 addition-title">{t("contact")}</h6>
-
-              <div className="row my-3">
-                <input
-                  type="file"
-                  onChange={(e) => base64Img(e.target.files[0])}
-                ></input>
+                <TextField
+                  onChange={(e) => setNameInput(e.target.value)}
+                  value={nameInput}
+                  className="student-input"
+                  id="outlined-basic"
+                  label={t("Name")}
+                  variant="outlined"
+                />
               </div>
             </div>
             <div className="modal-footer">
               <button
                 type="button"
-                onClick={() => CreateBanner()}
+                onClick={() => CreateCategory()}
                 data-bs-dismiss="modal"
                 className="btn btn-outline-primary student-button"
               >
@@ -172,4 +148,4 @@ function BannerCreate() {
   );
 }
 
-export default BannerCreate;
+export default CategoryCreateBtn;

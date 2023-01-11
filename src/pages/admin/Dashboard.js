@@ -29,6 +29,7 @@ export default function Dashboard() {
               </Link>
             </td>
           </tr>
+
           <tr>
             <th scope="row">2</th>
             <td>
@@ -42,6 +43,7 @@ export default function Dashboard() {
               </Link>
             </td>
           </tr>
+
           <tr>
             <th scope="row">3</th>
             <td>
@@ -57,12 +59,56 @@ export default function Dashboard() {
           </tr>
 
           <tr>
-            <th scope="row">3</th>
+            <th scope="row">4</th>
             <td>
               <h3>Banner</h3>
             </td>
             <td>
               <Link to="/bannerTable">
+                <button type="button" className="btn btn-primary">
+                  Manage
+                </button>
+              </Link>
+            </td>
+          </tr>
+
+          
+          <tr>
+            <th scope="row">5</th>
+            <td>
+              <h3>Service</h3>
+            </td>
+            <td>
+              <Link to="/serviceTable">
+                <button type="button" className="btn btn-primary">
+                  Manage
+                </button>
+              </Link>
+            </td>
+          </tr>
+
+    
+          <tr>
+            <th scope="row">6</th>
+            <td>
+              <h3>Pricing</h3>
+            </td>
+            <td>
+              <Link to="/pricingTable">
+                <button type="button" className="btn btn-primary">
+                  Manage
+                </button>
+              </Link>
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">7</th>
+            <td>
+              <h3>Category</h3>
+            </td>
+            <td>
+              <Link to="/categoryTable">
                 <button type="button" className="btn btn-primary">
                   Manage
                 </button>

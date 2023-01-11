@@ -1,4 +1,5 @@
 import React from "react";
+import BlogBanner from "../../components/BlogBanner";
 import BlogComp from "../../components/BlogComp";
 import Categories from "../../components/Categories";
 import Footer from "../../components/Footer";
@@ -11,6 +12,7 @@ import Trial from "../../components/Trial"
 function Blog() {
   return (<>
     <Navbar/>
+    <BlogBanner/>
     <section
       className="blog-area blog-bg"
       style={{ backgroundImage: "url(/images/bg/blog_bg.jpg)" }}

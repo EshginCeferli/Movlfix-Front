@@ -7,16 +7,18 @@ import axios from "axios";
 
 import { useTranslation } from "react-i18next";
 
-function BlogCreateBtn() {
+function PricingCreateBtn() {
+
   const { t } = useTranslation();
 
   const url = "https://localhost:7079";
 
-  const [blogs, setblogs] = useState([]);
+  const [pricings, setpricings] = useState([]);
   const [nameInput, setNameInput] = useState();
-  const [descInput, setDescInput] = useState();
-  const [byInput, setByInput] = useState();
-  const [photo, setPhoto] = useState();
+  const [priceInput, setPriceInput] = useState();
+  const [qualityInput, setQualityInput] = useState();
+  const [resolutionInput, setResolutionInput] = useState();
+  const [screenInput, setScreenInput] = useState();
 
   let token = JSON.parse(localStorage.getItem("token"));
 
@@ -48,36 +50,40 @@ function BlogCreateBtn() {
     },
   });
 
-  //Get blogs from Api
-  async function GetBlogs() {
-    await axios.get(`${url}/api/Blog/GetAll`, config).then((res) => {
-      setblogs(res.data);
+  //Get pricings from Api
+  async function GetPricings() {
+    await axios.get(`${url}/api/Pricing/GetAll`, config).then((res) => {
+      setpricings(res.data);
     });
   }
 
   useEffect(() => {
-    GetBlogs();
+    GetPricings();
   }, []);
 
-  //Create Blog
-  async function CreateBlog() {
+  //Create Pricing
+  async function CreatePricing() {
     await axios
       .post(
-        `${url}/api/Blog/Create`,
+        `${url}/api/Pricing/Create`,
         {
           name: nameInput,
-          description: descInput,
-          by: byInput,
-          photo: photo,
+          price: priceInput,
+          quality: qualityInput,
+          resolution: resolutionInput,
+          screen : screenInput
         },
         config
       )
       .then((res) => {
-        Success.fire({
-          icon: "success",
-          title: "Blog successfully created",
-        });
         window.location.reload();
+        if(res.data.status === "success" || res.status === 200){
+          Success.fire({
+            icon: "success",
+            title: "Pricing successfully created",
+          });          
+        }    
+       
       })
       .catch(
         Reject.fire({
@@ -87,22 +93,7 @@ function BlogCreateBtn() {
       );
   }
 
-  function getBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () =>
-        resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
-      reader.onerror = (error) => reject(error);
-    });
-  }
-
-  function base64Img(file) {
-    var base64String = getBase64(file);
-    base64String.then(function (result) {
-      setPhoto(result);
-    });
-  }
+ 
   return (
     <div className="create-btn-area">
       <div className="my-3 me-3">
@@ -110,7 +101,7 @@ function BlogCreateBtn() {
           type="button"
           className="btn btn-outline-success create-btn"
           data-bs-toggle="modal"
-          data-bs-target="#create-Blog"
+          data-bs-target="#create-Pricing"
         >
           +Add
         </button>
@@ -118,77 +109,92 @@ function BlogCreateBtn() {
 
       <div
         className="modal fade"
-        id="create-Blog"
+        id="create-Pricing"
         tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledquality="exampleModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              {/* <h5 className="modal-title create-header" id="exampleModalLabel">
-                {t("please fill the blank")}:
-              </h5> */}
+              
               <button
                 type="button"
-                className="btn-close Blog-button"
+                className="btn-close Pricing-button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
             <div className="modal-body container addition">
-              {/* <h6 className="addition-title">{t("Create your Blog")}</h6> */}
+              {/* <h6 className="addition-title">{t("Create your Pricing")}</h6> */}
               <div className="row">
-                <div className="col-6"></div>
-                <div className="col-6"></div>
-              </div>
-              <div className="row mt-2">
-                <div className="col-6"></div>
-              </div>
-              <h6 className="mt-4 addition-title">{t("blog")}</h6>
-              <div className="row">
-                <div className="col-6">
+               
                   <TextField
                     onChange={(e) => setNameInput(e.target.value)}
                     value={nameInput}
                     className="student-input"
                     id="outlined-basic"
-                    label={t("name")}
+                    label={t("Name")}
                     variant="outlined"
                   />
                   <TextField
-                    onChange={(e) => setByInput(e.target.value)}
-                    value={byInput}
+                    onChange={(e) => setQualityInput(e.target.value)}
+                    value={qualityInput}
                     className="student-input"
                     id="outlined-basic"
-                    label={t("author")}
+                    label={t("Quality")}
                     variant="outlined"
                   />
-                </div>
+              
 
-                <div className="col-6">
+           
+              </div>
+              <div className="row mt-2">
+             
                   <TextField
-                    onChange={(e) => setDescInput(e.target.value)}
-                    value={descInput}
+                    onChange={(e) => setPriceInput(e.target.value)}
+                    value={priceInput}
                     className="student-input"
                     id="outlined-basic"
-                    label={t("description")}
+                    type="number"
+                    label={t("Price")}
                     variant="outlined"
+                    step="0.1"
+                    min='0'
+                    max='20'
                   />
                 </div>
+            
+             
+              <div className="row">
+              
+                  <TextField
+                    onChange={(e) => setResolutionInput(e.target.value)}
+                    value={resolutionInput}
+                    className="student-input"
+                    id="outlined-basic"
+                    label={t("Resolution")}
+                    variant="outlined"
+                  />
+                  <TextField
+                    onChange={(e) => setScreenInput(e.target.value)}
+                    value={screenInput}
+                    className="student-input"
+                    type="number"
+                    id="outlined-basic"
+                    label={t("Screen count")}
+                    variant="outlined"
+                  />
+              
+
               </div>
 
-              <div className="row my-3">
-                <input
-                  type="file"
-                  onChange={(e) => base64Img(e.target.files[0])}
-                ></input>
-              </div>
+            
             </div>
             <div className="modal-footer">
               <button
                 type="button"
-                onClick={() => CreateBlog()}
+                onClick={() => CreatePricing()}
                 data-bs-dismiss="modal"
                 className="btn btn-outline-primary student-button"
               >
@@ -209,4 +215,4 @@ function BlogCreateBtn() {
   );
 }
 
-export default BlogCreateBtn;
+export default PricingCreateBtn;

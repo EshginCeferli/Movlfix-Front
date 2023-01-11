@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-function Footer(props) {
+function Footer() {
   const { t } = useTranslation();
 
-  let movies = props.movies;
+
+
 
   return (
     <div>
@@ -26,14 +27,14 @@ function Footer(props) {
                     <nav>
                       <ul className="navigation">
                         <li>
-                          <a href="index.html">{t(`home`)}</a>
+                          <Link to={"/"} >{t(`home`)}</Link>
                         </li>
                         <li>
-                          <a href="index.html">{t(`movie`)}</a>
+                          <Link to={"/movie"}>{t(`movie`)}</Link>
                         </li>
 
                         <li>
-                          <a href="pricing.html">{t(`pricing`)}</a>
+                          <Link to={"/pricing"}>{t(`pricing`)}</Link>
                         </li>
                       </ul>
                       <div className="footer-search">
