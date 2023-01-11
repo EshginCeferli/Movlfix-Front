@@ -19,14 +19,14 @@ function MovieCreateBtn() {
   const url = "https://localhost:7079";
 
   const [movies, setMovies] = useState([]);
-  const [nameInput, setNameInput] = useState("");
-  const [descInput, setDescInput] = useState("");
-  const [lengthInput, setLengthInput] = useState("");
-  const [releaseInput, setReleaseInput] = useState("");
-  const [posterInput, setPosterInput] = useState("");
-  const [countryInput, setCountryInput] = useState("");
-  const [categoryInput, setCategoryInput] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [nameInput, setNameInput] = useState();
+  const [descInput, setDescInput] = useState();
+  const [lengthInput, setLengthInput] = useState();
+  const [releaseInput, setReleaseInput] = useState();
+  // const [posterInput, setPosterInput] = useState("");
+  const [countryInput, setCountryInput] = useState();
+  const [categoryInput, setCategoryInput] = useState();
+  const [photo, setPhoto] = useState();
 
   const [categories, setCategories] = useState([]);
 
@@ -87,7 +87,7 @@ function MovieCreateBtn() {
           name: nameInput,
           description: descInput,
           length: lengthInput,
-          poster: posterInput,
+          // poster: posterInput,
           releaseYear: releaseInput,
           country: countryInput,
           movieCategoryId: categoryInput,
@@ -95,14 +95,7 @@ function MovieCreateBtn() {
         },
         config
       )
-      .then((res) => {
-        setNameInput("");
-        setDescInput("");
-        setLengthInput("");
-        setReleaseInput("");
-        setCountryInput("");
-        setCategoryInput("");
-        console.log(res);
+      .then((res) => {       
         Success.fire({
           icon: "success",
           title: "Movie successfully created",
@@ -186,14 +179,7 @@ function MovieCreateBtn() {
                     label={t("Name")}
                     variant="outlined"
                   />
-                  <TextField
-                    onChange={(e) => setPosterInput(e.target.value)}
-                    value={posterInput}
-                    className="student-input"
-                    id="outlined-basic"
-                    label={t("Name")}
-                    variant="outlined"
-                  />
+                
                 </div>
 
                 <div className="col-6">
@@ -247,10 +233,6 @@ function MovieCreateBtn() {
                     variant="outlined"
                   />
                 </div>
-                <input
-                  type="file"
-                  onChange={(e) => base64Img(e.target.files[0])}
-                ></input>
                 <div className="col-6">
                   <Box sx={{ width: 210 }}>
                     <FormControl fullWidth>
@@ -274,6 +256,11 @@ function MovieCreateBtn() {
                     </FormControl>
                   </Box>
                 </div>
+                <input
+                  type="file"
+                  onChange={(e) => base64Img(e.target.files[0])}
+                ></input>
+             
               </div>
             </div>
             <div className="modal-footer">

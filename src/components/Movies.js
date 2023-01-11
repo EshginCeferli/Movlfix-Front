@@ -93,7 +93,11 @@ function Movies() {
                   <ul>
                     <li>
                       {" "}
-                      <NavLink onClick={() => getFilteredList("All")} className="filter-button">
+                      <NavLink
+                        onClick={() => getFilteredList("All")}
+                        className="filter-button"
+                        style={{ color: "white" }}
+                      >
                         All
                       </NavLink>
                     </li>
@@ -102,6 +106,7 @@ function Movies() {
                       return (
                         <li key={index}>
                           <NavLink
+                            style={{ color: "white" }}
                             className="filter-button"
                             onClick={() => getFilteredList(category.name)}
                           >

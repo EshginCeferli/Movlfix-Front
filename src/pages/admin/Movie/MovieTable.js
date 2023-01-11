@@ -10,6 +10,7 @@ function MovieTable() {
   const url = "https://localhost:7079";
 
   const [movies, setMovies] = useState([]);
+ 
 
   const [categories, setCategories] = useState([]);
 
@@ -53,6 +54,8 @@ function MovieTable() {
         setMovies(res.data);
       });
   }
+
+ 
   //Get Categories from Api
   async function GetCategories() {
     await axios.get(`${url}/api/MovieCategory/GetAll`).then((res) => {
@@ -89,8 +92,9 @@ function MovieTable() {
     <div className="col-lg-12 grid-margin stretch-card">
       <div className="card">
         <div className="card-body">
-          <h4 className="card-title d-flex justify-content-between">
+          <h4 className="card-title d-flex justify-content-between" style={{ color:"black"}}>
             Movies
+           
             <MovieCreateBtn />
           </h4>
           <table className="table table-striped">
@@ -103,6 +107,7 @@ function MovieTable() {
 
                 <th> Movie Length </th>
                 <th> Movie Country </th>
+                <th> Movie Category </th>
                 <th> Movie Year </th>
                 <th> Settings </th>
               </tr>
@@ -126,6 +131,7 @@ function MovieTable() {
                   <td className="py-1">{movie.description}</td>
                   <td className="py-1">{movie.length} min</td>
                   <td className="py-1">{movie.country}</td>
+                  <td className="py-1">{movie.movieCategory.name}</td>
                   <td className="py-1">{movie.releaseYear} s year</td>
 
                   <td>

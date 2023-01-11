@@ -20,6 +20,7 @@ function BlogUpdateBtn() {
 
   const [blog, setblog] = useState([]);
   const [nameInput, setNameInput] = useState("");
+  const [introInput, setIntroInput] = useState("");
   const [descInput, setDescInput] = useState("");
   const [byInput, setByInput] = useState("");
   const [photo, setPhoto] = useState("");
@@ -29,9 +30,11 @@ function BlogUpdateBtn() {
     await axios.get(`${url}/api/Blog/Get?id=${id}`).then((res) => {
       setblog(res.data);
       setNameInput(res.data.name);
+      setIntroInput(res.data.intro);
       setDescInput(res.data.description);
       setByInput(res.data.by);
       setPhoto(res.data.photo);
+      
     });
   }
 
@@ -72,6 +75,7 @@ function BlogUpdateBtn() {
         {
           id: id,
           name: nameInput,
+          intro : introInput,
           description: descInput,
           by: byInput,
           photo: photo,
@@ -120,6 +124,16 @@ function BlogUpdateBtn() {
             placeholder="Enter Blog Name"
             onChange={(e) => setNameInput(e.target.value)}
             defaultValue={nameInput}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicDatetime">
+          <Form.Label>Blog Introduction</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Blog Introduction"
+            onChange={(e) => setIntroInput(e.target.value)}
+            defaultValue={introInput}
           />
         </Form.Group>
 

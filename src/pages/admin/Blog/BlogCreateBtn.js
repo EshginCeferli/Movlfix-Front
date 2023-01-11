@@ -15,6 +15,7 @@ function BlogCreateBtn() {
   const [blogs, setblogs] = useState([]);
   const [nameInput, setNameInput] = useState();
   const [descInput, setDescInput] = useState();
+  const [introInput, setIntroInput] = useState();
   const [byInput, setByInput] = useState();
   const [photo, setPhoto] = useState();
 
@@ -67,6 +68,7 @@ function BlogCreateBtn() {
         {
           name: nameInput,
           description: descInput,
+          intro : introInput,
           by: byInput,
           photo: photo,
         },
@@ -167,6 +169,14 @@ function BlogCreateBtn() {
                 </div>
 
                 <div className="col-6">
+                <TextField
+                    onChange={(e) => setIntroInput(e.target.value)}
+                    value={introInput}
+                    className="student-input"
+                    id="outlined-basic"
+                    label={t("intro")}
+                    variant="outlined"
+                  />
                   <TextField
                     onChange={(e) => setDescInput(e.target.value)}
                     value={descInput}

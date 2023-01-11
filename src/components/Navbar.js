@@ -60,8 +60,7 @@ const style = {
     border: "px solid #000",
     boxShadow: 24,
     p: 4,
-    borderRadius:"17%",
-  
+    borderRadius: "17%",
   },
 };
 
@@ -319,7 +318,11 @@ function Navbar() {
                             </form>
                           </li>
 
-                          <button className="btn" onClick={handleOpen} style ={{fontSize:"20px"}}>
+                          <button
+                            className="btn"
+                            onClick={handleOpen}
+                            style={{ fontSize: "20px" }}
+                          >
                             <i className="far fa-user-circle"></i>
                           </button>
                         </ul>
@@ -626,7 +629,7 @@ function Navbar() {
                           {t("shifreyenile")}
                         </Link>
                       </li>
-                      <li >
+                      <li>
                         <Link to={"/"} onClick={(e) => handleProfileClose(e)}>
                           <button
                             className="btn"

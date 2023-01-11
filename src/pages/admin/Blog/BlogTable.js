@@ -92,6 +92,7 @@ function BlogTable() {
                 <th> Blog Image </th>
                 <th> Blog Name </th>
                 <th> Blog Author </th>
+                <th> Blog Introduction </th>
                 <th> Blog Description </th>
                 <th> Blog Create Date </th>
 
@@ -115,7 +116,8 @@ function BlogTable() {
                   </td>
                   <td className="py-1">{blog.name}</td>
                   <td className="py-1">{blog.by}</td>
-                  <td className="py-1">{blog.description} min</td>
+                  <td className="py-1">{blog.intro} </td>
+                  <td className="py-1">{blog.description} </td>
                   <td className="py-1">{blog.createDate}</td>
 
                   <td>

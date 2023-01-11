@@ -125,7 +125,7 @@ function MovieDetailComp(props) {
         <div className="row align-items-center position-relative">
           <div className="col-xl-3 col-lg-4">
             <div className="movie-details-img">
-              <img src={`/images/poster/${props.movie.poster}`} alt="" />
+            <img src={`data:image/jpeg;base64,${props.movie.photo}`} alt="" />
               <a
                 href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
                 className="popup-video"
@@ -227,7 +227,7 @@ function MovieDetailComp(props) {
                   <div className="movie-item mb-50">
                     <div className="movie-poster">
                       <Link to={`/movie/${movie.id}`}>
-                        <img src={`/images/poster/${movie.poster}`} alt="" />
+                      <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
                       </Link>
                     </div>
                     <div className="movie-content">

@@ -80,7 +80,7 @@ function Upcoming() {
                   <div className="movie-item mb-50">
                     <div className="movie-poster">
                       <Link to={`/movie/${movie.id}`}>
-                        <img src={`images/poster/${movie.poster}`} alt="" />
+                      <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
                       </Link>
                     </div>
                     <div className="movie-content">
