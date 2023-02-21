@@ -39,7 +39,8 @@ function Categories() {
                 <button
                   className="action"                 
                 >
-                  {category.name}
+                  {t(`${category.name}`)}
+                  {/* {category.name} */}
                 </button>{" "}
                 <span>12</span>
               </li>

@@ -15,7 +15,6 @@ function MovieDetailComp(props) {
   const getMovie = `https://localhost:7079/api/Movie/Get?id=${props.id}`;
 
   const [movie, setMovie] = useState([]);
- 
 
   async function getMovieById() {
     await axios.get(getMovie).then((response) => {
@@ -23,7 +22,7 @@ function MovieDetailComp(props) {
     });
   }
   // useEffect(() => {
-    
+
   // }, []);
 
   //Comment items
@@ -60,7 +59,6 @@ function MovieDetailComp(props) {
     }
   }, []);
 
-
   async function AddComment(e) {
     e.preventDefault();
 
@@ -95,58 +93,49 @@ function MovieDetailComp(props) {
       });
   }
 
-
-  const [rate, setRate] = useState(0)
+  const [rate, setRate] = useState(0);
   //Rate items
   const ratingChanged = async (e) => {
-
     if (e !== 0) {
       await axios
-        .post(`https://localhost:7079/api/Movie/Rate?id=${props.id}&rate=${rate}`)
+        .post(
+          `https://localhost:7079/api/Movie/Rate?id=${props.id}&rate=${rate}`
+        )
         .then(function (response) {
           Swal.fire({
             icon: "success",
             title: `You rated movie ${e} points`,
             text: "Thank you for your feedback!",
           });
-          setRate(e)
+          setRate(e);
         })
         .catch(function (error) {
           console.log(error);
         });
-    }
-    else {
+    } else {
       e = rate;
     }
-
   };
 
   //Slider items
 
   const [movies, setMovies] = useState([]);
 
-
-
   const GetRatedMovies = async () => {
     await axios
-      .get(
-        `https://localhost:7079/api/Movie/RelatedMovies?id=${props.id}`
-      )
+      .get(`https://localhost:7079/api/Movie/RelatedMovies?id=${props.id}`)
       .then((response) => {
         setMovies(response.data);
       });
   };
 
-
   useEffect(() => {
-    getMovieById()    
+    getMovieById();
   });
 
   useEffect(() => {
-    GetRatedMovies();    
-  },[]);
-  
-
+    GetRatedMovies();
+  }, []);
 
   return (
     <section
@@ -180,8 +169,7 @@ function MovieDetailComp(props) {
                   </li>
                   <li className="release-time">
                     <span>
-                      <i className="far fa-calendar-alt" />{" "}
-                      {movie.releaseYear}
+                      <i className="far fa-calendar-alt" /> {movie.releaseYear}
                     </span>
                     <span>
                       <i className="far fa-clock" /> {movie.length} min
@@ -199,19 +187,19 @@ function MovieDetailComp(props) {
                 <ul>
                   <li className="share">
                     <a href="#">
-                      <i className="fas fa-share-alt" /> Share
+                      <i className="fas fa-share-alt" /> {t(`Share`)}
                     </a>
                   </li>
                   <li className="streaming">
                     <h6>Prime Video</h6>
-                    <span>Streaming Channels</span>
+                    <span>{t(`Streaming Channels`)}</span>
                   </li>
                   <li className="watch">
                     <a
                       href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
                       className="btn popup-video"
                     >
-                      <i className="fas fa-play" /> Watch Now
+                      <i className="fas fa-play" />{t(`watch now`)}
                     </a>
                   </li>
                 </ul>
@@ -224,20 +212,22 @@ function MovieDetailComp(props) {
               className="download-btn"
               download=""
             >
-              Download <img src="/fonts/download.svg" alt="" />
+              {t(`download`)} <img src="/fonts/download.svg" alt="" />
             </a>
           </div>
         </div>
 
         <div className="row mb-5 my-5">
-          <h1 className="mb-5 text-md-center">  {t(`movies you could also like`)}</h1>
+          <h1 className="mb-5 text-md-center">
+            {" "}
+            {t(`Movies you could also like`)}
+          </h1>
           <Swiper
             loop={true}
             spaceBetween={10}
             effect={"coverflow"}
             grabCursor={true}
             slidesPerView={"4"}
-
             autoplay={{
               delay: 2000,
               disableOnInteraction: false,
@@ -253,13 +243,15 @@ function MovieDetailComp(props) {
             modules={[EffectCoverflow, Autoplay, Pagination]}
           >
             {movies?.map((movie, i) => {
-
               return (
                 <SwiperSlide key={i}>
                   <div className="movie-item mb-50">
                     <div className="movie-poster">
                       <Link to={`/movie/${movie.id}`}>
-                        <img src={`data:image/jpeg;base64,${movie.photo}`} alt="" />
+                        <img
+                          src={`data:image/jpeg;base64,${movie.photo}`}
+                          alt=""
+                        />
                       </Link>
                     </div>
                     <div className="movie-content">
@@ -276,8 +268,8 @@ function MovieDetailComp(props) {
                           </li>
                           <li>
                             <span className="duration">
-                              <i className="far fa-clock"></i> {movie.length}{" "}
-                              min
+                              <i className="far fa-clock"></i> {movie.length}
+                               {t(`min`)}
                             </span>
                             <span className="rating">
                               <i className="fas fa-thumbs-up"></i> 3.5
@@ -306,10 +298,7 @@ function MovieDetailComp(props) {
                 <li key={i}>
                   <div className="single-comment">
                     <div className="comment-avatar-img">
-                      <img
-                        src="/images/blog/commentAvatar.png"
-                        alt="images"
-                      />
+                      <img src="/images/blog/commentAvatar.png" alt="images" />
                     </div>
                     <div className="comment-text">
                       <div className="comment-avatar-info">

@@ -98,7 +98,7 @@ function Movies() {
                         className="filter-button"
                         style={{ color: "white" }}
                       >
-                        All
+                         {t(`All`)}
                       </NavLink>
                     </li>
 
@@ -110,7 +110,7 @@ function Movies() {
                             className="filter-button"
                             onClick={() => getFilteredList(category.name)}
                           >
-                            {category.name}
+                            {t(`${category.name}`)}
                           </NavLink>
                           <span>
                             {

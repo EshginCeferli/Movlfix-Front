@@ -70,7 +70,21 @@
     "address": "Ünvan",
     "phone": "Telefon",
     "email": "E-poçtunuz",
+    "new movies": "Ən yeni filmlər",
     "enter your email": "E-poçtunuzu daxil edin",
-    "no result found for search :))" : "Axtarışınıza uyğun nəticə tapılmadı :))"
+    "no result found for search :))" : "Axtarışınıza uyğun nəticə tapılmadı :))",
+    "All": "Hamısı",
+    "Fiction": "Bilim-qurğu",
+    "Dram": "Dram",
+    "Family": "Ailə",
+    "Horror": "Qorxu",
+    "War": "Müharibə",
+    "Crime": "Cinayət",
+    "History": "Tarix",
+    "Action": "Aksiyon",
+    "Animated": "Animasiya",
+    "Biography": "Biyoqrafiya",
+    "Movies you could also like": "Bəyənə biləcəyiniz filmlər",
+    "Streaming Channels": "Yayımlayan kanallar" 
     
 }
